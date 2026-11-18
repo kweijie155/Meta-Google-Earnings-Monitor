@@ -1,0 +1,5739 @@
+// src/data.json
+var data_default = {
+  cutoff: "2026-10-29",
+  quarters: [
+    "2024Q1",
+    "2024Q2",
+    "2024Q3",
+    "2024Q4",
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2",
+    "2026Q3"
+  ],
+  display: [
+    "2025Q1",
+    "2025Q2",
+    "2025Q3",
+    "2025Q4",
+    "2026Q1",
+    "2026Q2",
+    "2026Q3"
+  ],
+  sources: [
+    {
+      id: "A-ER-25Q1",
+      co: "GOOGL",
+      doc: "Q1 2025 earnings release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2025-04-24",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q1/2025q1-alphabet-earnings-release.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000040/googexhibit991q12025.htm"
+    },
+    {
+      id: "A-ER-25Q2",
+      co: "GOOGL",
+      doc: "Q2 2025 earnings release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2025-07-23",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q2/2025q2-alphabet-earnings-release.pdf",
+      sec: ""
+    },
+    {
+      id: "A-ER-25Q3",
+      co: "GOOGL",
+      doc: "Q3 2025 earnings release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2025-10-29",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q3/2025q3-alphabet-earnings-release.pdf",
+      sec: ""
+    },
+    {
+      id: "A-ER-25Q4",
+      co: "GOOGL",
+      doc: "Q4 & FY2025 earnings release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-02-04",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q4/2025q4-alphabet-earnings-release.pdf",
+      sec: ""
+    },
+    {
+      id: "A-ER-26Q1",
+      co: "GOOGL",
+      doc: "Q1 2026 earnings release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-04-29",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/2026q1-alphabet-earnings-release.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000043/googexhibit991q12026.htm"
+    },
+    {
+      id: "A-ER-26Q2",
+      co: "GOOGL",
+      doc: "Q2 2026 earnings release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-07-22",
+      url: "https://s206.q4cdn.com/479360582/files/doc_news/2026/Jul/22/attachments/2026q2-alphabet-earnings-release.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/goog-20260722.htm"
+    },
+    {
+      id: "A-ER-26Q3",
+      co: "GOOGL",
+      doc: "Q3 2026 earnings release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-10-28",
+      url: "https://s206.q4cdn.com/479360582/files/doc_news/2026/Oct/28/attachments/2026q3-alphabet-earnings-release.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/googexhibit991q32026.htm"
+    },
+    {
+      id: "A-10Q-25Q1",
+      co: "GOOGL",
+      doc: "Form 10-Q, quarter ended Mar 31, 2025",
+      type: "SEC filing (10-Q)",
+      date: "2025-04",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q1/goog-10-q-q1-2025.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm"
+    },
+    {
+      id: "A-10Q-25Q2",
+      co: "GOOGL",
+      doc: "Form 10-Q, quarter ended Jun 30, 2025",
+      type: "SEC filing (10-Q)",
+      date: "2025-07-24",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q2/goog-10-q-q2-2025.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm"
+    },
+    {
+      id: "A-10Q-25Q2-MDA",
+      co: "GOOGL",
+      doc: "Form 10-Q Q2 2025, MD&A text (mirror)",
+      type: "SEC filing text mirror",
+      date: "2025-07-24",
+      url: "https://pubt.io/view/AE5B1756D491A8043B835DA9B75D0CB24F4E0CC8",
+      sec: ""
+    },
+    {
+      id: "A-10Q-25Q3",
+      co: "GOOGL",
+      doc: "Form 10-Q, quarter ended Sep 30, 2025 (PDF mirror)",
+      type: "SEC filing (10-Q)",
+      date: "2025-10",
+      url: "https://d18rn0p25nwr6d.cloudfront.net/CIK-0001652044/d6a68c11-89c6-4604-8fe8-103892a5de7e.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm"
+    },
+    {
+      id: "A-10K-25",
+      co: "GOOGL",
+      doc: "Form 10-K, FY2025 (revenue backlog note, via EDGAR tools)",
+      type: "SEC filing (10-K)",
+      date: "2026-02",
+      url: "https://app.edgar.tools/companies/GOOG/disclosures/revenue",
+      sec: "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+    },
+    {
+      id: "A-10Q-26Q1",
+      co: "GOOGL",
+      doc: "Form 10-Q, quarter ended Mar 31, 2026",
+      type: "SEC filing (10-Q)",
+      date: "2026-04",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/GOOG-10-Q-Q1-2026.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000048/goog-20260331.htm"
+    },
+    {
+      id: "A-10Q-26Q2",
+      co: "GOOGL",
+      doc: "Form 10-Q, quarter ended Jun 30, 2026",
+      type: "SEC filing (10-Q)",
+      date: "2026-07",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/GOOG-10-Q-Q2-2026.pdf",
+      sec: "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm"
+    },
+    {
+      id: "A-10Q-26Q3",
+      co: "GOOGL",
+      doc: "Form 10-Q, quarter ended Sep 30, 2026",
+      type: "SEC filing (10-Q)",
+      date: "2026-10-28",
+      url: "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+      sec: ""
+    },
+    {
+      id: "A-CALL-26Q1",
+      co: "GOOGL",
+      doc: "Q1 2026 earnings call transcript",
+      type: "Earnings call (company transcript)",
+      date: "2026-04-29",
+      url: "https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/Alphabet-2026_Q1_Earnings_Transcript.pdf",
+      sec: ""
+    },
+    {
+      id: "M-ER-24Q4",
+      co: "META",
+      doc: "Q4 & FY2024 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2025-01-29",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-Fourth-Quarter-and-Full-Year-2024-Results/default.aspx",
+      sec: ""
+    },
+    {
+      id: "M-ER-25Q1",
+      co: "META",
+      doc: "Q1 2025 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2025-04-30",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-First-Quarter-2025-Results/default.aspx",
+      sec: ""
+    },
+    {
+      id: "M-ER-25Q2",
+      co: "META",
+      doc: "Q2 2025 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2025-07-30",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-Second-Quarter-2025-Results/default.aspx",
+      sec: ""
+    },
+    {
+      id: "M-ER-25Q3",
+      co: "META",
+      doc: "Q3 2025 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2025-10-29",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2025/Meta-Reports-Third-Quarter-2025-Results/default.aspx",
+      sec: ""
+    },
+    {
+      id: "M-ER-25Q4",
+      co: "META",
+      doc: "Q4 & FY2025 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-01-28",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Fourth-Quarter-and-Full-Year-2025-Results/default.aspx",
+      sec: ""
+    },
+    {
+      id: "M-ER-26Q1",
+      co: "META",
+      doc: "Q1 2026 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-04-29",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-First-Quarter-2026-Results/default.aspx",
+      sec: ""
+    },
+    {
+      id: "M-ER-26Q2",
+      co: "META",
+      doc: "Q2 2026 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-07-29",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Second-Quarter-2026-Results/default.aspx",
+      sec: ""
+    },
+    {
+      id: "M-ER-26Q3",
+      co: "META",
+      doc: "Q3 2026 results press release",
+      type: "Earnings release (8-K Ex. 99.1)",
+      date: "2026-10-21",
+      url: "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
+      sec: "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026066700/meta-09302026xexhibit991.htm"
+    },
+    {
+      id: "M-PRES-26Q3",
+      co: "META",
+      doc: "Q3 2026 earnings presentation (DAP, ARPP, segment history)",
+      type: "Earnings presentation",
+      date: "2026-10-21",
+      url: "https://s21.q4cdn.com/399680738/files/content_files/Earnings-Presentation-Q3-2026.pdf",
+      sec: ""
+    },
+    {
+      id: "M-CALL-26Q3",
+      co: "META",
+      doc: "Q3 2026 earnings call transcript",
+      type: "Earnings call (company transcript)",
+      date: "2026-10-21",
+      url: "https://s21.q4cdn.com/399680738/files/content_files/META-Q3-2026-Earnings-Call-Transcript.pdf",
+      sec: ""
+    },
+    {
+      id: "S-PPC-26Q3",
+      co: "GOOGL",
+      doc: "PPC Land: Q3 2026 paid clicks/CPC from Alphabet 10-Q",
+      type: "Secondary (cites 10-Q)",
+      date: "2026-10-29",
+      url: "https://ppc.land/google-ad-clicks-gain-8-in-q3-slower-than-11-over-nine-months/",
+      sec: ""
+    },
+    {
+      id: "S-WMEDIA-26Q2",
+      co: "GOOGL",
+      doc: "W.Media: Q2 2026 call, 2026 capex guidance raised",
+      type: "Secondary (call coverage)",
+      date: "2026-07-23",
+      url: "https://w.media/ai-infrastructure-demand-pushes-alphabets-2026-capex-guidance-to-us-205-billion/",
+      sec: ""
+    },
+    {
+      id: "S-INV-26Q3",
+      co: "GOOGL",
+      doc: "Investing.com: Q3 2026 call transcript & consensus",
+      type: "Secondary (call coverage)",
+      date: "2026-10-28",
+      url: "https://www.investing.com/news/transcripts/earnings-call-transcript-alphabet-q3-2026-profit-miss-sparks-10-afterhours-drop-93CH-4981037",
+      sec: ""
+    },
+    {
+      id: "S-NB-26Q3",
+      co: "META",
+      doc: "NewsBytes: Q3 2026 vs LSEG consensus",
+      type: "Secondary (consensus)",
+      date: "2026-10-22",
+      url: "https://www.newsbytesapp.com/news/business/meta-reports-65b-revenue-for-q3-beats-expectations/story",
+      sec: ""
+    },
+    {
+      id: "S-NBC-24Q4",
+      co: "GOOGL",
+      doc: "CNBC/NBC: 2025 capex ~ $75B (Q4 2024 call)",
+      type: "Secondary (call coverage)",
+      date: "2025-02-04",
+      url: "https://nbcsandiego.com/news/business/money-report/alphabet-expects-to-invest-about-75-billion-in-capex-in-2025/3744010",
+      sec: ""
+    },
+    {
+      id: "S-DIGI-25Q1",
+      co: "GOOGL",
+      doc: "DIGITIMES: 2025 capex plan reaffirmed (Q1 2025 call)",
+      type: "Secondary (call coverage)",
+      date: "2025-04-25",
+      url: "https://www.digitimes.com/news/a20250425VL205.html",
+      sec: ""
+    },
+    {
+      id: "S-BBG-FTC",
+      co: "META",
+      doc: "Bloomberg: FTC to appeal ruling in Meta monopoly case",
+      type: "Secondary (news)",
+      date: "2026-01-20",
+      url: "https://www.bloomberg.com/news/articles/2026-01-20/us-ftc-to-appeal-court-ruling-on-meta-win-in-monopoly-case",
+      sec: ""
+    },
+    {
+      id: "S-ADS-ARPP",
+      co: "META",
+      doc: "AdsUploader: Meta DAP/ARPP history (quarter-mapping cross-check)",
+      type: "Secondary (cross-check only)",
+      date: "2026-08-08",
+      url: "https://adsuploader.com/blog/meta-users-statistics",
+      sec: ""
+    },
+    {
+      id: "M-PRES-25Q3",
+      co: "META",
+      doc: "Q3 2025 earnings presentation (geography, regional impressions and price per ad)",
+      type: "Earnings presentation",
+      date: "2025-10-29",
+      url: "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q3/Earnings-Presentation-Q3-2025-Final.pdf",
+      sec: ""
+    },
+    {
+      id: "M-FY-GEO",
+      co: "META",
+      doc: "Form 10-K FY2025, revenue by customer address (via EDGAR tools)",
+      type: "SEC filing (10-K)",
+      date: "2026-01-29",
+      url: "https://app.edgar.tools/companies/META/disclosures/revenue",
+      sec: "https://www.sec.gov/Archives/edgar/data/1326801/000162828026003942/meta-20251231.htm"
+    },
+    {
+      id: "A-FY-GEO",
+      co: "GOOGL",
+      doc: "Form 10-K FY2025, revenue by geography (via EDGAR tools)",
+      type: "SEC filing (10-K)",
+      date: "2026-02-05",
+      url: "https://app.edgar.tools/companies/GOOG/disclosures/revenue",
+      sec: "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
+    },
+    {
+      id: "S-ADSUP",
+      co: "META",
+      doc: "AdsUploader: Meta regional price per ad and impressions tracker (quarter mapping of Meta deck slides 12-13)",
+      type: "Secondary (deck transcription)",
+      date: "2026-10-26",
+      url: "https://adsuploader.com/blog/meta-earnings-for-advertisers",
+      sec: ""
+    },
+    {
+      id: "S-ADWIZE",
+      co: "META",
+      doc: "Adwize: Meta price per ad and impressions by quarter and region",
+      type: "Secondary (deck transcription)",
+      date: "2026-09-29",
+      url: "https://adwize.ai/meta-ad-price-history",
+      sec: ""
+    },
+    {
+      id: "S-2SLIDES",
+      co: "META",
+      doc: "2Slides: Meta Q2 2026 earnings presentation transcription",
+      type: "Secondary (deck transcription)",
+      date: "2026-07",
+      url: "https://2slides.com/gallery/meta-q2-2026-earnings-presentation",
+      sec: ""
+    },
+    {
+      id: "S-RA-26Q3",
+      co: "META",
+      doc: "Relevant Audience: Q3 2026 APAC price per ad +1% as impressions grow 14%",
+      type: "Secondary (deck analysis)",
+      date: "2026-10-23",
+      url: "https://www.relevantaudience.com/meta/meta-q3-2026-ad-price-impressions-asia-pacific/",
+      sec: ""
+    },
+    {
+      id: "S-CNBC-25Q1",
+      co: "META",
+      doc: "CNBC: Meta says China retailers are reducing digital ad spend (Q1 2025 call)",
+      type: "Secondary (call coverage)",
+      date: "2025-04-30",
+      url: "https://www.nbcsandiego.com/news/business/money-report/meta-says-china-retailers-are-reducing-digital-ad-spend/3815659/",
+      sec: ""
+    },
+    {
+      id: "R-JFTC-250415",
+      co: "GOOGL",
+      doc: "JFTC: cease and desist order against Google (Android search preinstallation)",
+      type: "Regulator release",
+      date: "2025-04-15",
+      url: "https://www.jftc.go.jp/en/pressreleases/yearly-2025/April/250415.html",
+      sec: ""
+    },
+    {
+      id: "R-JFTC-250331",
+      co: "GOOGL",
+      doc: "JFTC: designation of providers under the Mobile Software Competition Act",
+      type: "Regulator release",
+      date: "2025-03-31",
+      url: "https://www.jftc.go.jp/en/pressreleases/yearly-2025/March/250331.html",
+      sec: ""
+    },
+    {
+      id: "R-JFTC-250910",
+      co: "GOOGL",
+      doc: "JFTC: Mobile Software Competition Act full enforcement on Dec 18, 2025",
+      type: "Regulator release",
+      date: "2025-09-10",
+      url: "https://www.jftc.go.jp/en/about_jftc/index_3_250910.html",
+      sec: ""
+    },
+    {
+      id: "S-AU-U16",
+      co: "BOTH",
+      doc: "McCullough Robertson: Australia's under-16 social media minimum age starts",
+      type: "Secondary (legal analysis)",
+      date: "2025-12-10",
+      url: "https://mccullough.com.au/2025/12/10/australias-social-media-ban-under-16/",
+      sec: ""
+    },
+    {
+      id: "S-NCLAT",
+      co: "META",
+      doc: "Bar & Bench: NCLAT sets aside CCI data-sharing ban, upholds Rs 213.14 crore penalty",
+      type: "Secondary (legal news)",
+      date: "2025-11-04",
+      url: "https://www.barandbench.com/news/litigation/nclat-sets-aside-cci-ban-on-whatsapp-meta-data-sharing-for-advertising-upholds-213-crore-penalty",
+      sec: ""
+    },
+    {
+      id: "S-AV",
+      co: "BOTH",
+      doc: "Alpha Vantage statement API (independent cross-check of revenue, OI, NI, OCF, capex, cash)",
+      type: "Secondary (cross-check only)",
+      date: "2026-10-30",
+      url: "https://www.alphavantage.co/documentation/",
+      sec: ""
+    }
+  ],
+  rows: {
+    GOOGL: {
+      "2024Q1": {
+        revenue: 80539,
+        search: 46156,
+        youtube: 8090,
+        network: 7413,
+        google_ads: 61659,
+        subs: 8739,
+        services_rev: 70398,
+        cloud_rev: 9574,
+        other_bets_rev: 495,
+        hedging: 72,
+        services_oi: 27897,
+        cloud_oi: 900,
+        other_bets_oi: -1020,
+        ala_oi: -2305,
+        op_income: 25472,
+        cost_of_rev: 33712,
+        rnd: 11903,
+        snm: 6426,
+        gna: 3026,
+        other_income: 2843,
+        net_income: 23662,
+        eps_diluted: 1.89,
+        diluted_shares: 12527,
+        ocf: 28848,
+        capex_ppe: 12012,
+        fcf_reported: 16836,
+        buybacks: 15696,
+        dividends: 0,
+        cash_ms: null,
+        headcount: 180895,
+        tac: 12946,
+        ad_revenue: 61659,
+        capex_reported: 12012,
+        fin_lease: null,
+        fcf_lfl: 16836,
+        _fcf_computed: true,
+        rpo: null,
+        paid_clicks_yoy: null,
+        cpc_yoy: null,
+        tac_rate: 0.20996123842423653,
+        cloud_margin: 0.09400459578023815,
+        shareholder_returns: 15696,
+        geo_us: 38737,
+        geo_emea: 23788,
+        geo_apac: 13289,
+        geo_oa: 4653,
+        geo_hedge: 72,
+        network_imp_yoy: null,
+        network_cpi_yoy: null,
+        apac_cc_yoy: null,
+        ads_share: 0.765579408733657
+      },
+      "2024Q2": {
+        revenue: 84742,
+        search: 48509,
+        youtube: 8663,
+        network: 7444,
+        google_ads: 64616,
+        subs: 9312,
+        services_rev: 73928,
+        cloud_rev: 10347,
+        other_bets_rev: 365,
+        hedging: 102,
+        services_oi: 29674,
+        cloud_oi: 1172,
+        other_bets_oi: -1134,
+        ala_oi: -2287,
+        op_income: 27425,
+        cost_of_rev: 35507,
+        rnd: 11860,
+        snm: 6792,
+        gna: 3158,
+        other_income: 126,
+        net_income: 23619,
+        eps_diluted: 1.89,
+        diluted_shares: 12495,
+        ocf: 26640,
+        capex_ppe: 13186,
+        fcf_reported: 13454,
+        buybacks: 15684,
+        dividends: 2466,
+        cash_ms: null,
+        headcount: 179582,
+        tac: 13387,
+        ad_revenue: 64616,
+        capex_reported: 13186,
+        fin_lease: null,
+        fcf_lfl: 13454,
+        _fcf_computed: true,
+        rpo: null,
+        paid_clicks_yoy: null,
+        cpc_yoy: null,
+        tac_rate: 0.20717778878296397,
+        cloud_margin: 0.11326954672852034,
+        shareholder_returns: 18150,
+        geo_us: 41196,
+        geo_emea: 24683,
+        geo_apac: 13823,
+        geo_oa: 4938,
+        geo_hedge: 102,
+        network_imp_yoy: null,
+        network_cpi_yoy: null,
+        apac_cc_yoy: null,
+        ads_share: 0.7625026551178873
+      },
+      "2024Q3": {
+        revenue: 88268,
+        search: 49385,
+        youtube: 8921,
+        network: 7548,
+        google_ads: 65854,
+        subs: 10656,
+        services_rev: 76510,
+        cloud_rev: 11353,
+        other_bets_rev: 388,
+        hedging: 17,
+        services_oi: 30856,
+        cloud_oi: 1947,
+        other_bets_oi: -1116,
+        ala_oi: -3166,
+        op_income: 28521,
+        cost_of_rev: 36474,
+        rnd: 12447,
+        snm: 7227,
+        gna: 3599,
+        other_income: 3185,
+        net_income: 26301,
+        eps_diluted: 2.12,
+        diluted_shares: 12419,
+        ocf: 30698,
+        capex_ppe: 13061,
+        fcf_reported: 17637,
+        buybacks: 15291,
+        dividends: 2455,
+        cash_ms: null,
+        headcount: 181269,
+        tac: 13719,
+        ad_revenue: 65854,
+        capex_reported: 13061,
+        fin_lease: null,
+        fcf_lfl: 17637,
+        _fcf_computed: true,
+        rpo: null,
+        paid_clicks_yoy: null,
+        cpc_yoy: null,
+        tac_rate: 0.20832447535457224,
+        cloud_margin: 0.17149652074341584,
+        shareholder_returns: 17746,
+        geo_us: 43139,
+        geo_emea: 25472,
+        geo_apac: 14547,
+        geo_oa: 5093,
+        geo_hedge: 17,
+        network_imp_yoy: null,
+        network_cpi_yoy: null,
+        apac_cc_yoy: null,
+        ads_share: 0.7460687905016541
+      },
+      "2024Q4": {
+        revenue: 96469,
+        search: 54034,
+        youtube: 10473,
+        network: 7954,
+        google_ads: 72461,
+        subs: 11633,
+        services_rev: 84094,
+        cloud_rev: 11955,
+        other_bets_rev: 400,
+        hedging: 20,
+        services_oi: 32836,
+        cloud_oi: 2093,
+        other_bets_oi: -1174,
+        ala_oi: -2783,
+        op_income: 30972,
+        cost_of_rev: 40613,
+        rnd: 13116,
+        snm: 7363,
+        gna: 4405,
+        other_income: 1271,
+        net_income: 26536,
+        eps_diluted: 2.15,
+        diluted_shares: 12348,
+        ocf: 39113,
+        capex_ppe: 14276,
+        fcf_reported: 24837,
+        buybacks: 15551,
+        dividends: 2442,
+        cash_ms: 95657,
+        headcount: 183323,
+        tac: 14848,
+        ad_revenue: 72461,
+        capex_reported: 14276,
+        fin_lease: null,
+        fcf_lfl: 24837,
+        _fcf_computed: true,
+        rpo: null,
+        paid_clicks_yoy: null,
+        cpc_yoy: null,
+        tac_rate: 0.2049102275706932,
+        cloud_margin: 0.175073191133417,
+        shareholder_returns: 17993,
+        geo_us: 47375,
+        geo_emea: 28184,
+        geo_apac: 15156,
+        geo_oa: 5734,
+        geo_hedge: 20,
+        network_imp_yoy: null,
+        network_cpi_yoy: null,
+        apac_cc_yoy: null,
+        ads_share: 0.7511324881568172
+      },
+      "2025Q1": {
+        revenue: 90234,
+        search: 50702,
+        youtube: 8927,
+        network: 7256,
+        google_ads: 66885,
+        subs: 10379,
+        services_rev: 77264,
+        cloud_rev: 12260,
+        other_bets_rev: 450,
+        hedging: 260,
+        services_oi: 32682,
+        cloud_oi: 2177,
+        other_bets_oi: -1226,
+        ala_oi: -3027,
+        op_income: 30606,
+        cost_of_rev: 36361,
+        rnd: 13556,
+        snm: 6172,
+        gna: 3539,
+        other_income: 11183,
+        net_income: 34540,
+        eps_diluted: 2.81,
+        diluted_shares: 12291,
+        ocf: 36150,
+        capex_ppe: 17197,
+        fcf_reported: 18953,
+        buybacks: 15068,
+        dividends: 2434,
+        cash_ms: 95328,
+        headcount: 185719,
+        tac: 13748,
+        ad_revenue: 66885,
+        capex_reported: 17197,
+        fin_lease: null,
+        fcf_lfl: 18953,
+        rpo: 92.4,
+        paid_clicks_yoy: 2,
+        cpc_yoy: 7,
+        tac_rate: 0.2055468341182627,
+        cloud_margin: 0.17756933115823817,
+        shareholder_returns: 17502,
+        geo_us: 43964,
+        geo_emea: 25923,
+        geo_apac: 14854,
+        geo_oa: 5233,
+        geo_hedge: 260,
+        network_imp_yoy: -5,
+        network_cpi_yoy: 4,
+        apac_cc_yoy: 15,
+        ads_share: 0.7412394441119755
+      },
+      "2025Q2": {
+        revenue: 96428,
+        search: 54190,
+        youtube: 9796,
+        network: 7354,
+        google_ads: 71340,
+        subs: 11203,
+        services_rev: 82543,
+        cloud_rev: 13624,
+        other_bets_rev: 373,
+        hedging: -112,
+        services_oi: 33063,
+        cloud_oi: 2826,
+        other_bets_oi: -1246,
+        ala_oi: -3372,
+        op_income: 31271,
+        cost_of_rev: 39039,
+        rnd: 13808,
+        snm: 7101,
+        gna: 5209,
+        other_income: 2662,
+        net_income: 28196,
+        eps_diluted: 2.31,
+        diluted_shares: 12198,
+        ocf: 27747,
+        capex_ppe: 22446,
+        fcf_reported: 5301,
+        buybacks: 13638,
+        dividends: 2543,
+        cash_ms: 95148,
+        headcount: 187103,
+        tac: 14705,
+        ad_revenue: 71340,
+        capex_reported: 22446,
+        fin_lease: null,
+        fcf_lfl: 5301,
+        rpo: 108.2,
+        paid_clicks_yoy: 4,
+        cpc_yoy: 8,
+        tac_rate: 0.206125595738716,
+        cloud_margin: 0.207428068115091,
+        shareholder_returns: 16181,
+        geo_us: 46063,
+        geo_emea: 28262,
+        geo_apac: 16480,
+        geo_oa: 5735,
+        geo_hedge: -112,
+        network_imp_yoy: -6,
+        network_cpi_yoy: 6,
+        apac_cc_yoy: 18,
+        ads_share: 0.7398266063798896
+      },
+      "2025Q3": {
+        revenue: 102346,
+        search: 56567,
+        youtube: 10261,
+        network: 7354,
+        google_ads: 74182,
+        subs: 12870,
+        services_rev: 87052,
+        cloud_rev: 15157,
+        other_bets_rev: 344,
+        hedging: -207,
+        services_oi: 33527,
+        cloud_oi: 3594,
+        other_bets_oi: -1426,
+        ala_oi: -4467,
+        op_income: 31228,
+        cost_of_rev: 41369,
+        rnd: 15151,
+        snm: 7205,
+        gna: 7393,
+        other_income: 12759,
+        net_income: 34979,
+        eps_diluted: 2.87,
+        diluted_shares: 12203,
+        ocf: 48414,
+        capex_ppe: 23953,
+        fcf_reported: 24461,
+        buybacks: 11504,
+        dividends: 2537,
+        cash_ms: 98496,
+        headcount: 190167,
+        tac: 14876,
+        ad_revenue: 74182,
+        capex_reported: 23953,
+        fin_lease: null,
+        fcf_lfl: 24461,
+        rpo: 157.7,
+        paid_clicks_yoy: 7,
+        cpc_yoy: 7,
+        tac_rate: 0.20053382222102398,
+        cloud_margin: 0.23711816322491258,
+        shareholder_returns: 14041,
+        geo_us: 48758,
+        geo_emea: 29911,
+        geo_apac: 17819,
+        geo_oa: 6065,
+        geo_hedge: -207,
+        network_imp_yoy: -5,
+        network_cpi_yoy: 6,
+        apac_cc_yoy: null,
+        ads_share: 0.7248158208430227
+      },
+      "2025Q4": {
+        revenue: 113828,
+        search: 63073,
+        youtube: 11383,
+        network: 7828,
+        google_ads: 82284,
+        subs: 13578,
+        services_rev: 95862,
+        cloud_rev: 17664,
+        other_bets_rev: 370,
+        hedging: -68,
+        services_oi: 40132,
+        cloud_oi: 5313,
+        other_bets_oi: -3617,
+        ala_oi: -5894,
+        op_income: 35934,
+        cost_of_rev: 45766,
+        rnd: 18572,
+        snm: 8215,
+        gna: 5341,
+        other_income: 3183,
+        net_income: 34455,
+        eps_diluted: 2.82,
+        diluted_shares: 12228,
+        ocf: 52402,
+        capex_ppe: 27851,
+        fcf_reported: 24551,
+        buybacks: 5499,
+        dividends: 2536,
+        cash_ms: 126843,
+        headcount: 190820,
+        tac: 16597,
+        ad_revenue: 82284,
+        capex_reported: 27851,
+        fin_lease: null,
+        fcf_lfl: 24551,
+        rpo: 242.8,
+        paid_clicks_yoy: null,
+        cpc_yoy: null,
+        tac_rate: 0.2017038549414224,
+        cloud_margin: 0.30078125,
+        shareholder_returns: 8035,
+        geo_us: 55444,
+        geo_emea: 33056,
+        geo_apac: 18527,
+        geo_oa: 6869,
+        geo_hedge: -67,
+        network_imp_yoy: null,
+        network_cpi_yoy: null,
+        apac_cc_yoy: null,
+        ads_share: 0.7228801349404365
+      },
+      "2026Q1": {
+        revenue: 109896,
+        search: 60399,
+        youtube: 9883,
+        network: 6971,
+        google_ads: 77253,
+        subs: 12384,
+        services_rev: 89637,
+        cloud_rev: 20028,
+        other_bets_rev: 411,
+        hedging: -180,
+        services_oi: 40589,
+        cloud_oi: 6598,
+        other_bets_oi: -2100,
+        ala_oi: -5391,
+        op_income: 39696,
+        cost_of_rev: 41271,
+        rnd: 17032,
+        snm: 7606,
+        gna: 4291,
+        other_income: 37716,
+        net_income: 62578,
+        eps_diluted: 5.11,
+        diluted_shares: 12238,
+        ocf: 45790,
+        capex_ppe: 35674,
+        fcf_reported: 10116,
+        buybacks: 0,
+        dividends: 2542,
+        cash_ms: 126840,
+        headcount: 194668,
+        tac: 15228,
+        ad_revenue: 77253,
+        capex_reported: 35674,
+        fin_lease: null,
+        fcf_lfl: 10116,
+        rpo: 467.6,
+        paid_clicks_yoy: 13,
+        cpc_yoy: 5,
+        tac_rate: 0.19711855850258242,
+        cloud_margin: 0.32943878570002,
+        shareholder_returns: 2542,
+        geo_us: 53975,
+        geo_emea: 31468,
+        geo_apac: 18288,
+        geo_oa: 6345,
+        geo_hedge: -180,
+        network_imp_yoy: -9,
+        network_cpi_yoy: 6,
+        apac_cc_yoy: null,
+        ads_share: 0.7029646210963092
+      },
+      "2026Q2": {
+        revenue: 119796,
+        search: 63271,
+        youtube: 11055,
+        network: 7303,
+        google_ads: 81629,
+        subs: 12911,
+        services_rev: 94540,
+        cloud_rev: 24768,
+        other_bets_rev: 382,
+        hedging: 106,
+        services_oi: 39544,
+        cloud_oi: 8814,
+        other_bets_oi: -1799,
+        ala_oi: -5789,
+        op_income: 40770,
+        cost_of_rev: 45943,
+        rnd: 18219,
+        snm: 8403,
+        gna: 6461,
+        other_income: 97983,
+        net_income: 112193,
+        eps_diluted: 9.11,
+        diluted_shares: 12309,
+        ocf: 39069,
+        capex_ppe: 44924,
+        fcf_reported: -5855,
+        buybacks: 0,
+        dividends: 2689,
+        cash_ms: 242474,
+        headcount: 198933,
+        tac: 16179,
+        ad_revenue: 81629,
+        capex_reported: 44924,
+        fin_lease: null,
+        fcf_lfl: -5855,
+        rpo: 519.5,
+        paid_clicks_yoy: null,
+        cpc_yoy: null,
+        tac_rate: 0.19820161952247364,
+        cloud_margin: 0.3558624031007752,
+        shareholder_returns: 2689,
+        geo_us: 60846,
+        geo_emea: 32501,
+        geo_apac: 19317,
+        geo_oa: 7026,
+        geo_hedge: 106,
+        network_imp_yoy: null,
+        network_cpi_yoy: null,
+        apac_cc_yoy: null,
+        ads_share: 0.6814000467461351
+      },
+      "2026Q3": {
+        revenue: 127577,
+        search: 63350,
+        youtube: 11207,
+        network: 7455,
+        google_ads: 82012,
+        subs: 14290,
+        services_rev: 96302,
+        cloud_rev: 30709,
+        other_bets_rev: 372,
+        hedging: 194,
+        services_oi: 39157,
+        cloud_oi: 11121,
+        other_bets_oi: -2047,
+        ala_oi: -7655,
+        op_income: 40576,
+        cost_of_rev: 51419,
+        rnd: 20640,
+        snm: 8804,
+        gna: 6138,
+        other_income: -8221,
+        net_income: 26468,
+        eps_diluted: 2.12,
+        diluted_shares: 12368,
+        ocf: 42290,
+        capex_ppe: 51355,
+        fcf_reported: -9065,
+        buybacks: 0,
+        dividends: 2936,
+        cash_ms: 265098,
+        headcount: 204757,
+        tac: 16366,
+        ad_revenue: 82012,
+        capex_reported: 51355,
+        fin_lease: null,
+        fcf_lfl: -9065,
+        rpo: 567.7,
+        paid_clicks_yoy: 8,
+        cpc_yoy: 4,
+        tac_rate: 0.199556162512803,
+        cloud_margin: 0.36214139177439836,
+        shareholder_returns: 2936,
+        geo_us: 67681,
+        geo_emea: 32695,
+        geo_apac: 19906,
+        geo_oa: 7101,
+        geo_hedge: 194,
+        network_imp_yoy: -14,
+        network_cpi_yoy: 14,
+        apac_cc_yoy: null,
+        ads_share: 0.6428431457080822
+      }
+    },
+    META: {
+      "2024Q1": {
+        revenue: 36455,
+        ad_revenue: 35635,
+        other_rev: 380,
+        foa_rev: 36015,
+        rl_rev: 440,
+        foa_oi: 17664,
+        rl_oi: -3846,
+        op_income: 13818,
+        total_costs: 22637,
+        tax_provision: 1814,
+        net_income: 12369,
+        eps_diluted: 4.71,
+        ocf: 19246,
+        capex_ppe: 6400,
+        fin_lease: 315,
+        fcf_reported: 12531,
+        buybacks: 15008,
+        dividends: 1273,
+        cash_ms: null,
+        headcount: null,
+        dap: null,
+        arpp: null,
+        impressions_yoy: null,
+        price_per_ad_yoy: null,
+        capex_reported: 6715,
+        fcf_lfl: 12846,
+        rl_margin: -8.74090909090909,
+        ad_us: 15451,
+        ad_eu: 8327,
+        ad_ap: 7338,
+        ad_rw: 4519,
+        rev_us: 15824,
+        rev_eu: 8483,
+        rev_ap: 7481,
+        rev_rw: 4667,
+        shareholder_returns: 16281
+      },
+      "2024Q2": {
+        revenue: 39071,
+        ad_revenue: 38329,
+        other_rev: 389,
+        foa_rev: 38718,
+        rl_rev: 353,
+        foa_oi: 19335,
+        rl_oi: -4488,
+        op_income: 14847,
+        total_costs: 24224,
+        tax_provision: 1641,
+        net_income: 13465,
+        eps_diluted: 5.16,
+        ocf: 19370,
+        capex_ppe: 8173,
+        fin_lease: 299,
+        fcf_reported: 10898,
+        buybacks: 6299,
+        dividends: 1266,
+        cash_ms: null,
+        headcount: null,
+        dap: null,
+        arpp: null,
+        impressions_yoy: null,
+        price_per_ad_yoy: null,
+        capex_reported: 8472,
+        fcf_lfl: 11197,
+        rl_margin: -12.713881019830028,
+        ad_us: 16593,
+        ad_eu: 9135,
+        ad_ap: 7721,
+        ad_rw: 4880,
+        rev_us: 16847,
+        rev_eu: 9300,
+        rev_ap: 7888,
+        rev_rw: 5036,
+        shareholder_returns: 7565
+      },
+      "2024Q3": {
+        revenue: 40589,
+        ad_revenue: 39885,
+        other_rev: 434,
+        foa_rev: 40319,
+        rl_rev: 270,
+        foa_oi: 21778,
+        rl_oi: -4428,
+        op_income: 17350,
+        total_costs: 23239,
+        tax_provision: 2134,
+        net_income: 15688,
+        eps_diluted: 6.03,
+        ocf: 24724,
+        capex_ppe: 8258,
+        fin_lease: 944,
+        fcf_reported: 15522,
+        buybacks: 8818,
+        dividends: 1263,
+        cash_ms: null,
+        headcount: null,
+        dap: 3.29,
+        arpp: 12.29,
+        impressions_yoy: null,
+        price_per_ad_yoy: null,
+        capex_reported: 9202,
+        fcf_lfl: 16466,
+        rl_margin: -16.4,
+        ad_us: 17389,
+        ad_eu: 9358,
+        ad_ap: 8050,
+        ad_rw: 5088,
+        rev_us: 17609,
+        rev_eu: 9492,
+        rev_ap: 8220,
+        rev_rw: 5268,
+        imp_ww: 7,
+        ppa_ww: 11,
+        imp_us: 7,
+        ppa_us: 9,
+        imp_eu: 5,
+        ppa_eu: 16,
+        imp_ap: 9,
+        ppa_ap: 8,
+        imp_rw: 5,
+        ppa_rw: 17,
+        shareholder_returns: 10081
+      },
+      "2024Q4": {
+        revenue: 48385,
+        ad_revenue: 46783,
+        other_rev: 519,
+        foa_rev: 47302,
+        rl_rev: 1083,
+        foa_oi: 28332,
+        rl_oi: -4967,
+        op_income: 23365,
+        total_costs: 25020,
+        tax_provision: 2715,
+        net_income: 20838,
+        eps_diluted: 8.02,
+        ocf: 27988,
+        capex_ppe: 14425,
+        fin_lease: 411,
+        fcf_reported: 13152,
+        buybacks: 0,
+        dividends: 1270,
+        cash_ms: 77810,
+        headcount: 74067,
+        dap: 3.35,
+        arpp: 14.25,
+        impressions_yoy: null,
+        price_per_ad_yoy: null,
+        capex_reported: 14836,
+        fcf_lfl: 13563,
+        rl_margin: -4.586334256694368,
+        ad_us: 20982,
+        ad_eu: 11154,
+        ad_ap: 9012,
+        ad_rw: 5635,
+        rev_us: 21783,
+        rev_eu: 11503,
+        rev_ap: 9245,
+        rev_rw: 5854,
+        imp_ww: 6,
+        ppa_ww: 14,
+        imp_us: 6,
+        ppa_us: 12,
+        imp_eu: 5,
+        ppa_eu: 16,
+        imp_ap: 10,
+        ppa_ap: 12,
+        imp_rw: 3,
+        ppa_rw: 23,
+        shareholder_returns: 1270
+      },
+      "2025Q1": {
+        revenue: 42314,
+        ad_revenue: 41392,
+        other_rev: 510,
+        foa_rev: 41902,
+        rl_rev: 412,
+        foa_oi: 21765,
+        rl_oi: -4210,
+        op_income: 17555,
+        total_costs: 24759,
+        tax_provision: 1738,
+        net_income: 16644,
+        eps_diluted: 6.43,
+        ocf: 24026,
+        capex_ppe: 12941,
+        fin_lease: 751,
+        fcf_reported: 10334,
+        buybacks: 12754,
+        dividends: 1329,
+        cash_ms: 70230,
+        headcount: 76834,
+        dap: 3.43,
+        arpp: 12.36,
+        impressions_yoy: 5,
+        price_per_ad_yoy: 10,
+        capex_reported: 13692,
+        fcf_lfl: 11085,
+        rl_margin: -10.218446601941748,
+        ad_us: 18259,
+        ad_eu: 9527,
+        ad_ap: 8224,
+        ad_rw: 5382,
+        rev_us: 18605,
+        rev_eu: 9680,
+        rev_ap: 8439,
+        rev_rw: 5590,
+        imp_ww: 5,
+        ppa_ww: 10,
+        imp_us: 4,
+        ppa_us: 14,
+        imp_eu: 5,
+        ppa_eu: 9,
+        imp_ap: 9,
+        ppa_ap: 3,
+        imp_rw: 1,
+        ppa_rw: 17,
+        shareholder_returns: 14083
+      },
+      "2025Q2": {
+        revenue: 47516,
+        ad_revenue: 46563,
+        other_rev: 583,
+        foa_rev: 47146,
+        rl_rev: 370,
+        foa_oi: 24971,
+        rl_oi: -4530,
+        op_income: 20441,
+        total_costs: 27075,
+        tax_provision: 2197,
+        net_income: 18337,
+        eps_diluted: 7.14,
+        ocf: 25561,
+        capex_ppe: 16538,
+        fin_lease: 474,
+        fcf_reported: 8549,
+        buybacks: 10167,
+        dividends: 1327,
+        cash_ms: 47070,
+        headcount: 75945,
+        dap: 3.48,
+        arpp: 13.65,
+        impressions_yoy: 11,
+        price_per_ad_yoy: 9,
+        capex_reported: 17012,
+        fcf_lfl: 9023,
+        rl_margin: -12.243243243243244,
+        ad_us: 20045,
+        ad_eu: 11366,
+        ad_ap: 9148,
+        ad_rw: 6004,
+        rev_us: 20371,
+        rev_eu: 11532,
+        rev_ap: 9366,
+        rev_rw: 6247,
+        imp_ww: 11,
+        ppa_ww: 9,
+        imp_us: 9,
+        ppa_us: 11,
+        imp_eu: 6,
+        ppa_eu: 17,
+        imp_ap: 16,
+        ppa_ap: 2,
+        imp_rw: 7,
+        ppa_rw: 15,
+        shareholder_returns: 11494
+      },
+      "2025Q3": {
+        revenue: 51242,
+        ad_revenue: 50082,
+        other_rev: 690,
+        foa_rev: 50772,
+        rl_rev: 470,
+        foa_oi: 24967,
+        rl_oi: -4432,
+        op_income: 20535,
+        total_costs: 30707,
+        tax_provision: 18954,
+        net_income: 2709,
+        eps_diluted: 1.05,
+        ocf: 29999,
+        capex_ppe: 18829,
+        fin_lease: 545,
+        fcf_reported: 10625,
+        buybacks: 3327,
+        dividends: 1330,
+        cash_ms: 44450,
+        headcount: 78450,
+        dap: 3.54,
+        arpp: 14.46,
+        impressions_yoy: 14,
+        price_per_ad_yoy: 10,
+        capex_reported: 19374,
+        fcf_lfl: 11170,
+        rl_margin: -9.429787234042553,
+        ad_us: 21331,
+        ad_eu: 12072,
+        ad_ap: 10020,
+        ad_rw: 6659,
+        rev_us: 21751,
+        rev_eu: 12268,
+        rev_ap: 10272,
+        rev_rw: 6951,
+        imp_ww: 14,
+        ppa_ww: 10,
+        imp_us: 8,
+        ppa_us: 13,
+        imp_eu: 9,
+        ppa_eu: 19,
+        imp_ap: 23,
+        ppa_ap: 1,
+        imp_rw: 9,
+        ppa_rw: 20,
+        shareholder_returns: 4657
+      },
+      "2025Q4": {
+        revenue: 59893,
+        ad_revenue: 58137,
+        other_rev: 801,
+        foa_rev: 58938,
+        rl_rev: 955,
+        foa_oi: 30766,
+        rl_oi: -6021,
+        op_income: 24745,
+        total_costs: 35148,
+        tax_provision: 2586,
+        net_income: 22768,
+        eps_diluted: 8.88,
+        ocf: 36214,
+        capex_ppe: 21383,
+        fin_lease: 754,
+        fcf_reported: 14077,
+        buybacks: 0,
+        dividends: 1338,
+        cash_ms: 81590,
+        headcount: 78865,
+        dap: 3.58,
+        arpp: 16.56,
+        impressions_yoy: 18,
+        price_per_ad_yoy: 6,
+        capex_reported: 22137,
+        fcf_lfl: 14831,
+        rl_margin: -6.304712041884817,
+        ad_us: 25643,
+        ad_eu: 14198,
+        ad_ap: 10893,
+        ad_rw: 7403,
+        rev_us: 26472,
+        rev_eu: 14480,
+        rev_ap: 11182,
+        rev_rw: 7759,
+        imp_ww: 18,
+        ppa_ww: 6,
+        imp_us: 13,
+        ppa_us: 9,
+        imp_eu: 13,
+        ppa_eu: 12,
+        imp_ap: 24,
+        ppa_ap: -2,
+        imp_rw: 14,
+        ppa_rw: 15,
+        shareholder_returns: 1338
+      },
+      "2026Q1": {
+        revenue: 56311,
+        ad_revenue: 55024,
+        other_rev: 885,
+        foa_rev: 55909,
+        rl_rev: 402,
+        foa_oi: 26900,
+        rl_oi: -4028,
+        op_income: 22872,
+        total_costs: 33439,
+        tax_provision: -5021,
+        net_income: 26773,
+        eps_diluted: 10.44,
+        ocf: 32226,
+        capex_ppe: 18997,
+        fin_lease: 843,
+        fcf_reported: 12386,
+        buybacks: 0,
+        dividends: 1346,
+        cash_ms: 81180,
+        headcount: 77986,
+        dap: 3.56,
+        arpp: 15.66,
+        impressions_yoy: 19,
+        price_per_ad_yoy: 12,
+        capex_reported: 19840,
+        fcf_lfl: 13229,
+        rl_margin: -10.019900497512438,
+        ad_us: 23667,
+        ad_eu: 13296,
+        ad_ap: 10631,
+        ad_rw: 7430,
+        rev_us: 24079,
+        rev_eu: 13500,
+        rev_ap: 10914,
+        rev_rw: 7818,
+        imp_ww: 19,
+        ppa_ww: 12,
+        imp_us: 13,
+        ppa_us: 14,
+        imp_eu: 17,
+        ppa_eu: 19,
+        imp_ap: 23,
+        ppa_ap: 5,
+        imp_rw: 17,
+        ppa_rw: 18,
+        shareholder_returns: 1346
+      },
+      "2026Q2": {
+        revenue: 60801,
+        ad_revenue: 59363,
+        other_rev: 1007,
+        foa_rev: 60370,
+        rl_rev: 431,
+        foa_oi: 23394,
+        rl_oi: -4619,
+        op_income: 18775,
+        total_costs: 42026,
+        tax_provision: 2908,
+        net_income: 15848,
+        eps_diluted: 6.18,
+        ocf: 31862,
+        capex_ppe: 30116,
+        fin_lease: 962,
+        fcf_reported: 784,
+        buybacks: 0,
+        dividends: 1353,
+        cash_ms: 90260,
+        headcount: 75472,
+        dap: 3.6,
+        arpp: 16.86,
+        impressions_yoy: 14,
+        price_per_ad_yoy: 12,
+        capex_reported: 31078,
+        fcf_lfl: 1746,
+        rl_margin: -10.7169373549884,
+        ad_us: 26337,
+        ad_eu: 14085,
+        ad_ap: 10847,
+        ad_rw: 8094,
+        rev_us: 26816,
+        rev_eu: 14296,
+        rev_ap: 11164,
+        rev_rw: 8525,
+        imp_ww: 14,
+        ppa_ww: 12,
+        imp_us: 9,
+        ppa_us: 20,
+        imp_eu: 13,
+        ppa_eu: 10,
+        imp_ap: 17,
+        ppa_ap: 1,
+        imp_rw: 12,
+        ppa_rw: 21,
+        shareholder_returns: 1353
+      },
+      "2026Q3": {
+        revenue: 64601,
+        ad_revenue: 63061,
+        other_rev: 1097,
+        foa_rev: 64158,
+        rl_rev: 443,
+        foa_oi: 17117,
+        rl_oi: -4129,
+        op_income: 12988,
+        total_costs: 51613,
+        tax_provision: 3141,
+        net_income: 9860,
+        eps_diluted: 3.83,
+        ocf: 32786,
+        capex_ppe: 33942,
+        fin_lease: 964,
+        fcf_reported: -2120,
+        buybacks: 0,
+        dividends: 1361,
+        cash_ms: 82450,
+        headcount: 66775,
+        dap: 3.64,
+        arpp: 17.72,
+        impressions_yoy: 10,
+        price_per_ad_yoy: 14,
+        capex_reported: 34906,
+        fcf_lfl: -1156,
+        rl_margin: -9.320541760722348,
+        ad_us: 28438,
+        ad_eu: 14234,
+        ad_ap: 11531,
+        ad_rw: 8858,
+        rev_us: 28905,
+        rev_eu: 14462,
+        rev_ap: 11890,
+        rev_rw: 9344,
+        imp_ww: 10,
+        ppa_ww: 14,
+        imp_us: 8,
+        ppa_us: 23,
+        imp_eu: 8,
+        ppa_eu: 10,
+        imp_ap: 14,
+        ppa_ap: 1,
+        imp_rw: 8,
+        ppa_rw: 24,
+        shareholder_returns: 1361
+      }
+    }
+  },
+  a_src: {
+    "2024Q1": "A-ER-25Q1",
+    "2024Q2": "A-ER-25Q2",
+    "2024Q3": "A-ER-25Q3",
+    "2024Q4": "A-ER-25Q4",
+    "2025Q1": "A-ER-25Q1",
+    "2025Q2": "A-ER-25Q2",
+    "2025Q3": "A-ER-25Q3",
+    "2025Q4": "A-ER-25Q4",
+    "2026Q1": "A-ER-26Q1",
+    "2026Q2": "A-ER-26Q2",
+    "2026Q3": "A-ER-26Q3"
+  },
+  m_src: {
+    "2024Q1": "M-ER-25Q1",
+    "2024Q2": "M-ER-25Q2",
+    "2024Q3": "M-ER-25Q3",
+    "2024Q4": "M-ER-25Q4",
+    "2025Q1": "M-ER-25Q1",
+    "2025Q2": "M-ER-25Q2",
+    "2025Q3": "M-ER-25Q3",
+    "2025Q4": "M-ER-25Q4",
+    "2026Q1": "M-ER-26Q1",
+    "2026Q2": "M-ER-26Q2",
+    "2026Q3": "M-ER-26Q3"
+  },
+  a_rpo_src: {
+    "2025Q1": "A-10Q-25Q1",
+    "2025Q2": "A-10Q-25Q2",
+    "2025Q3": "A-10Q-25Q3",
+    "2025Q4": "A-10K-25",
+    "2026Q1": "A-10Q-26Q1",
+    "2026Q2": "A-10Q-26Q2",
+    "2026Q3": "A-10Q-26Q3"
+  },
+  a_clicks_src: {
+    "2025Q1": "A-10Q-25Q1",
+    "2025Q2": "A-10Q-25Q2-MDA",
+    "2025Q3": "A-10Q-25Q3",
+    "2025Q4": null,
+    "2026Q1": "A-10Q-26Q1",
+    "2026Q2": null,
+    "2026Q3": "S-PPC-26Q3"
+  },
+  a_clicks_note: {
+    "2025Q4": "Not disclosed for Q4 alone; FY2025 10-K: paid clicks +6%, CPC +7%.",
+    "2026Q2": "Q2 2026 10-Q MD&A could not be retrieved in full from the IR PDF; left blank rather than estimated.",
+    "2026Q3": "Figure from the Q3 2026 10-Q as reported by PPC Land (primary MD&A text not retrievable).",
+    "2025Q2": "From 10-Q MD&A text via mirror of the filing."
+  },
+  m_reported_yoy: {
+    headcount: {
+      "2025Q1": 11,
+      "2025Q2": 7,
+      "2025Q3": 8
+    },
+    dap: {
+      "2025Q1": 6,
+      "2025Q2": 6,
+      "2025Q3": 8,
+      "2025Q4": 7,
+      "2026Q1": 4,
+      "2026Q2": 3,
+      "2026Q3": 3
+    }
+  },
+  one_offs: [
+    {
+      co: "GOOGL",
+      q: "2025Q1",
+      kind: "Non-operating gain",
+      text: "Net gain on equity securities of $9.8B (incl. $8.0B unrealized gain on a private-company stake) added $7.7B to net income and $0.62 to diluted EPS.",
+      eps: 0.62,
+      ni: 7700,
+      src: "A-ER-25Q1"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q2",
+      kind: "Legal / non-operating",
+      text: "Operating margin absorbed a charge for a settlement in principle of certain legal matters (not quantified in the release). Equity-securities gain of $1.3B added $0.95B to net income and $0.08 to EPS.",
+      eps: 0.08,
+      ni: 950,
+      src: "A-ER-25Q2"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q3",
+      kind: "Fine / non-operating",
+      text: "$3.5B European Commission fine accrued in G&A (Google Services); operating income ex-fine $34,685M (33.9% margin). Equity-securities gain of $10.7B added $8.3B to net income and $0.68 to EPS.",
+      eps: 0.68,
+      ni: 8300,
+      src: "A-ER-25Q3"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q4",
+      kind: "Compensation / non-operating",
+      text: "$2.1B Waymo employee-compensation charge (Other Bets, mostly R&D). Equity-securities gain of $2.3B added $1.8B to net income and $0.15 to EPS.",
+      eps: 0.15,
+      ni: 1800,
+      src: "A-ER-25Q4"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q1",
+      kind: "Non-operating gain",
+      text: "Equity-securities gain of $36.9B (mainly unrealized gains on non-marketable stakes) added $28.7B to net income and $2.35 to EPS.",
+      eps: 2.35,
+      ni: 28700,
+      src: "A-ER-26Q1"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q2",
+      kind: "Non-operating gain / financing",
+      text: "Equity-securities gain of $99.0B added $77.1B to net income and $6.26 to EPS. Alphabet also raised equity: $20.5B public common offering, $10.0B private placement to a Berkshire Hathaway affiliate and $19.0B of 6.25% mandatory convertible preferred (June 2026).",
+      eps: 6.26,
+      ni: 77100,
+      src: "A-ER-26Q2"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q3",
+      kind: "Non-operating loss / regulatory",
+      text: "Equity-securities loss of $8.7B cut net income by $6.7B and EPS by $0.55. 10-Q records a $1.0B charge for EU DMA fines; a $5.2B EU Android fine payment hit cash flow. Preferred dividends reduce net income available to common to $26,170M.",
+      eps: -0.55,
+      ni: -6700,
+      src: "A-ER-26Q3"
+    },
+    {
+      co: "META",
+      q: "2025Q3",
+      kind: "Tax",
+      text: "One-time non-cash income-tax charge of $15.93B (valuation allowance on U.S. federal deferred tax assets after the One Big Beautiful Bill Act). Ex-charge: net income $18.64B, diluted EPS $7.25, tax rate 14%.",
+      eps_ex: 7.25,
+      ni: -15930,
+      src: "M-ER-25Q3"
+    },
+    {
+      co: "META",
+      q: "2026Q1",
+      kind: "Tax",
+      text: "$8.03B income-tax benefit tied to U.S. Treasury Notice 2026-7 (partial offset to the Q3 2025 charge); EPS ex-benefit $3.13 lower.",
+      eps_ex: 7.31,
+      ni: 8030,
+      src: "M-ER-26Q1"
+    },
+    {
+      co: "META",
+      q: "2026Q2",
+      kind: "Legal / restructuring",
+      text: "$2.40B of legal-proceedings charges and $1.18B of severance tied to the May 2026 reduction (about 8,000 employees). EPS effect not quantified by the company.",
+      eps_ex: null,
+      ni: null,
+      src: "M-ER-26Q2"
+    },
+    {
+      co: "META",
+      q: "2026Q3",
+      kind: "Legal",
+      text: "$9.89B G&A charge for the August 2026 agreement with 52 state attorneys general on youth-related litigation (payments up to about $18.59B). Ex-charge: operating income $22.88B, diluted EPS $7.40.",
+      eps_ex: 7.4,
+      ni: null,
+      src: "M-ER-26Q3"
+    }
+  ],
+  guidance: [
+    {
+      co: "GOOGL",
+      issued: "2025-02-04",
+      at: "Q4 2024 call",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 75e3,
+      hi: 75e3,
+      approx: true,
+      change: "Initial",
+      src: "S-NBC-24Q4"
+    },
+    {
+      co: "GOOGL",
+      issued: "2025-04-24",
+      at: "Q1 2025 call",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 75e3,
+      hi: 75e3,
+      approx: true,
+      change: "Reaffirmed",
+      src: "S-DIGI-25Q1"
+    },
+    {
+      co: "GOOGL",
+      issued: "2025-07-23",
+      at: "Q2 2025 release",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 85e3,
+      hi: 85e3,
+      approx: true,
+      change: "Raised",
+      src: "A-ER-25Q2"
+    },
+    {
+      co: "GOOGL",
+      issued: "2025-10-29",
+      at: "Q3 2025 release",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 91e3,
+      hi: 93e3,
+      approx: false,
+      change: "Raised",
+      src: "A-ER-25Q3"
+    },
+    {
+      co: "GOOGL",
+      issued: "2026-02-04",
+      at: "Q4 2025 release",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 175e3,
+      hi: 185e3,
+      approx: false,
+      change: "Initial",
+      src: "A-ER-25Q4"
+    },
+    {
+      co: "GOOGL",
+      issued: "2026-04-29",
+      at: "Q1 2026 call",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 18e4,
+      hi: 19e4,
+      approx: false,
+      change: "Raised",
+      src: "A-CALL-26Q1"
+    },
+    {
+      co: "GOOGL",
+      issued: "2026-07-22",
+      at: "Q2 2026 call",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 195e3,
+      hi: 205e3,
+      approx: false,
+      change: "Raised",
+      src: "S-WMEDIA-26Q2"
+    },
+    {
+      co: "GOOGL",
+      issued: "2026-10-28",
+      at: "Q3 2026 call",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 195e3,
+      hi: 205e3,
+      approx: false,
+      change: "Maintained",
+      src: "S-INV-26Q3"
+    },
+    {
+      co: "META",
+      issued: "2025-01-29",
+      at: "Q4 2024 release",
+      target: "2025Q1",
+      metric: "Revenue",
+      lo: 39500,
+      hi: 41800,
+      change: "Initial",
+      src: "M-ER-24Q4"
+    },
+    {
+      co: "META",
+      issued: "2025-04-30",
+      at: "Q1 2025 release",
+      target: "2025Q2",
+      metric: "Revenue",
+      lo: 42500,
+      hi: 45500,
+      change: "Initial",
+      src: "M-ER-25Q1"
+    },
+    {
+      co: "META",
+      issued: "2025-07-30",
+      at: "Q2 2025 release",
+      target: "2025Q3",
+      metric: "Revenue",
+      lo: 47500,
+      hi: 50500,
+      change: "Initial",
+      src: "M-ER-25Q2"
+    },
+    {
+      co: "META",
+      issued: "2025-10-29",
+      at: "Q3 2025 release",
+      target: "2025Q4",
+      metric: "Revenue",
+      lo: 56e3,
+      hi: 59e3,
+      change: "Initial",
+      src: "M-ER-25Q3"
+    },
+    {
+      co: "META",
+      issued: "2026-01-28",
+      at: "Q4 2025 release",
+      target: "2026Q1",
+      metric: "Revenue",
+      lo: 53500,
+      hi: 56500,
+      change: "Initial",
+      src: "M-ER-25Q4"
+    },
+    {
+      co: "META",
+      issued: "2026-04-29",
+      at: "Q1 2026 release",
+      target: "2026Q2",
+      metric: "Revenue",
+      lo: 58e3,
+      hi: 61e3,
+      change: "Initial",
+      src: "M-ER-26Q1"
+    },
+    {
+      co: "META",
+      issued: "2026-07-29",
+      at: "Q2 2026 release",
+      target: "2026Q3",
+      metric: "Revenue",
+      lo: 61e3,
+      hi: 64e3,
+      change: "Initial",
+      src: "M-ER-26Q2"
+    },
+    {
+      co: "META",
+      issued: "2026-10-21",
+      at: "Q3 2026 release",
+      target: "2026Q4",
+      metric: "Revenue",
+      lo: 73e3,
+      hi: 76e3,
+      change: "Initial",
+      src: "M-ER-26Q3"
+    },
+    {
+      co: "META",
+      issued: "2025-01-29",
+      at: "Q4 2024 release",
+      target: "FY2025",
+      metric: "Total expenses",
+      lo: 114e3,
+      hi: 119e3,
+      change: "Initial",
+      src: "M-ER-24Q4"
+    },
+    {
+      co: "META",
+      issued: "2025-04-30",
+      at: "Q1 2025 release",
+      target: "FY2025",
+      metric: "Total expenses",
+      lo: 113e3,
+      hi: 118e3,
+      change: "Lowered",
+      src: "M-ER-25Q1"
+    },
+    {
+      co: "META",
+      issued: "2025-07-30",
+      at: "Q2 2025 release",
+      target: "FY2025",
+      metric: "Total expenses",
+      lo: 114e3,
+      hi: 118e3,
+      change: "Narrowed",
+      src: "M-ER-25Q2"
+    },
+    {
+      co: "META",
+      issued: "2025-10-29",
+      at: "Q3 2025 release",
+      target: "FY2025",
+      metric: "Total expenses",
+      lo: 116e3,
+      hi: 118e3,
+      change: "Narrowed",
+      src: "M-ER-25Q3"
+    },
+    {
+      co: "META",
+      issued: "2026-01-28",
+      at: "Q4 2025 release",
+      target: "FY2026",
+      metric: "Total expenses",
+      lo: 162e3,
+      hi: 169e3,
+      change: "Initial",
+      src: "M-ER-25Q4"
+    },
+    {
+      co: "META",
+      issued: "2026-04-29",
+      at: "Q1 2026 release",
+      target: "FY2026",
+      metric: "Total expenses",
+      lo: 162e3,
+      hi: 169e3,
+      change: "Maintained",
+      src: "M-ER-26Q1"
+    },
+    {
+      co: "META",
+      issued: "2026-07-29",
+      at: "Q2 2026 release",
+      target: "FY2026",
+      metric: "Total expenses",
+      lo: 165e3,
+      hi: 169e3,
+      change: "Narrowed",
+      src: "M-ER-26Q2"
+    },
+    {
+      co: "META",
+      issued: "2026-10-21",
+      at: "Q3 2026 release",
+      target: "FY2026",
+      metric: "Total expenses",
+      lo: 175e3,
+      hi: 179e3,
+      change: "Raised (incl. $9.9B legal charge)",
+      src: "M-ER-26Q3"
+    },
+    {
+      co: "META",
+      issued: "2025-01-29",
+      at: "Q4 2024 release",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 6e4,
+      hi: 65e3,
+      change: "Initial",
+      src: "M-ER-24Q4"
+    },
+    {
+      co: "META",
+      issued: "2025-04-30",
+      at: "Q1 2025 release",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 64e3,
+      hi: 72e3,
+      change: "Raised",
+      src: "M-ER-25Q1"
+    },
+    {
+      co: "META",
+      issued: "2025-07-30",
+      at: "Q2 2025 release",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 66e3,
+      hi: 72e3,
+      change: "Narrowed",
+      src: "M-ER-25Q2"
+    },
+    {
+      co: "META",
+      issued: "2025-10-29",
+      at: "Q3 2025 release",
+      target: "FY2025",
+      metric: "Capex",
+      lo: 7e4,
+      hi: 72e3,
+      change: "Raised low end",
+      src: "M-ER-25Q3"
+    },
+    {
+      co: "META",
+      issued: "2026-01-28",
+      at: "Q4 2025 release",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 115e3,
+      hi: 135e3,
+      change: "Initial",
+      src: "M-ER-25Q4"
+    },
+    {
+      co: "META",
+      issued: "2026-04-29",
+      at: "Q1 2026 release",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 125e3,
+      hi: 145e3,
+      change: "Raised",
+      src: "M-ER-26Q1"
+    },
+    {
+      co: "META",
+      issued: "2026-07-29",
+      at: "Q2 2026 release",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 13e4,
+      hi: 145e3,
+      change: "Narrowed (low end up)",
+      src: "M-ER-26Q2"
+    },
+    {
+      co: "META",
+      issued: "2026-10-21",
+      at: "Q3 2026 release",
+      target: "FY2026",
+      metric: "Capex",
+      lo: 135e3,
+      hi: 145e3,
+      change: "Narrowed (low end up)",
+      src: "M-ER-26Q3"
+    }
+  ],
+  commentary: [
+    {
+      co: "GOOGL",
+      q: "2025Q1",
+      theme: "Infrastructure",
+      text: "Reaffirmed ~$75B 2025 capex plan alongside Q1 results.",
+      src: "S-DIGI-25Q1"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q2",
+      theme: "Infrastructure",
+      text: 'Pichai: "we are increasing our investment in capital expenditures in 2025 to approximately $85 billion."',
+      src: "A-ER-25Q2"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q3",
+      theme: "Infrastructure",
+      text: "2025 capex range lifted to $91-93B; first $100B revenue quarter. Revenue backlog reached $157.7B (10-Q).",
+      src: "A-ER-25Q3"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q4",
+      theme: "Infrastructure",
+      text: `Pichai: 2026 capex "anticipated to be in the range of $175 to $185 billion" - roughly double 2025's $91.4B.`,
+      src: "A-ER-25Q4"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q1",
+      theme: "AI",
+      text: `First-party models process more than 16B tokens per minute; "we are compute constrained in the near term"; TPUs to be delivered into select customers' own data centers.`,
+      src: "A-CALL-26Q1"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q1",
+      theme: "Infrastructure",
+      text: 'Ashkenazi: 2026 capex range updated to $180-190B; "we expect our 2027 CapEx to significantly increase compared to 2026."',
+      src: "A-CALL-26Q1"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q2",
+      theme: "Infrastructure",
+      text: '2026 capex raised to $195-205B "to meet demand"; Cloud backlog +$50B QoQ to ~$514B; more third-party capacity in Q3 to pressure Cloud margins modestly.',
+      src: "S-WMEDIA-26Q2"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q2",
+      theme: "Capital",
+      text: "No buybacks in 1H26; raised ~$49.5B of common and mandatory convertible preferred equity plus multi-currency senior notes to fund AI infrastructure (10-Q Notes 6 and 11).",
+      src: "A-10Q-26Q2"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q3",
+      theme: "AI",
+      text: 'Gemini app reached 1B users; first-party APIs ~32B tokens/min (+40% QoQ); TPU system sales a "meaningful contributor" to $30.7B Cloud revenue.',
+      src: "S-INV-26Q3"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q3",
+      theme: "Infrastructure",
+      text: '2026 capex held at $195-205B; 2027 capex expected to "increase significantly". Backlog $567.7B, just over 55% recognizable within 24 months (10-Q).',
+      src: "S-INV-26Q3"
+    },
+    {
+      co: "META",
+      q: "2025Q1",
+      theme: "AI",
+      text: "Meta AI at almost 1B monthly actives; 2025 capex raised to $64-72B for data centers and servers.",
+      src: "M-ER-25Q1"
+    },
+    {
+      co: "META",
+      q: "2025Q2",
+      theme: "AI",
+      text: `Zuckerberg: "I'm excited to build personal superintelligence for everyone in the world." 2026 expense growth to exceed 2025's rate; another year of significant capex dollar growth.`,
+      src: "M-ER-25Q2"
+    },
+    {
+      co: "META",
+      q: "2025Q3",
+      theme: "Infrastructure",
+      text: 'Meta Superintelligence Labs "off to a great start"; 2026 capex dollar growth "notably larger" than 2025; expense growth significantly faster, led by infrastructure.',
+      src: "M-ER-25Q3"
+    },
+    {
+      co: "META",
+      q: "2025Q4",
+      theme: "Infrastructure",
+      text: "FY2026 capex guided to $115-135B (vs $72.2B in 2025) and expenses to $162-169B; 2026 operating income still expected above 2025.",
+      src: "M-ER-25Q4"
+    },
+    {
+      co: "META",
+      q: "2026Q1",
+      theme: "Infrastructure",
+      text: '2026 capex raised to $125-145B; release flags youth-related trials that "may ultimately result in a material loss."',
+      src: "M-ER-26Q1"
+    },
+    {
+      co: "META",
+      q: "2026Q2",
+      theme: "Capital",
+      text: "May 2026 headcount reduction (~8,000 roles, $1.18B severance); buybacks paused since Q4 2025; long-term debt rose to $83.66B.",
+      src: "M-ER-26Q2"
+    },
+    {
+      co: "META",
+      q: "2026Q3",
+      theme: "AI",
+      text: 'Muse personal agents set up by 10M+ people in US/Canada; Muse cost efficiency to improve "more than 10x in the next year"; GEM ranking lifted app-ad conversions 9.6%.',
+      src: "M-CALL-26Q3"
+    },
+    {
+      co: "META",
+      q: "2026Q3",
+      theme: "Infrastructure",
+      text: '2026 capex narrowed to $135-145B; no 2027 capex or expense outlook yet ("still developing our budget and capacity plans"); infrastructure costs up on third-party cloud, depreciation and data-center opex.',
+      src: "M-CALL-26Q3"
+    }
+  ],
+  risks: [
+    {
+      co: "GOOGL",
+      cat: "Regulatory",
+      title: "U.S. Search remedies on appeal",
+      text: "Final judgment entered Dec 2025; Google appealed (Jan 2026) and DOJ/states cross-appealed (Feb 2026).",
+      status: "Pending appeal",
+      src: "A-10Q-26Q3"
+    },
+    {
+      co: "GOOGL",
+      cat: "Regulatory",
+      title: "U.S. ad tech remedies",
+      text: "Sep 2026: court denied DOJ's structural divestiture request and ordered behavioral remedies; Google plans to appeal the liability ruling.",
+      status: "Behavioral remedies",
+      src: "A-10Q-26Q3"
+    },
+    {
+      co: "GOOGL",
+      cat: "Regulatory",
+      title: "EU fines and DMA",
+      text: "Android fine (EUR 4.1B) paid ($5.2B) Jul 2026; EUR 3.0B ad tech fine under appeal; Jul 2026 DMA fines of EUR 430M (Play) and EUR 460M (Search), $1.0B charge in Q3 2026.",
+      status: "Mixed",
+      src: "A-10Q-26Q3"
+    },
+    {
+      co: "GOOGL",
+      cat: "Execution",
+      title: "AI Mode monetization",
+      text: "Management cited lower monetization of AI Mode queries and FX as Search growth slowed to 12% in Q3 2026 from 17% in Q2.",
+      status: "Watch",
+      src: "S-INV-26Q3"
+    },
+    {
+      co: "GOOGL",
+      cat: "Financial",
+      title: "Negative free cash flow and dilution",
+      text: "FCF of -$5.9B (Q2 2026) and -$9.1B (Q3 2026); buybacks halted since Q1 2026 while common, preferred and ATM equity was issued.",
+      status: "Active",
+      src: "A-ER-26Q3"
+    },
+    {
+      co: "GOOGL",
+      cat: "Catalyst",
+      title: "Cloud backlog conversion and TPU sales",
+      text: "Backlog of $567.7B (up from $92.4B at Q1 2025); TPU system sales expected to ramp more meaningfully in 2027.",
+      status: "Upside",
+      src: "A-10Q-26Q3"
+    },
+    {
+      co: "META",
+      cat: "Regulatory",
+      title: "Youth-safety litigation",
+      text: "Aug 2026 agreement with 52 state AGs (payments up to ~$18.59B, $9.89B charged in Q3); further U.S. youth trials scheduled in coming months.",
+      status: "Active",
+      src: "M-ER-26Q3"
+    },
+    {
+      co: "META",
+      cat: "Regulatory",
+      title: "EU DMA ad model",
+      text: "EC found the subscription-for-no-ads model non-compliant (Apr 2025); Meta warned changes could significantly affect European revenue.",
+      status: "Ongoing",
+      src: "M-ER-25Q1"
+    },
+    {
+      co: "META",
+      cat: "Regulatory",
+      title: "FTC monopolization case",
+      text: "District court ruled for Meta (Nov 2025); FTC said in Jan 2026 it would appeal.",
+      status: "On appeal",
+      src: "S-BBG-FTC"
+    },
+    {
+      co: "META",
+      cat: "Financial",
+      title: "Expense and capex step-up",
+      text: "FY2026 expenses guided to $175-179B (vs $117.7B in 2025) and capex to $135-145B; Q3 2026 FCF was -$2.1B.",
+      status: "Active",
+      src: "M-ER-26Q3"
+    },
+    {
+      co: "META",
+      cat: "Execution",
+      title: "User growth deceleration",
+      text: "DAP growth slowed to 3% YoY (3.64B); Q1 2026 dip attributed to internet disruptions in Iran and Russia's WhatsApp restriction.",
+      status: "Watch",
+      src: "M-PRES-26Q3"
+    },
+    {
+      co: "META",
+      cat: "Catalyst",
+      title: "Muse agents and Reality Labs path",
+      text: "Muse rolling to glasses; Reality Labs losses guided to $18-19B in 2026 and about $15B in 2027. Two-for-one-effect Class C stock dividend after Jan 19, 2027 charter amendment.",
+      status: "Upside",
+      src: "M-CALL-26Q3"
+    }
+  ],
+  estimates: [
+    {
+      co: "GOOGL",
+      q: "2026Q3",
+      metric: "Revenue",
+      consensus: 127220,
+      actual: 127577,
+      unit: "$M",
+      src: "S-INV-26Q3",
+      note: "Consensus as cited by Investing.com on the day of the release."
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q3",
+      metric: "Diluted EPS",
+      consensus: 3.02,
+      actual: 2.12,
+      unit: "$",
+      src: "S-INV-26Q3",
+      note: "Miss driven by the $8.7B equity-securities loss in other income."
+    },
+    {
+      co: "META",
+      q: "2026Q3",
+      metric: "Revenue",
+      consensus: 63370,
+      actual: 64601,
+      unit: "$M",
+      src: "S-NB-26Q3",
+      note: "LSEG consensus as cited by NewsBytes."
+    }
+  ],
+  checks: [
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2024Q1",
+      computed: 61659,
+      reported: 61659,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2024Q1",
+      computed: 70398,
+      reported: 70398,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2024Q1",
+      computed: 80539,
+      reported: 80539,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2024Q1",
+      computed: 25472,
+      reported: 25472,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2024Q1",
+      computed: 25472,
+      reported: 25472,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2024Q2",
+      computed: 64616,
+      reported: 64616,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2024Q2",
+      computed: 73928,
+      reported: 73928,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2024Q2",
+      computed: 84742,
+      reported: 84742,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2024Q2",
+      computed: 27425,
+      reported: 27425,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2024Q2",
+      computed: 27425,
+      reported: 27425,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2024Q3",
+      computed: 65854,
+      reported: 65854,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2024Q3",
+      computed: 76510,
+      reported: 76510,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2024Q3",
+      computed: 88268,
+      reported: 88268,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2024Q3",
+      computed: 28521,
+      reported: 28521,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2024Q3",
+      computed: 28521,
+      reported: 28521,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2024Q4",
+      computed: 72461,
+      reported: 72461,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2024Q4",
+      computed: 84094,
+      reported: 84094,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2024Q4",
+      computed: 96469,
+      reported: 96469,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2024Q4",
+      computed: 30972,
+      reported: 30972,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2024Q4",
+      computed: 30972,
+      reported: 30972,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 66885,
+      reported: 66885,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 77264,
+      reported: 77264,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 90234,
+      reported: 90234,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 30606,
+      reported: 30606,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 30606,
+      reported: 30606,
+      ok: true
+    },
+    {
+      check: "OCF - purchases of P&E = reported FCF",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 18953,
+      reported: 18953,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 71340,
+      reported: 71340,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 82543,
+      reported: 82543,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 96428,
+      reported: 96428,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 31271,
+      reported: 31271,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 31271,
+      reported: 31271,
+      ok: true
+    },
+    {
+      check: "OCF - purchases of P&E = reported FCF",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 5301,
+      reported: 5301,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 74182,
+      reported: 74182,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 87052,
+      reported: 87052,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 102346,
+      reported: 102346,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 31228,
+      reported: 31228,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 31228,
+      reported: 31228,
+      ok: true
+    },
+    {
+      check: "OCF - purchases of P&E = reported FCF",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 24461,
+      reported: 24461,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 82284,
+      reported: 82284,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 95862,
+      reported: 95862,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 113828,
+      reported: 113828,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 35934,
+      reported: 35934,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 35934,
+      reported: 35934,
+      ok: true
+    },
+    {
+      check: "OCF - purchases of P&E = reported FCF",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 24551,
+      reported: 24551,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 77253,
+      reported: 77253,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 89637,
+      reported: 89637,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 109896,
+      reported: 109896,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 39696,
+      reported: 39696,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 39696,
+      reported: 39696,
+      ok: true
+    },
+    {
+      check: "OCF - purchases of P&E = reported FCF",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 10116,
+      reported: 10116,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 81629,
+      reported: 81629,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 94540,
+      reported: 94540,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 119796,
+      reported: 119796,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 40770,
+      reported: 40770,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 40770,
+      reported: 40770,
+      ok: true
+    },
+    {
+      check: "OCF - purchases of P&E = reported FCF",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: -5855,
+      reported: -5855,
+      ok: true
+    },
+    {
+      check: "Search + YouTube + Network = Google advertising",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 82012,
+      reported: 82012,
+      ok: true
+    },
+    {
+      check: "Google advertising + subscriptions = Google Services",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 96302,
+      reported: 96302,
+      ok: true
+    },
+    {
+      check: "Services + Cloud + Other Bets + hedging = total revenue",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 127577,
+      reported: 127577,
+      ok: true
+    },
+    {
+      check: "Segment operating income sums to total",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 40576,
+      reported: 40576,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 40576,
+      reported: 40576,
+      ok: true
+    },
+    {
+      check: "OCF - purchases of P&E = reported FCF",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: -9065,
+      reported: -9065,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2024Q1",
+      computed: 36015,
+      reported: 36015,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2024Q1",
+      computed: 36455,
+      reported: 36455,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2024Q1",
+      computed: 13818,
+      reported: 13818,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2024Q1",
+      computed: 13818,
+      reported: 13818,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2024Q1",
+      computed: 12531,
+      reported: 12531,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2024Q2",
+      computed: 38718,
+      reported: 38718,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2024Q2",
+      computed: 39071,
+      reported: 39071,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2024Q2",
+      computed: 14847,
+      reported: 14847,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2024Q2",
+      computed: 14847,
+      reported: 14847,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2024Q2",
+      computed: 10898,
+      reported: 10898,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2024Q3",
+      computed: 40319,
+      reported: 40319,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2024Q3",
+      computed: 40589,
+      reported: 40589,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2024Q3",
+      computed: 17350,
+      reported: 17350,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2024Q3",
+      computed: 17350,
+      reported: 17350,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2024Q3",
+      computed: 15522,
+      reported: 15522,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2024Q4",
+      computed: 47302,
+      reported: 47302,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2024Q4",
+      computed: 48385,
+      reported: 48385,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2024Q4",
+      computed: 23365,
+      reported: 23365,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2024Q4",
+      computed: 23365,
+      reported: 23365,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2024Q4",
+      computed: 13152,
+      reported: 13152,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2025Q1",
+      computed: 41902,
+      reported: 41902,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2025Q1",
+      computed: 42314,
+      reported: 42314,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2025Q1",
+      computed: 17555,
+      reported: 17555,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2025Q1",
+      computed: 17555,
+      reported: 17555,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2025Q1",
+      computed: 10334,
+      reported: 10334,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2025Q2",
+      computed: 47146,
+      reported: 47146,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2025Q2",
+      computed: 47516,
+      reported: 47516,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2025Q2",
+      computed: 20441,
+      reported: 20441,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2025Q2",
+      computed: 20441,
+      reported: 20441,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2025Q2",
+      computed: 8549,
+      reported: 8549,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2025Q3",
+      computed: 50772,
+      reported: 50772,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2025Q3",
+      computed: 51242,
+      reported: 51242,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2025Q3",
+      computed: 20535,
+      reported: 20535,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2025Q3",
+      computed: 20535,
+      reported: 20535,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2025Q3",
+      computed: 10625,
+      reported: 10625,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2025Q4",
+      computed: 58938,
+      reported: 58938,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2025Q4",
+      computed: 59893,
+      reported: 59893,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2025Q4",
+      computed: 24745,
+      reported: 24745,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2025Q4",
+      computed: 24745,
+      reported: 24745,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2025Q4",
+      computed: 14077,
+      reported: 14077,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2026Q1",
+      computed: 55909,
+      reported: 55909,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2026Q1",
+      computed: 56311,
+      reported: 56311,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2026Q1",
+      computed: 22872,
+      reported: 22872,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2026Q1",
+      computed: 22872,
+      reported: 22872,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2026Q1",
+      computed: 12386,
+      reported: 12386,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2026Q2",
+      computed: 60370,
+      reported: 60370,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2026Q2",
+      computed: 60801,
+      reported: 60801,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2026Q2",
+      computed: 18775,
+      reported: 18775,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2026Q2",
+      computed: 18775,
+      reported: 18775,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2026Q2",
+      computed: 784,
+      reported: 784,
+      ok: true
+    },
+    {
+      check: "Advertising + other = Family of Apps revenue",
+      co: "META",
+      q: "2026Q3",
+      computed: 64158,
+      reported: 64158,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs revenue = total revenue",
+      co: "META",
+      q: "2026Q3",
+      computed: 64601,
+      reported: 64601,
+      ok: true
+    },
+    {
+      check: "FoA + Reality Labs operating income = total",
+      co: "META",
+      q: "2026Q3",
+      computed: 12988,
+      reported: 12988,
+      ok: true
+    },
+    {
+      check: "Revenue - costs and expenses = operating income",
+      co: "META",
+      q: "2026Q3",
+      computed: 12988,
+      reported: 12988,
+      ok: true
+    },
+    {
+      check: "OCF - P&E - finance-lease principal = reported FCF",
+      co: "META",
+      q: "2026Q3",
+      computed: -2120,
+      reported: -2120,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2024Q4",
+      computed: 14.25,
+      reported: 14.25,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2025Q1",
+      computed: 12.36,
+      reported: 12.36,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2025Q2",
+      computed: 13.65,
+      reported: 13.65,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2025Q3",
+      computed: 14.46,
+      reported: 14.46,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2025Q4",
+      computed: 16.56,
+      reported: 16.56,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2026Q1",
+      computed: 15.66,
+      reported: 15.66,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2026Q2",
+      computed: 16.86,
+      reported: 16.86,
+      ok: true
+    },
+    {
+      check: "ARPP = FoA revenue / avg(start, end DAP)",
+      co: "META",
+      q: "2026Q3",
+      computed: 17.72,
+      reported: 17.72,
+      ok: true
+    },
+    {
+      check: "TAC / Google advertising = TAC rate stated in 10-Q (%)",
+      co: "GOOGL",
+      q: "2024Q1",
+      computed: 21,
+      reported: 21,
+      ok: true
+    },
+    {
+      check: "TAC / Google advertising = TAC rate stated in 10-Q (%)",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 20.6,
+      reported: 20.6,
+      ok: true
+    },
+    {
+      check: "TAC / Google advertising = TAC rate stated in 10-Q (%)",
+      co: "GOOGL",
+      q: "2024Q2",
+      computed: 20.7,
+      reported: 20.7,
+      ok: true
+    },
+    {
+      check: "TAC / Google advertising = TAC rate stated in 10-Q (%)",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 20.6,
+      reported: 20.6,
+      ok: true
+    },
+    {
+      check: "TAC / Google advertising = TAC rate stated in 10-Q (%)",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 19.7,
+      reported: 19.7,
+      ok: true
+    },
+    {
+      check: "TAC / Google advertising = TAC rate stated in 10-Q (%)",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 20.1,
+      reported: 20.1,
+      ok: true
+    },
+    {
+      check: "TAC / Google advertising = TAC rate stated in 10-Q (%)",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 20,
+      reported: 20,
+      ok: true
+    },
+    {
+      check: "Sum of 2025 quarters = FY2025 revenue ($402,836M)",
+      co: "GOOGL",
+      q: "FY2025",
+      computed: 402836,
+      reported: 402836,
+      ok: true
+    },
+    {
+      check: "FY2025 capex within $91-93B guidance (midpoint 92,000, tol 1,000)",
+      co: "GOOGL",
+      q: "FY2025",
+      computed: 91447,
+      reported: 92e3,
+      ok: true
+    },
+    {
+      check: "Sum of 2025 quarters = FY2025 revenue ($200,966M; +/-$1M rounding)",
+      co: "META",
+      q: "FY2025",
+      computed: 200965,
+      reported: 200966,
+      ok: true
+    },
+    {
+      check: "Sum of 2025 capex incl. finance leases = $72.22B reported",
+      co: "META",
+      q: "FY2025",
+      computed: 72215,
+      reported: 72220,
+      ok: true
+    },
+    {
+      check: "Sum of 2025 buybacks (cash flow) = FY2025 $26,248M (cash flow statement)",
+      co: "META",
+      q: "FY2025",
+      computed: 26248,
+      reported: 26248,
+      ok: true
+    },
+    {
+      check: "Sum of 2025 FCF = FY2025 $43,585M reported",
+      co: "META",
+      q: "FY2025",
+      computed: 43585,
+      reported: 43585,
+      ok: true
+    },
+    {
+      check: "Sum of 2025 net income = FY2025 $60,458M",
+      co: "META",
+      q: "FY2025",
+      computed: 60458,
+      reported: 60458,
+      ok: true
+    },
+    {
+      check: "Sum of 2025 net income = FY2025 $132,170M",
+      co: "GOOGL",
+      q: "FY2025",
+      computed: 132170,
+      reported: 132170,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 25,
+      reported: 25,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "META",
+      q: "2026Q3",
+      computed: 26,
+      reported: 26,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "META",
+      q: "2025Q1",
+      computed: 16,
+      reported: 16,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "META",
+      q: "2025Q2",
+      computed: 22,
+      reported: 22,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "META",
+      q: "2025Q3",
+      computed: 26,
+      reported: 26,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "META",
+      q: "2025Q4",
+      computed: 24,
+      reported: 24,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "META",
+      q: "2026Q1",
+      computed: 33,
+      reported: 33,
+      ok: true
+    },
+    {
+      check: "Computed YoY revenue rounds to company-reported %",
+      co: "META",
+      q: "2026Q2",
+      computed: 28,
+      reported: 28,
+      ok: true
+    },
+    {
+      check: "Computed YoY op_income rounds to company-reported %",
+      co: "META",
+      q: "2026Q3",
+      computed: -37,
+      reported: -37,
+      ok: true
+    },
+    {
+      check: "Computed YoY headcount rounds to company-reported %",
+      co: "META",
+      q: "2025Q4",
+      computed: 6,
+      reported: 6,
+      ok: true
+    },
+    {
+      check: "Computed YoY headcount rounds to company-reported %",
+      co: "META",
+      q: "2026Q1",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Computed YoY headcount rounds to company-reported %",
+      co: "META",
+      q: "2026Q2",
+      computed: -1,
+      reported: -1,
+      ok: true
+    },
+    {
+      check: "Computed YoY headcount rounds to company-reported %",
+      co: "META",
+      q: "2026Q3",
+      computed: -15,
+      reported: -15,
+      ok: true
+    },
+    {
+      check: "Computed YoY op_income rounds to company-reported %",
+      co: "META",
+      q: "2026Q2",
+      computed: -8,
+      reported: -8,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ Meta ad revenue growth (pt, +/-1.5)",
+      co: "META",
+      q: "2025Q1",
+      computed: 15.5,
+      reported: 16.2,
+      ok: true
+    },
+    {
+      check: "Paid clicks x CPC ~ Search & other growth (pt, +/-1.5)",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 9.1,
+      reported: 9.8,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ Meta ad revenue growth (pt, +/-1.5)",
+      co: "META",
+      q: "2025Q2",
+      computed: 21,
+      reported: 21.5,
+      ok: true
+    },
+    {
+      check: "Paid clicks x CPC ~ Search & other growth (pt, +/-1.5)",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 12.3,
+      reported: 11.7,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ Meta ad revenue growth (pt, +/-1.5)",
+      co: "META",
+      q: "2025Q3",
+      computed: 25.4,
+      reported: 25.6,
+      ok: true
+    },
+    {
+      check: "Paid clicks x CPC ~ Search & other growth (pt, +/-1.5)",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 14.5,
+      reported: 14.5,
+      ok: true
+    },
+    {
+      check: "DAP growth from rounded levels ~ reported rate (pt, +/-1)",
+      co: "META",
+      q: "2025Q3",
+      computed: 7.6,
+      reported: 8,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ Meta ad revenue growth (pt, +/-1.5)",
+      co: "META",
+      q: "2025Q4",
+      computed: 25.1,
+      reported: 24.3,
+      ok: true
+    },
+    {
+      check: "DAP growth from rounded levels ~ reported rate (pt, +/-1)",
+      co: "META",
+      q: "2025Q4",
+      computed: 6.9,
+      reported: 7,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ Meta ad revenue growth (pt, +/-1.5)",
+      co: "META",
+      q: "2026Q1",
+      computed: 33.3,
+      reported: 32.9,
+      ok: true
+    },
+    {
+      check: "Paid clicks x CPC ~ Search & other growth (pt, +/-1.5)",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 18.6,
+      reported: 19.1,
+      ok: true
+    },
+    {
+      check: "DAP growth from rounded levels ~ reported rate (pt, +/-1)",
+      co: "META",
+      q: "2026Q1",
+      computed: 3.8,
+      reported: 4,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ Meta ad revenue growth (pt, +/-1.5)",
+      co: "META",
+      q: "2026Q2",
+      computed: 27.7,
+      reported: 27.5,
+      ok: true
+    },
+    {
+      check: "DAP growth from rounded levels ~ reported rate (pt, +/-1)",
+      co: "META",
+      q: "2026Q2",
+      computed: 3.4,
+      reported: 3,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ Meta ad revenue growth (pt, +/-1.5)",
+      co: "META",
+      q: "2026Q3",
+      computed: 25.4,
+      reported: 25.9,
+      ok: true
+    },
+    {
+      check: "Paid clicks x CPC ~ Search & other growth (pt, +/-1.5)",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 12.3,
+      reported: 12,
+      ok: true
+    },
+    {
+      check: "DAP growth from rounded levels ~ reported rate (pt, +/-1)",
+      co: "META",
+      q: "2026Q3",
+      computed: 2.8,
+      reported: 3,
+      ok: true
+    },
+    {
+      check: "Capex incl. finance-lease principal = P&E + principal",
+      co: "META",
+      q: "2025Q1",
+      computed: 13692,
+      reported: 13692,
+      ok: true
+    },
+    {
+      check: "Capex incl. finance-lease principal = P&E + principal",
+      co: "META",
+      q: "2025Q2",
+      computed: 17012,
+      reported: 17012,
+      ok: true
+    },
+    {
+      check: "Capex incl. finance-lease principal = P&E + principal",
+      co: "META",
+      q: "2025Q3",
+      computed: 19374,
+      reported: 19374,
+      ok: true
+    },
+    {
+      check: "Capex incl. finance-lease principal = P&E + principal",
+      co: "META",
+      q: "2025Q4",
+      computed: 22137,
+      reported: 22137,
+      ok: true
+    },
+    {
+      check: "Capex incl. finance-lease principal = P&E + principal",
+      co: "META",
+      q: "2026Q1",
+      computed: 19840,
+      reported: 19840,
+      ok: true
+    },
+    {
+      check: "Capex incl. finance-lease principal = P&E + principal",
+      co: "META",
+      q: "2026Q2",
+      computed: 31078,
+      reported: 31078,
+      ok: true
+    },
+    {
+      check: "Capex incl. finance-lease principal = P&E + principal",
+      co: "META",
+      q: "2026Q3",
+      computed: 34906,
+      reported: 34906,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2024Q1",
+      computed: 35635,
+      reported: 35635,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2024Q2",
+      computed: 38329,
+      reported: 38329,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2024Q3",
+      computed: 39885,
+      reported: 39885,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2024Q4",
+      computed: 46783,
+      reported: 46783,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2025Q1",
+      computed: 41392,
+      reported: 41392,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2025Q2",
+      computed: 46563,
+      reported: 46563,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2025Q3",
+      computed: 50082,
+      reported: 50082,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2025Q4",
+      computed: 58137,
+      reported: 58137,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2026Q1",
+      computed: 55024,
+      reported: 55024,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2026Q2",
+      computed: 59363,
+      reported: 59363,
+      ok: true
+    },
+    {
+      check: "Meta ad revenue by user geography sums to advertising revenue",
+      co: "META",
+      q: "2026Q3",
+      computed: 63061,
+      reported: 63061,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2024Q1",
+      computed: 36455,
+      reported: 36455,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2024Q1",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2024Q2",
+      computed: 39071,
+      reported: 39071,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2024Q2",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2024Q3",
+      computed: 40589,
+      reported: 40589,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2024Q3",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2024Q4",
+      computed: 48385,
+      reported: 48385,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2024Q4",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2025Q1",
+      computed: 42314,
+      reported: 42314,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2025Q1",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2025Q2",
+      computed: 47516,
+      reported: 47516,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2025Q2",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2025Q3",
+      computed: 51242,
+      reported: 51242,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2025Q3",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2025Q4",
+      computed: 59893,
+      reported: 59893,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2025Q4",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2026Q1",
+      computed: 56311,
+      reported: 56311,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2026Q1",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2026Q2",
+      computed: 60801,
+      reported: 60801,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2026Q2",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Meta revenue by user geography sums to total revenue",
+      co: "META",
+      q: "2026Q3",
+      computed: 64601,
+      reported: 64601,
+      ok: true
+    },
+    {
+      check: "Each region ad revenue <= total revenue (user geography)",
+      co: "META",
+      q: "2026Q3",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q3",
+      computed: 16.6,
+      reported: 16.3,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q3",
+      computed: 21.8,
+      reported: 21.2,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q3",
+      computed: 17.7,
+      reported: 17.9,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q3",
+      computed: 22.8,
+      reported: 23,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2024Q3",
+      computed: 711,
+      reported: 711,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q4",
+      computed: 18.7,
+      reported: 18,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q4",
+      computed: 21.8,
+      reported: 21.8,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q4",
+      computed: 23.2,
+      reported: 23.2,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2024Q4",
+      computed: 26.7,
+      reported: 26.7,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2024Q4",
+      computed: 614,
+      reported: 614,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q1",
+      computed: 18.6,
+      reported: 18.2,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q1",
+      computed: 14.5,
+      reported: 14.4,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q1",
+      computed: 12.3,
+      reported: 12.1,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q1",
+      computed: 18.2,
+      reported: 19.1,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2025Q1",
+      computed: 510,
+      reported: 510,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q2",
+      computed: 21,
+      reported: 20.8,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q2",
+      computed: 24,
+      reported: 24.4,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q2",
+      computed: 18.3,
+      reported: 18.5,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q2",
+      computed: 23,
+      reported: 23,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2025Q2",
+      computed: 1109,
+      reported: 1109,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q3",
+      computed: 22,
+      reported: 22.7,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q3",
+      computed: 29.7,
+      reported: 29,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q3",
+      computed: 24.2,
+      reported: 24.5,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q3",
+      computed: 30.8,
+      reported: 30.9,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2025Q3",
+      computed: 1410,
+      reported: 1410,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q4",
+      computed: 23.2,
+      reported: 22.2,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q4",
+      computed: 26.6,
+      reported: 27.3,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q4",
+      computed: 21.5,
+      reported: 20.9,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2025Q4",
+      computed: 31.1,
+      reported: 31.4,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2025Q4",
+      computed: 1806,
+      reported: 1806,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q1",
+      computed: 28.8,
+      reported: 29.6,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q1",
+      computed: 39.2,
+      reported: 39.6,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q1",
+      computed: 29.2,
+      reported: 29.3,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q1",
+      computed: 38.1,
+      reported: 38.1,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2026Q1",
+      computed: 1912,
+      reported: 1912,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q2",
+      computed: 30.8,
+      reported: 31.4,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q2",
+      computed: 24.3,
+      reported: 23.9,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q2",
+      computed: 18.2,
+      reported: 18.6,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q2",
+      computed: 35.5,
+      reported: 34.8,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2026Q2",
+      computed: 1412,
+      reported: 1412,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (US & Canada, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q3",
+      computed: 32.8,
+      reported: 33.3,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Europe, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q3",
+      computed: 18.8,
+      reported: 17.9,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Asia-Pacific, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q3",
+      computed: 15.1,
+      reported: 15.1,
+      ok: true
+    },
+    {
+      check: "Impressions x price per ad ~ regional ad growth (Rest of World, pt, +/-1.5)",
+      co: "META",
+      q: "2026Q3",
+      computed: 33.9,
+      reported: 33,
+      ok: true
+    },
+    {
+      check: "Worldwide impressions/price on deck = press release",
+      co: "META",
+      q: "2026Q3",
+      computed: 1014,
+      reported: 1014,
+      ok: true
+    },
+    {
+      check: "Regional impression values = printed value set on Q3 2025 deck (exact multiset)",
+      co: "META",
+      q: "2025Q3",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Regional price-per-ad values = printed value set on Q3 2025 deck (exact multiset)",
+      co: "META",
+      q: "2025Q3",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Regional impression values = printed value set on Q3 2026 deck (exact multiset)",
+      co: "META",
+      q: "2026Q3",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Regional price-per-ad values = printed value set on Q3 2026 deck (exact multiset)",
+      co: "META",
+      q: "2026Q3",
+      computed: 1,
+      reported: 1,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2024Q1",
+      computed: 80539,
+      reported: 80539,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2024Q2",
+      computed: 84742,
+      reported: 84742,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2024Q3",
+      computed: 88268,
+      reported: 88268,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2024Q4",
+      computed: 96469,
+      reported: 96469,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 90234,
+      reported: 90234,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 96428,
+      reported: 96428,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 102346,
+      reported: 102346,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 113829,
+      reported: 113829,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 109896,
+      reported: 109896,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 119796,
+      reported: 119796,
+      ok: true
+    },
+    {
+      check: "Alphabet revenue by geography sums to total revenue",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 127577,
+      reported: 127577,
+      ok: true
+    },
+    {
+      check: "Quarterly APAC revenue sums to 6M2025 APAC (10-Q)",
+      co: "GOOGL",
+      q: "6M2025",
+      computed: 31334,
+      reported: 31334,
+      ok: true
+    },
+    {
+      check: "Quarterly US revenue sums to 6M2025 US (10-Q)",
+      co: "GOOGL",
+      q: "6M2025",
+      computed: 90027,
+      reported: 90027,
+      ok: true
+    },
+    {
+      check: "Quarterly APAC revenue sums to 9M2025 APAC (10-Q)",
+      co: "GOOGL",
+      q: "9M2025",
+      computed: 49153,
+      reported: 49153,
+      ok: true
+    },
+    {
+      check: "Quarterly US revenue sums to 9M2025 US (10-Q)",
+      co: "GOOGL",
+      q: "9M2025",
+      computed: 138785,
+      reported: 138785,
+      ok: true
+    },
+    {
+      check: "Quarterly APAC revenue sums to 6M2026 APAC (10-Q)",
+      co: "GOOGL",
+      q: "6M2026",
+      computed: 37605,
+      reported: 37605,
+      ok: true
+    },
+    {
+      check: "Quarterly US revenue sums to 6M2026 US (10-Q)",
+      co: "GOOGL",
+      q: "6M2026",
+      computed: 114821,
+      reported: 114821,
+      ok: true
+    },
+    {
+      check: "Quarterly APAC revenue sums to 9M2026 APAC (10-Q)",
+      co: "GOOGL",
+      q: "9M2026",
+      computed: 57511,
+      reported: 57511,
+      ok: true
+    },
+    {
+      check: "Quarterly US revenue sums to 9M2026 US (10-Q)",
+      co: "GOOGL",
+      q: "9M2026",
+      computed: 182502,
+      reported: 182502,
+      ok: true
+    },
+    {
+      check: "Quarterly APAC revenue sums to 9M2024 APAC (10-Q)",
+      co: "GOOGL",
+      q: "9M2024",
+      computed: 41659,
+      reported: 41659,
+      ok: true
+    },
+    {
+      check: "Quarterly US revenue sums to 9M2024 US (10-Q)",
+      co: "GOOGL",
+      q: "9M2024",
+      computed: 123072,
+      reported: 123072,
+      ok: true
+    },
+    {
+      check: "Alphabet FY geography sums to FY revenue (10-K)",
+      co: "GOOGL",
+      q: "FY2024",
+      computed: 350018,
+      reported: 350018,
+      ok: true
+    },
+    {
+      check: "Alphabet FY geography sums to FY revenue (10-K)",
+      co: "GOOGL",
+      q: "FY2025",
+      computed: 402836,
+      reported: 402836,
+      ok: true
+    },
+    {
+      check: "Meta FY revenue by customer address sums to FY revenue (10-K)",
+      co: "META",
+      q: "FY2023",
+      computed: 134902,
+      reported: 134902,
+      ok: true
+    },
+    {
+      check: "Meta FY revenue by customer address sums to FY revenue (10-K)",
+      co: "META",
+      q: "FY2024",
+      computed: 164501,
+      reported: 164501,
+      ok: true
+    },
+    {
+      check: "Meta FY revenue by customer address sums to FY revenue (10-K)",
+      co: "META",
+      q: "FY2025",
+      computed: 200966,
+      reported: 200966,
+      ok: true
+    },
+    {
+      check: "Meta FY2025 user-geography revenue (sum of quarters) = FY revenue",
+      co: "META",
+      q: "FY2025",
+      computed: 200965,
+      reported: 200966,
+      ok: true
+    },
+    {
+      check: "Computed APAC growth rounds to 10-Q reported APAC growth (%)",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 12,
+      reported: 12,
+      ok: true
+    },
+    {
+      check: "Computed APAC growth rounds to 10-Q reported APAC growth (%)",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 19,
+      reported: 19,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: revenue",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 127577,
+      reported: 127577,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: revenue",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 119796,
+      reported: 119796,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: revenue",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 109896,
+      reported: 109896,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: revenue",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 102346,
+      reported: 102346,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: revenue",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 96428,
+      reported: 96428,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: revenue",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 90234,
+      reported: 90234,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 26468,
+      reported: 26468,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 112193,
+      reported: 112193,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 62578,
+      reported: 62578,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 34455,
+      reported: 34455,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 34979,
+      reported: 34979,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 28196,
+      reported: 28196,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 34540,
+      reported: 34540,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 42290,
+      reported: 42290,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 39069,
+      reported: 39069,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 45790,
+      reported: 45790,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 52402,
+      reported: 52402,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 48414,
+      reported: 48414,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 27747,
+      reported: 27747,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 36150,
+      reported: 36150,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "GOOGL",
+      q: "2026Q3",
+      computed: 51355,
+      reported: 51355,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "GOOGL",
+      q: "2026Q2",
+      computed: 44924,
+      reported: 44924,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "GOOGL",
+      q: "2026Q1",
+      computed: 35674,
+      reported: 35674,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 27851,
+      reported: 27851,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 23953,
+      reported: 23953,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 22446,
+      reported: 22446,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 17197,
+      reported: 17197,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: buybacks",
+      co: "GOOGL",
+      q: "2025Q4",
+      computed: 5499,
+      reported: 5499,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: buybacks",
+      co: "GOOGL",
+      q: "2025Q3",
+      computed: 11504,
+      reported: 11504,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: buybacks",
+      co: "GOOGL",
+      q: "2025Q2",
+      computed: 13638,
+      reported: 13638,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: buybacks",
+      co: "GOOGL",
+      q: "2025Q1",
+      computed: 15068,
+      reported: 15068,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "META",
+      q: "2026Q3",
+      computed: 32786,
+      reported: 32786,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "META",
+      q: "2026Q2",
+      computed: 31862,
+      reported: 31862,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "META",
+      q: "2026Q1",
+      computed: 32226,
+      reported: 32226,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "META",
+      q: "2025Q4",
+      computed: 36214,
+      reported: 36214,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "META",
+      q: "2025Q3",
+      computed: 29999,
+      reported: 29999,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "META",
+      q: "2025Q2",
+      computed: 25561,
+      reported: 25561,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: ocf",
+      co: "META",
+      q: "2025Q1",
+      computed: 24026,
+      reported: 24026,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "META",
+      q: "2026Q3",
+      computed: 33942,
+      reported: 33942,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "META",
+      q: "2026Q2",
+      computed: 30116,
+      reported: 30116,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "META",
+      q: "2026Q1",
+      computed: 18997,
+      reported: 18997,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "META",
+      q: "2025Q4",
+      computed: 21383,
+      reported: 21383,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "META",
+      q: "2025Q3",
+      computed: 18829,
+      reported: 18829,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "META",
+      q: "2025Q2",
+      computed: 16538,
+      reported: 16538,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: capex_ppe",
+      co: "META",
+      q: "2025Q1",
+      computed: 12941,
+      reported: 12941,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "META",
+      q: "2026Q3",
+      computed: 9860,
+      reported: 9860,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "META",
+      q: "2026Q2",
+      computed: 15848,
+      reported: 15848,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "META",
+      q: "2026Q1",
+      computed: 26773,
+      reported: 26773,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "META",
+      q: "2025Q4",
+      computed: 22768,
+      reported: 22768,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "META",
+      q: "2025Q3",
+      computed: 2709,
+      reported: 2709,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "META",
+      q: "2025Q2",
+      computed: 18337,
+      reported: 18337,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: net_income",
+      co: "META",
+      q: "2025Q1",
+      computed: 16644,
+      reported: 16644,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: buybacks",
+      co: "META",
+      q: "2025Q3",
+      computed: 3327,
+      reported: 3327,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: buybacks",
+      co: "META",
+      q: "2025Q2",
+      computed: 10167,
+      reported: 10167,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: buybacks",
+      co: "META",
+      q: "2025Q1",
+      computed: 12754,
+      reported: 12754,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: dividends",
+      co: "META",
+      q: "2026Q3",
+      computed: 1361,
+      reported: 1361,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: dividends",
+      co: "META",
+      q: "2026Q2",
+      computed: 1353,
+      reported: 1353,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: dividends",
+      co: "META",
+      q: "2026Q1",
+      computed: 1346,
+      reported: 1346,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: dividends",
+      co: "META",
+      q: "2025Q4",
+      computed: 1338,
+      reported: 1338,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: dividends",
+      co: "META",
+      q: "2025Q3",
+      computed: 1330,
+      reported: 1330,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: dividends",
+      co: "META",
+      q: "2025Q2",
+      computed: 1327,
+      reported: 1327,
+      ok: true
+    },
+    {
+      check: "Independent feed matches release: dividends",
+      co: "META",
+      q: "2025Q1",
+      computed: 1329,
+      reported: 1329,
+      ok: true
+    }
+  ],
+  a_geo_src: {
+    "2024Q1": "A-10Q-25Q1",
+    "2024Q2": "A-10Q-25Q2",
+    "2024Q3": "A-10Q-25Q3",
+    "2024Q4": "A-FY-GEO",
+    "2025Q1": "A-10Q-25Q1",
+    "2025Q2": "A-10Q-25Q2",
+    "2025Q3": "A-10Q-25Q3",
+    "2025Q4": "A-FY-GEO",
+    "2026Q1": "A-10Q-26Q1",
+    "2026Q2": "A-10Q-26Q2",
+    "2026Q3": "A-10Q-26Q3"
+  },
+  a_geo_note: {
+    "2024Q4": "Derived: FY2024 (10-K) minus nine months 2024 (Q3 2025 10-Q).",
+    "2025Q4": "Derived: FY2025 (10-K) minus nine months 2025 (Q3 2025 10-Q); sums to $113,829M vs $113,828M in the release ($1M rounding)."
+  },
+  a_network_src: {
+    "2025Q1": "A-10Q-25Q1",
+    "2025Q2": "A-10Q-25Q2-MDA",
+    "2025Q3": "A-10Q-25Q3",
+    "2025Q4": null,
+    "2026Q1": "A-10Q-26Q1",
+    "2026Q2": null,
+    "2026Q3": "S-PPC-26Q3"
+  },
+  a_apac_cc: {
+    "2025Q1": {
+      reported: 12,
+      cc: 15,
+      fx: -3,
+      src: "A-10Q-25Q1"
+    },
+    "2025Q2": {
+      reported: 19,
+      cc: 18,
+      fx: 1,
+      src: "A-10Q-25Q2-MDA"
+    }
+  },
+  m_imp_src: {
+    "2025Q1": "M-PRES-25Q3",
+    "2025Q2": "M-PRES-25Q3",
+    "2025Q3": "M-PRES-26Q3",
+    "2025Q4": "M-PRES-26Q3",
+    "2026Q1": "M-PRES-26Q3",
+    "2026Q2": "M-PRES-26Q3",
+    "2026Q3": "M-PRES-26Q3",
+    "2024Q3": "M-PRES-25Q3",
+    "2024Q4": "M-PRES-25Q3"
+  },
+  a_fy_geo: {
+    FY2024: [
+      170447,
+      102127,
+      56815,
+      20418,
+      211,
+      350018
+    ],
+    FY2025: [
+      194229,
+      117152,
+      67680,
+      23902,
+      -127,
+      402836
+    ]
+  },
+  m_fy_geo: {
+    FY2023: [
+      52888,
+      31210,
+      36154,
+      14650,
+      134902
+    ],
+    FY2024: [
+      63207,
+      38361,
+      45009,
+      17924,
+      164501
+    ],
+    FY2025: [
+      78866,
+      46569,
+      53817,
+      21714,
+      200966
+    ]
+  },
+  apac_commentary: [
+    {
+      co: "META",
+      q: "2025Q1",
+      theme: "APAC advertisers",
+      text: 'Susan Li: "Asia-based e-commerce exporters" cut spend on Meta ahead of the end of the U.S. de minimis exemption; overall spend for those advertisers was "below the levels prior to April." Asia-Pacific ad revenue (user geography) grew 12%, the slowest region.',
+      src: "S-CNBC-25Q1"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q1",
+      theme: "APAC FX",
+      text: 'APAC revenue grew 12% reported and 15% in constant currency; 10-Q: "APAC revenue growth was unfavorably affected by changes in foreign currency exchange rates."',
+      src: "A-10Q-25Q1"
+    },
+    {
+      co: "GOOGL",
+      q: "2025Q2",
+      theme: "APAC FX",
+      text: "APAC revenue grew 19% reported and 18% in constant currency; APAC share of revenue rose to 17% from 16%.",
+      src: "A-10Q-25Q2-MDA"
+    },
+    {
+      co: "META",
+      q: "2025Q3",
+      theme: "APAC pricing",
+      text: "Asia-Pacific impressions +23% with price per ad +1%: the region added volume at low prices while US & Canada (+13%) and Europe (+19%) drove price.",
+      src: "M-PRES-26Q3"
+    },
+    {
+      co: "META",
+      q: "2025Q4",
+      theme: "APAC pricing",
+      text: "Asia-Pacific price per ad fell 2% YoY, the only regional decline in the period, while impressions grew 24%.",
+      src: "M-PRES-26Q3"
+    },
+    {
+      co: "META",
+      q: "2026Q3",
+      theme: "APAC pricing",
+      text: 'Susan Li: price growth "partially offset by strong impression growth, particularly from lower-monetizing surfaces and regions." Asia-Pacific: impressions +14%, price per ad +1%, ad revenue +15% vs +26% worldwide.',
+      src: "M-CALL-26Q3"
+    },
+    {
+      co: "GOOGL",
+      q: "2026Q3",
+      theme: "APAC growth",
+      text: "APAC revenue (customer billing address) grew 11.7% to $19.9B while the United States grew 38.8%; APAC fell to 15.6% of revenue from 17.4% a year earlier.",
+      src: "A-10Q-26Q3"
+    }
+  ],
+  apac_risks: [
+    {
+      co: "GOOGL",
+      cat: "Regulatory",
+      title: "Japan: JFTC cease-and-desist order",
+      text: "Apr 15, 2025 order under the Antimonopoly Act ends MADA/RSA conditions that required Google Search and Chrome preinstallation on Android; independent monitor for five years.",
+      status: "In force",
+      src: "R-JFTC-250415"
+    },
+    {
+      co: "GOOGL",
+      cat: "Regulatory",
+      title: "Japan: Mobile Software Competition Act",
+      text: "Google designated for OS, app store, browser and search engine (Mar 2025); full enforcement from Dec 18, 2025, with prohibited conduct and obligations for designated providers.",
+      status: "In force",
+      src: "R-JFTC-250910"
+    },
+    {
+      co: "BOTH",
+      cat: "Regulatory",
+      title: "Australia: under-16 social media minimum age",
+      text: "From Dec 10, 2025, age-restricted platforms include Facebook, Instagram, Threads and YouTube; corporate penalties up to 150,000 penalty units (about A$49.5M).",
+      status: "In force",
+      src: "S-AU-U16"
+    },
+    {
+      co: "META",
+      cat: "Regulatory",
+      title: "India: WhatsApp data-sharing case",
+      text: "Nov 2025: NCLAT set aside CCI's five-year ban on WhatsApp sharing user data with Meta for advertising but upheld the Rs 213.14 crore penalty.",
+      status: "Penalty upheld",
+      src: "S-NCLAT"
+    },
+    {
+      co: "META",
+      cat: "Execution",
+      title: "APAC price per ad near flat",
+      text: "Asia-Pacific price per ad has grown 5% or less in every quarter since Q1 2025 (Q4 2025: -2%), versus +23% in US & Canada in Q3 2026; APAC growth depends on impression volume.",
+      status: "Watch",
+      src: "M-PRES-26Q3"
+    },
+    {
+      co: "META",
+      cat: "Competitive",
+      title: "APAC-based exporters as advertisers",
+      text: "On a customer-address basis Asia-Pacific was $53.8B (27%) of Meta's 2025 revenue versus $39.3B (20%) by user location: about $14.6B came from APAC-billed advertisers reaching users elsewhere, exposed to trade policy (de minimis, tariffs).",
+      status: "Watch",
+      src: "M-FY-GEO"
+    },
+    {
+      co: "GOOGL",
+      cat: "Execution",
+      title: "APAC slowing inside Alphabet's mix",
+      text: "APAC growth slowed to 11.7% in Q3 2026 from 23.1% in Q1 2026 while U.S. revenue (including TPU-driven Cloud) accelerated; APAC's 15.6% share of revenue is the lowest since at least Q1 2024.",
+      status: "Watch",
+      src: "A-10Q-26Q3"
+    }
+  ]
+};
+
+// src/lib/engine.js
+var Q_ALL = data_default.quarters;
+var Q_DISPLAY = data_default.display;
+var LATEST = Q_DISPLAY[Q_DISPLAY.length - 1];
+var SRC = Object.fromEntries(data_default.sources.map((s) => [s.id, s]));
+var CO = {
+  GOOGL: { name: "Alphabet", ticker: "GOOGL", colorKey: "goog" },
+  META: { name: "Meta", ticker: "META", colorKey: "meta" }
+};
+var ISO = { Q1: ["01-01", "03-31"], Q2: ["04-01", "06-30"], Q3: ["07-01", "09-30"], Q4: ["10-01", "12-31"] };
+var qIdx = (q) => Q_ALL.indexOf(q);
+var qYear = (q) => q.slice(0, 4);
+var qNum = (q) => Number(q.slice(5));
+function periodBounds(q, period) {
+  const y = qYear(q), n = qNum(q);
+  const end = `${y}-${ISO["Q" + n][1]}`;
+  if (period === "YTD") return [`${y}-01-01`, end];
+  if (period === "TTM") {
+    const f = Q_ALL[qIdx(q) - 3];
+    return [f ? `${qYear(f)}-${ISO[f.slice(4)][0]}` : "", end];
+  }
+  return [`${y}-${ISO["Q" + n][0]}`, end];
+}
+var raw = (co, q, k) => {
+  const r = data_default.rows[co][q];
+  return r == null ? null : r[k] ?? null;
+};
+var M = {};
+var BOTH = ["GOOGL", "META"];
+var A = ["GOOGL"];
+var ME = ["META"];
+function def(id, o) {
+  M[id] = { id, cos: BOTH, agg: "flow", unit: "usd", srcKind: "er", ...o };
+}
+def("revenue", { label: "Revenue", key: "revenue", group: "Income statement", def: "Total revenues (GAAP), as reported.", formula: "Reported" });
+def("op_income", { label: "Operating income", key: "op_income", margin: "op_margin", group: "Income statement", def: "Income from operations (GAAP).", formula: "Reported", warn: "Includes company-disclosed one-off charges (fines, legal settlements, severance). See one-off log." });
+def("op_margin", { label: "Operating margin", unit: "pct", agg: "ratio", num: "op_income", den: "revenue", group: "Income statement", def: "Operating income as a share of revenue.", formula: "Operating income / Revenue" });
+def("net_income", { label: "Net income", key: "net_income", margin: "net_margin", group: "Income statement", def: "GAAP net income.", formula: "Reported", warn: "Not like-for-like: Alphabet includes large unrealized gains and losses on equity stakes; Meta includes one-time tax items (Q3 2025 charge, Q1 2026 benefit)." });
+def("net_margin", { label: "Net margin", unit: "pct", agg: "ratio", num: "net_income", den: "revenue", group: "Income statement", def: "Net income as a share of revenue.", formula: "Net income / Revenue", warn: "Distorted by non-operating items; see Net income." });
+def("eps_diluted", { label: "Diluted EPS", unit: "eps", key: "eps_diluted", group: "Income statement", def: "GAAP diluted net income per share. YTD and TTM views sum the quarterly figures.", formula: "Reported; YTD/TTM = sum of quarterly diluted EPS", warn: "Alphabet EPS uses net income available to common holders from Q2 2026 (after preferred dividends)." });
+def("eps_ex", {
+  label: "Diluted EPS ex. disclosed one-offs",
+  unit: "eps",
+  group: "Income statement",
+  srcKind: "er+oneoff",
+  def: "GAAP diluted EPS minus the per-share effects the companies themselves quantified (Alphabet: equity-securities gains/losses; Meta: Q3 2025 tax charge, Q1 2026 tax benefit, Q3 2026 legal charge). Items without a disclosed EPS effect stay in.",
+  formula: "Alphabet: EPS - disclosed equity-securities EPS effect. Meta: company-stated EPS excluding the item",
+  warn: "Analytical view built only from company-quantified effects. Alphabet's EC fine (Q3 2025), Waymo charge (Q4 2025) and Meta's Q2 2026 legal/severance charges are not removed.",
+  calc: (co, q) => {
+    if (qIdx(q) < 4) return null;
+    const eps = raw(co, q, "eps_diluted");
+    const o = data_default.one_offs.find((x) => x.co === co && x.q === q);
+    if (co === "GOOGL") return o && o.eps != null ? round2(eps - o.eps) : eps;
+    return o && o.eps_ex != null ? o.eps_ex : eps;
+  }
+});
+def("ocf", { label: "Operating cash flow", key: "ocf", group: "Cash flow", def: "Net cash provided by operating activities.", formula: "Reported" });
+def("capex", {
+  label: "Capital expenditures",
+  group: "Cash flow",
+  margin: "capex_intensity",
+  basisDependent: true,
+  key: (co, basis) => basis === "lfl" ? "capex_ppe" : "capex_reported",
+  def: "Reported basis: Alphabet = purchases of property & equipment; Meta = purchases of property & equipment + principal payments on finance leases (Meta's own definition). Like-for-like basis: purchases of property & equipment for both.",
+  formula: "Reported (company definition) or purchases of P&E",
+  warn: "Company definitions differ: Meta's reported capex includes finance-lease principal ($0.3-1.0B a quarter). Switch to Like-for-like to compare on purchases of P&E only."
+});
+def("capex_intensity", { label: "Capex intensity", unit: "pct", agg: "ratio", num: "capex", den: "revenue", basisDependent: true, group: "Cash flow", def: "Capital expenditures as a share of revenue.", formula: "Capex / Revenue" });
+def("fcf", {
+  label: "Free cash flow",
+  group: "Cash flow",
+  margin: "fcf_margin",
+  basisDependent: true,
+  key: (co, basis) => basis === "lfl" ? "fcf_lfl" : "fcf_reported",
+  def: "Reported basis: Alphabet FCF = OCF - purchases of P&E; Meta FCF = OCF - purchases of P&E - principal payments on finance leases (each company's non-GAAP definition). Like-for-like: OCF - purchases of P&E for both.",
+  formula: "OCF - Capex (basis as selected)",
+  warn: "Company FCF definitions differ (Meta also deducts finance-lease principal). Use Like-for-like for a strict comparison."
+});
+def("fcf_margin", { label: "FCF margin", unit: "pct", agg: "ratio", num: "fcf", den: "revenue", basisDependent: true, group: "Cash flow", def: "Free cash flow as a share of revenue.", formula: "Free cash flow / Revenue" });
+def("cash_ms", { label: "Cash & marketable securities", key: "cash_ms", agg: "stock", group: "Balance sheet & capital", def: "Cash, cash equivalents and marketable securities at period end.", formula: "Reported (period end)", warn: "Alphabet's marketable securities include marketable equity stakes ($90.4B at Q3 2026 per call coverage). Meta figures are reported to $0.01B. Gross of debt: both companies issued large amounts of debt in 2025-2026." });
+def("headcount", { label: "Headcount", unit: "count", key: "headcount", agg: "stock", group: "Balance sheet & capital", def: 'Full-time employees at period end (Alphabet: "number of employees"; Meta: "headcount").', formula: "Reported (period end)" });
+def("buybacks", { label: "Share repurchases", key: "buybacks", group: "Balance sheet & capital", def: "Cash paid for repurchases of common stock, from the cash flow statement.", formula: "Reported (cash flow statement)", warn: "Meta's press-release highlight uses trade-date value (e.g. $13.40B in Q1 2025) and can differ from cash paid ($12.75B). Cash-flow basis used for both." });
+def("dividends", { label: "Dividends paid", key: "dividends", group: "Balance sheet & capital", def: "Dividend (and dividend-equivalent) payments from the cash flow statement. Alphabet includes preferred dividends from Q3 2026.", formula: "Reported" });
+def("shareholder_returns", { label: "Total capital returned", key: "shareholder_returns", group: "Balance sheet & capital", def: "Share repurchases plus dividends paid (cash flow basis).", formula: "Repurchases + Dividends" });
+def("rev_per_employee", { label: "Revenue per employee", unit: "usdk", agg: "perEmp", num: "revenue", group: "Productivity", def: "Revenue for the period divided by period-end headcount. Quarterly view = one quarter of revenue; TTM view = annual run-rate.", formula: "Revenue / Period-end headcount" });
+def("oi_per_employee", { label: "Operating income per employee", unit: "usdk", agg: "perEmp", num: "op_income", group: "Productivity", def: "Operating income for the period divided by period-end headcount.", formula: "Operating income / Period-end headcount" });
+def("ad_revenue", { label: "Advertising revenue", key: "ad_revenue", group: "Advertising", segment: "ads", def: "Alphabet: Google advertising (Search & other + YouTube ads + Google Network). Meta: Family of Apps advertising.", formula: "Reported", warn: "Alphabet's Google Network ads run on partner properties and carry high TAC; Meta ad revenue is on owned apps." });
+def("search", { label: "Google Search & other", key: "search", cos: A, group: "Alphabet drivers", segment: "search", def: "Revenue from Google Search and other owned properties (Gmail, Maps, Play).", formula: "Reported" });
+def("youtube", { label: "YouTube ads", key: "youtube", cos: A, group: "Alphabet drivers", segment: "youtube", def: "YouTube advertising revenue (excludes YouTube subscriptions).", formula: "Reported" });
+def("network", { label: "Google Network", key: "network", cos: A, group: "Alphabet drivers", segment: "network", def: "Ads on partner properties (AdMob, AdSense, Google Ad Manager).", formula: "Reported" });
+def("subs", { label: "Subscriptions, platforms & devices", key: "subs", cos: A, group: "Alphabet drivers", segment: "subs", def: "YouTube and Google One subscriptions, Play, devices.", formula: "Reported" });
+def("cloud_rev", { label: "Google Cloud revenue", key: "cloud_rev", cos: A, group: "Alphabet drivers", segment: "cloud", margin: "cloud_margin", def: "Google Cloud Platform, Workspace and other enterprise services, including TPU system sales.", formula: "Reported" });
+def("cloud_oi", { label: "Google Cloud operating income", key: "cloud_oi", cos: A, group: "Alphabet drivers", segment: "cloud", margin: "cloud_margin", def: "Google Cloud segment operating income.", formula: "Reported (segment)" });
+def("cloud_margin", { label: "Google Cloud operating margin", unit: "pct", agg: "ratio", num: "cloud_oi", den: "cloud_rev", cos: A, group: "Alphabet drivers", segment: "cloud", def: "Cloud operating income / Cloud revenue.", formula: "Cloud OI / Cloud revenue" });
+def("other_bets_rev", { label: "Other Bets revenue", key: "other_bets_rev", cos: A, group: "Alphabet drivers", segment: "otherbets", def: "Waymo, Verily and other early-stage businesses.", formula: "Reported" });
+def("other_bets_oi", { label: "Other Bets operating loss", key: "other_bets_oi", cos: A, group: "Alphabet drivers", segment: "otherbets", def: "Other Bets segment operating income (loss).", formula: "Reported (segment)" });
+def("tac", { label: "Traffic acquisition costs", key: "tac", cos: A, group: "Alphabet drivers", margin: "tac_rate", def: "Payments to distribution and Network partners (TAC).", formula: "Reported" });
+def("tac_rate", { label: "TAC rate", unit: "pct", agg: "ratio", num: "tac", den: "ad_revenue", cos: A, group: "Alphabet drivers", def: "TAC as a share of Google advertising revenue (matches the 10-Q stated rate to 0.1pt in every quarter checked).", formula: "TAC / Google advertising revenue" });
+def("rpo", { label: "Revenue backlog (RPO)", unit: "usdb", agg: "stock", key: "rpo", cos: A, group: "Alphabet drivers", segment: "cloud", srcKind: "rpo", def: "Remaining performance obligations, primarily Google Cloud, from the 10-Q/10-K revenue note.", formula: "Reported (period end)" });
+def("paid_clicks_yoy", { label: "Paid clicks, YoY", unit: "rate", agg: "qonly", key: "paid_clicks_yoy", cos: A, group: "Alphabet drivers", segment: "search", srcKind: "clicks", isRate: true, def: "Year-over-year change in paid clicks on Google Search & other properties (10-Q MD&A).", formula: "Reported % change" });
+def("cpc_yoy", { label: "Cost per click, YoY", unit: "rate", agg: "qonly", key: "cpc_yoy", cos: A, group: "Alphabet drivers", segment: "search", srcKind: "clicks", isRate: true, def: "Year-over-year change in average cost per click on Google Search & other properties (10-Q MD&A).", formula: "Reported % change" });
+def("foa_rev", { label: "Family of Apps revenue", key: "foa_rev", cos: ME, group: "Meta drivers", margin: "foa_margin", def: "Facebook, Instagram, Messenger, WhatsApp and other services.", formula: "Reported (segment)" });
+def("foa_oi", { label: "Family of Apps operating income", key: "foa_oi", cos: ME, group: "Meta drivers", margin: "foa_margin", def: "Family of Apps segment income from operations (includes Q3 2026 $9.89B legal charge).", formula: "Reported (segment)" });
+def("foa_margin", { label: "Family of Apps operating margin", unit: "pct", agg: "ratio", num: "foa_oi", den: "foa_rev", cos: ME, group: "Meta drivers", def: "FoA operating income / FoA revenue.", formula: "FoA OI / FoA revenue" });
+def("other_rev", { label: "Other revenue (FoA)", key: "other_rev", cos: ME, group: "Meta drivers", segment: "metaother", def: "Mainly WhatsApp paid messaging and Meta Verified / subscriptions.", formula: "Reported" });
+def("rl_rev", { label: "Reality Labs revenue", key: "rl_rev", cos: ME, group: "Meta drivers", segment: "rl", def: "Quest headsets, AI glasses and related content.", formula: "Reported (segment)" });
+def("rl_oi", { label: "Reality Labs operating loss", key: "rl_oi", cos: ME, group: "Meta drivers", segment: "rl", def: "Reality Labs segment loss from operations.", formula: "Reported (segment)" });
+def("dap", { label: "Daily active people (DAP)", unit: "bn", agg: "stock", key: "dap", cos: ME, group: "Meta drivers", srcKind: "pres", def: "Family daily active people, average for the last month of the quarter (billions).", formula: "Reported; YoY growth uses the company-reported rate" });
+def("arpp", { label: "Average revenue per person (ARPP)", unit: "arpp", agg: "qonly", key: "arpp", cos: ME, group: "Meta drivers", srcKind: "pres", def: "Family of Apps revenue / average of DAP at the start and end of the quarter (Meta definition). Reproduced from FoA revenue and DAP to within $0.01 for every quarter.", formula: "FoA revenue / avg(DAP start, DAP end)" });
+def("impressions_yoy", { label: "Ad impressions, YoY", unit: "rate", agg: "qonly", key: "impressions_yoy", cos: ME, group: "Meta drivers", isRate: true, def: "Year-over-year change in ad impressions delivered across the Family of Apps.", formula: "Reported % change" });
+def("price_per_ad_yoy", { label: "Average price per ad, YoY", unit: "rate", agg: "qonly", key: "price_per_ad_yoy", cos: ME, group: "Meta drivers", isRate: true, def: "Year-over-year change in average price per ad.", formula: "Reported % change" });
+function round2(x) {
+  return Math.round(x * 100) / 100;
+}
+function quarterly(co, id, q, basis) {
+  const m = M[id];
+  if (!m.cos.includes(co)) return null;
+  if (m.calc) return m.calc(co, q, basis);
+  const k = typeof m.key === "function" ? m.key(co, basis) : m.key;
+  return raw(co, q, k);
+}
+function windowQs(q, period) {
+  const i = qIdx(q);
+  if (period === "Q") return [q];
+  if (period === "YTD") return Q_ALL.slice(i - (qNum(q) - 1), i + 1);
+  if (period === "TTM") return i >= 3 ? Q_ALL.slice(i - 3, i + 1) : null;
+  return [q];
+}
+function value(co, id, q, ctx) {
+  const m = M[id];
+  if (!m || !m.cos.includes(co) || qIdx(q) < 0) return null;
+  const { period = "Q", basis = "reported" } = ctx || {};
+  switch (m.agg) {
+    case "stock":
+      return quarterly(co, id, q, basis);
+    case "qonly":
+      return period === "Q" ? quarterly(co, id, q, basis) : null;
+    case "ratio": {
+      const n = value(co, m.num, q, ctx), d = value(co, m.den, q, ctx);
+      return n == null || d == null || d === 0 ? null : n / d;
+    }
+    case "perEmp": {
+      const n = value(co, m.num, q, ctx), h = raw(co, q, "headcount");
+      return n == null || !h ? null : n * 1e3 / h;
+    }
+    default: {
+      const qs = windowQs(q, period);
+      if (!qs) return null;
+      let s = 0;
+      for (const x of qs) {
+        const v = quarterly(co, id, x, basis);
+        if (v == null) return null;
+        s += v;
+      }
+      return m.unit === "eps" ? round2(s) : s;
+    }
+  }
+}
+function shown(co, id, q, ctx, mode) {
+  const m = M[id];
+  const v = value(co, id, q, ctx);
+  if (mode === "value" || !mode) {
+    const geoNote = id.startsWith("geo_") && (ctx?.period || "Q") === "Q" ? data_default.a_geo_note?.[q] : null;
+    return { v, unit: m.unit, note: v == null ? unavailableNote(co, id, q, ctx) : geoNote || null };
+  }
+  const period = ctx?.period || "Q";
+  if (m.isRate) {
+    if (mode === "yoy") return { v, unit: "rate", note: v == null ? unavailableNote(co, id, q, ctx) : "Already a year-over-year measure" };
+    return { v: null, unit: "rate", note: "Reported only as year-over-year change" };
+  }
+  if (mode === "qoq" && period === "YTD") return { v: null, unit: "growth", note: "QoQ growth is not meaningful for year-to-date windows" };
+  const i = qIdx(q);
+  const pq = Q_ALL[i - (mode === "yoy" ? 4 : 1)];
+  const rep = co === "META" && mode === "yoy" && period === "Q" ? data_default.m_reported_yoy[id]?.[q] : void 0;
+  if (rep != null && (id === "dap" || value(co, id, pq || q, ctx) == null)) return { v: rep / 100, unit: "growth", note: "Company-reported growth rate (rounded)" };
+  if (!pq) return { v: null, unit: m.unit === "pct" ? "pp" : "growth", note: "Prior period outside the collected data" };
+  const p = value(co, id, pq, ctx);
+  if (m.unit === "pct") return { v: v == null || p == null ? null : (v - p) * 100, unit: "pp", note: v == null || p == null ? "Prior period unavailable" : null };
+  if (v == null || p == null) return { v: null, unit: "growth", note: p == null ? "Prior period not collected (pre-2024 or not disclosed)" : unavailableNote(co, id, q, ctx) };
+  if (p <= 0 || v < 0) return { v: null, unit: "growth", note: "n/m: negative or zero base" };
+  return { v: v / p - 1, unit: "growth", note: null };
+}
+function unavailableNote(co, id, q, ctx) {
+  const m = M[id];
+  if (!m.cos.includes(co)) return `${CO[co].name} does not report this metric`;
+  if (m.agg === "qonly" && ctx?.period !== "Q") return "Reported for single quarters only";
+  if (id === "paid_clicks_yoy" || id === "cpc_yoy") return data_default.a_clicks_note[q] || "Not disclosed";
+  if (id === "network_imp_yoy" || id === "network_cpi_yoy") return q.endsWith("Q4") ? "Not disclosed for Q4 alone" : "Q2 2026 10-Q MD&A not retrievable; left blank";
+  if (id === "apac_cc_yoy") return "Constant-currency APAC growth not in the retrievable filing text";
+  if (ctx?.period === "TTM" && qIdx(q) < 3) return "TTM needs four quarters of data";
+  return "Not disclosed for this period";
+}
+function sourcesFor(co, id, q, ctx) {
+  const m = M[id];
+  if (!m || !m.cos.includes(co)) return [];
+  const ids = /* @__PURE__ */ new Set();
+  const add = (qq, kind) => {
+    const k = kind || m.srcKind;
+    if (k === "rpo") {
+      const s = data_default.a_rpo_src[qq];
+      if (s) ids.add(s);
+      return;
+    }
+    if (k === "clicks") {
+      const s = data_default.a_clicks_src[qq];
+      if (s) ids.add(s);
+      return;
+    }
+    if (k === "pres") {
+      ids.add("M-PRES-26Q3");
+      return;
+    }
+    if (k === "mgeo") {
+      ids.add(qIdx(qq) >= qIdx("2024Q3") ? "M-PRES-26Q3" : "M-PRES-25Q3");
+      return;
+    }
+    if (k === "mimp") {
+      const s = data_default.m_imp_src[qq];
+      if (s) {
+        ids.add(s);
+        ids.add("S-ADSUP");
+      }
+      return;
+    }
+    if (k === "ageo") {
+      const s = data_default.a_geo_src[qq];
+      if (s) {
+        ids.add(s);
+        if (s === "A-FY-GEO") ids.add("A-10Q-25Q3");
+      }
+      return;
+    }
+    if (k === "network") {
+      const s = data_default.a_network_src[qq];
+      if (s) ids.add(s);
+      return;
+    }
+    if (k === "apaccc") {
+      const s = data_default.a_apac_cc[qq];
+      if (s) ids.add(s.src);
+      return;
+    }
+    ids.add((co === "GOOGL" ? data_default.a_src : data_default.m_src)[qq]);
+    if (k === "er+oneoff") {
+      const o = data_default.one_offs.find((x) => x.co === co && x.q === qq);
+      if (o) ids.add(o.src);
+    }
+  };
+  const expand = (mid) => {
+    const mm = M[mid];
+    if (mm.agg === "ratio") {
+      expand(mm.num);
+      expand(mm.den);
+      return;
+    }
+    if (mm.agg === "perEmp") {
+      expand(mm.num);
+      add(q, "er");
+      return;
+    }
+    const qs = mm.agg === "stock" || mm.agg === "qonly" ? [q] : windowQs(q, ctx?.period || "Q") || [q];
+    qs.forEach((x) => add(x, mm.srcKind));
+  };
+  expand(id);
+  return [...ids].filter(Boolean);
+}
+function metricsFor(cos) {
+  return Object.values(M).filter((m) => m.cos.some((c) => cos.includes(c)));
+}
+var SEGMENTS = [
+  { id: "search", co: "GOOGL", label: "Search & other" },
+  { id: "youtube", co: "GOOGL", label: "YouTube ads" },
+  { id: "network", co: "GOOGL", label: "Google Network" },
+  { id: "subs", co: "GOOGL", label: "Subscriptions, platforms & devices" },
+  { id: "cloud", co: "GOOGL", label: "Google Cloud" },
+  { id: "otherbets", co: "GOOGL", label: "Other Bets" },
+  { id: "ads", co: "META", label: "Advertising" },
+  { id: "metaother", co: "META", label: "Other revenue" },
+  { id: "rl", co: "META", label: "Reality Labs" }
+];
+var csvCell = (x) => {
+  const s = x == null ? "" : String(x);
+  return /[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s;
+};
+function buildCsv({ cos, quarters, period, basis, segments, metricFilter }) {
+  const head = [
+    "company",
+    "ticker",
+    "period_view",
+    "fiscal_quarter",
+    "period_start",
+    "period_end",
+    "metric_id",
+    "metric",
+    "value",
+    "unit",
+    "yoy_change",
+    "yoy_unit",
+    "qoq_change",
+    "qoq_unit",
+    "capex_fcf_basis",
+    "formula",
+    "note",
+    "source_ids",
+    "source_documents",
+    "source_dates",
+    "source_urls",
+    "data_cutoff"
+  ];
+  const lines = [head.join(",")];
+  const ctx = { period, basis };
+  const unitName = { usd: "USD millions", eps: "USD per share", pct: "ratio", rate: "percent YoY", count: "employees", usdb: "USD billions", bn: "billions of people", usdk: "USD thousands per employee", arpp: "USD per person", growth: "ratio", pp: "percentage points" };
+  for (const co of cos) {
+    for (const m of metricsFor([co])) {
+      if (!m.cos.includes(co)) continue;
+      if (metricFilter && !metricFilter(m)) continue;
+      if (m.segment && m.segment !== "ads" && !segments.includes(m.segment)) continue;
+      for (const q of quarters) {
+        const v = value(co, m.id, q, ctx);
+        const y = shown(co, m.id, q, ctx, "yoy");
+        const qq = shown(co, m.id, q, ctx, "qoq");
+        const src = sourcesFor(co, m.id, q, ctx).map((s) => SRC[s]).filter(Boolean);
+        const [ps, pe] = periodBounds(q, period);
+        const out = m.unit === "pct" && v != null ? Math.round(v * 1e6) / 1e6 : v;
+        const g = (r) => r.v == null ? "" : r.unit === "growth" ? Math.round(r.v * 1e6) / 1e6 : Math.round(r.v * 1e3) / 1e3;
+        lines.push([
+          CO[co].name,
+          co,
+          period,
+          q,
+          ps,
+          pe,
+          m.id,
+          m.label,
+          out,
+          unitName[m.unit],
+          g(y),
+          y.v == null ? "" : unitName[y.unit],
+          g(qq),
+          qq.v == null ? "" : unitName[qq.unit],
+          m.basisDependent ? basis === "lfl" ? "like-for-like" : "company-reported" : "",
+          m.formula,
+          v == null ? shown(co, m.id, q, ctx, "value").note || "" : m.warn || "",
+          src.map((s) => s.id).join(" | "),
+          src.map((s) => s.doc).join(" | "),
+          src.map((s) => s.date).join(" | "),
+          src.map((s) => s.url).join(" | "),
+          data_default.cutoff
+        ].map(csvCell).join(","));
+      }
+    }
+  }
+  return lines.join("\n");
+}
+var REGIONS = [
+  { id: "na", meta: "US & Canada", googl: "United States", mk: "us", gk: "us" },
+  { id: "eu", meta: "Europe", googl: "EMEA", mk: "eu", gk: "emea" },
+  { id: "ap", meta: "Asia-Pacific", googl: "APAC", mk: "ap", gk: "apac" },
+  { id: "row", meta: "Rest of World", googl: "Other Americas", mk: "rw", gk: "oa" }
+];
+var MGEO_DEF = "Meta, by user geography: apportioned by the estimated location of the user when the revenue-generating activity happens (not where the advertiser is billed).";
+var AGEO_DEF = "Alphabet, by customer billing address. Includes all revenue (ads, Cloud, subscriptions, devices), not only advertising.";
+REGIONS.forEach((r) => {
+  def(`ad_${r.mk}`, { label: `Ad revenue: ${r.meta}`, key: `ad_${r.mk}`, cos: ME, group: "Meta regional ads", srcKind: "mgeo", region: r.id, def: `Family of Apps advertising revenue from users in ${r.meta}. ${MGEO_DEF}`, formula: "Reported (earnings presentation)" });
+  def(`ad_${r.mk}_share`, { label: `${r.meta} share of ad revenue`, unit: "pct", agg: "ratio", num: `ad_${r.mk}`, den: "ad_revenue", cos: ME, group: "Meta regional ads", region: r.id, def: `${r.meta} ad revenue / total advertising revenue (user geography).`, formula: `Ad revenue ${r.meta} / Advertising revenue` });
+  def(`rev_${r.mk}`, { label: `Revenue: ${r.meta} (user geography)`, key: `rev_${r.mk}`, cos: ME, group: "Meta regional ads", srcKind: "mgeo", region: r.id, def: `Total Meta revenue from users in ${r.meta}. ${MGEO_DEF}`, formula: "Reported (earnings presentation)" });
+  def(`rev_${r.mk}_share`, { label: `${r.meta} share of revenue (user geography)`, unit: "pct", agg: "ratio", num: `rev_${r.mk}`, den: "revenue", cos: ME, group: "Meta regional ads", region: r.id, def: `${r.meta} revenue / total revenue (user geography).`, formula: `Revenue ${r.meta} / Revenue` });
+  def(`geo_${r.gk}`, { label: `Revenue: ${r.googl}`, key: `geo_${r.gk}`, cos: A, group: "Alphabet geography", srcKind: "ageo", region: r.id, def: `Alphabet revenue billed to customers in ${r.googl}${r.gk === "oa" ? " (Canada and Latin America)" : r.gk === "emea" ? " (Europe, Middle East and Africa)" : ""}. ${AGEO_DEF}`, formula: "Reported (10-Q/10-K Note 2); Q4 = FY minus nine months", warn: r.gk === "apac" ? "Total revenue, not ads: Cloud and subscriptions billed in APAC are included. Not comparable with Meta APAC ad revenue by user location." : void 0 });
+  def(`geo_${r.gk}_share`, { label: `${r.googl} share of revenue`, unit: "pct", agg: "ratio", num: `geo_${r.gk}`, den: "revenue", cos: A, group: "Alphabet geography", region: r.id, def: `${r.googl} revenue / total revenue (customer billing address).`, formula: `${r.googl} revenue / Total revenue` });
+});
+["ww", ...REGIONS.map((r) => r.mk)].forEach((k) => {
+  const nm = k === "ww" ? "Worldwide" : REGIONS.find((r) => r.mk === k).meta;
+  def(`imp_${k}`, { label: `Ad impressions, YoY: ${nm}`, unit: "rate", agg: "qonly", key: `imp_${k}`, cos: ME, group: "Meta regional ads", isRate: true, srcKind: "mimp", region: k === "ww" ? "ww" : REGIONS.find((r) => r.mk === k).id, def: `YoY change in ad impressions delivered to users in ${nm} (earnings presentation slide 12).`, formula: "Reported % change" });
+  def(`ppa_${k}`, { label: `Average price per ad, YoY: ${nm}`, unit: "rate", agg: "qonly", key: `ppa_${k}`, cos: ME, group: "Meta regional ads", isRate: true, srcKind: "mimp", region: k === "ww" ? "ww" : REGIONS.find((r) => r.mk === k).id, def: `YoY change in average price per ad for users in ${nm} (earnings presentation slide 13).`, formula: "Reported % change" });
+});
+def("network_imp_yoy", { label: "Google Network impressions, YoY", unit: "rate", agg: "qonly", key: "network_imp_yoy", cos: A, group: "Alphabet drivers", isRate: true, srcKind: "network", segment: "network", def: "YoY change in impressions on Google Network partner properties (AdMob, AdSense, Ad Manager), 10-Q MD&A.", formula: "Reported % change" });
+def("network_cpi_yoy", { label: "Google Network cost per impression, YoY", unit: "rate", agg: "qonly", key: "network_cpi_yoy", cos: A, group: "Alphabet drivers", isRate: true, srcKind: "network", segment: "network", def: "YoY change in Network cost per impression (impression- and click-based revenue / impressions), 10-Q MD&A.", formula: "Reported % change" });
+def("apac_cc_yoy", { label: "APAC revenue growth, constant currency", unit: "rate", agg: "qonly", key: "apac_cc_yoy", cos: A, group: "Alphabet geography", isRate: true, srcKind: "apaccc", region: "ap", def: "APAC revenue growth excluding FX effects (10-Q MD&A); disclosed in the retrievable filings for Q1 and Q2 2025 only.", formula: "Reported % change (constant currency)" });
+def("ads_share", { label: "Advertising share of revenue", unit: "pct", agg: "ratio", num: "ad_revenue", den: "revenue", group: "Advertising", def: "Advertising revenue / total revenue.", formula: "Advertising revenue / Revenue" });
+["search", "youtube", "network"].forEach((k) => def(`${k}_ad_share`, { label: `${M[k].label} share of Google advertising`, unit: "pct", agg: "ratio", num: k, den: "ad_revenue", cos: A, group: "Alphabet drivers", segment: k, def: `${M[k].label} / Google advertising revenue.`, formula: `${M[k].label} / Google advertising` }));
+
+// export_csv.mjs
+import fs from "fs";
+var seg = SEGMENTS.map((s) => s.id);
+var APAC_GROUPS = ["Meta regional ads", "Alphabet geography", "Advertising", "Alphabet drivers", "Meta drivers"];
+var apac = (m) => !!m.region || APAC_GROUPS.includes(m.group) || ["revenue", "op_margin"].includes(m.id);
+var jobs = [["Q", "reported", "quarterly", null], ["TTM", "reported", "ttm", null], ["Q", "lfl", "quarterly_like_for_like", null], ["Q", "reported", "apac_ads_quarterly", apac]];
+for (const [period, basis, name, metricFilter] of jobs) {
+  fs.writeFileSync(`../publish/alphabet_meta_${name}_2025Q1-2026Q3.csv`, buildCsv({ cos: ["GOOGL", "META"], quarters: Q_DISPLAY, period, basis, segments: seg, metricFilter }));
+}

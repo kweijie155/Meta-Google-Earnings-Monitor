@@ -1,0 +1,9 @@
+{
+  "name": "goog-meta-dashboard",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": { "build": "vite build", "dev": "vite" },
+  "dependencies": { "react": "18.3.1", "react-dom": "18.3.1", "recharts": "2.12.7" },
+  "devDependencies": { "vite": "5.4.10", "@vitejs/plugin-react": "4.3.3", "vite-plugin-singlefile": "2.0.3" }
+}
