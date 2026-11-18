@@ -215,7 +215,7 @@ export function sourcesFor(co, id, q, ctx) {
   const m = M[id]; if (!m || !m.cos.includes(co)) return [];
   const ids = new Set();
   const add = (qq, kind) => {
-    const k = kind || m.srcKind;
+    const sk = kind || m.srcKind; const k = typeof sk === 'function' ? sk(co) : sk;
     if (k === 'rpo') { const s = DATA.a_rpo_src[qq]; if (s) ids.add(s); return; }
     if (k === 'clicks') { const s = DATA.a_clicks_src[qq]; if (s) ids.add(s); return; }
     if (k === 'pres') { ids.add('M-PRES-26Q3'); return; }
@@ -354,6 +354,10 @@ REGIONS.forEach((r) => {
   def(`geo_${r.gk}`, { label: `Revenue: ${r.googl}`, key: `geo_${r.gk}`, cos: A, group: 'Alphabet geography', srcKind: 'ageo', region: r.id, def: `Alphabet revenue billed to customers in ${r.googl}${r.gk === 'oa' ? ' (Canada and Latin America)' : r.gk === 'emea' ? ' (Europe, Middle East and Africa)' : ''}. ${AGEO_DEF}`, formula: 'Reported (10-Q/10-K Note 2); Q4 = FY minus nine months', warn: r.gk === 'apac' ? 'Total revenue, not ads: Cloud and subscriptions billed in APAC are included. Not comparable with Meta APAC ad revenue by user location.' : undefined });
   def(`geo_${r.gk}_share`, { label: `${r.googl} share of revenue`, unit: 'pct', agg: 'ratio', num: `geo_${r.gk}`, den: 'revenue', cos: A, group: 'Alphabet geography', region: r.id, def: `${r.googl} revenue / total revenue (customer billing address).`, formula: `${r.googl} revenue / Total revenue` });
 });
+// Side-by-side APAC revenue for both companies (different bases, so it always carries a warning).
+const APAC_REV_WARN = 'Different bases: Alphabet is total revenue billed to customers in APAC (includes Cloud and subscriptions); Meta is total revenue from users located in APAC. Compare trends, not levels.';
+def('apac_rev', { label: 'Revenue: APAC (both companies)', key: (co) => (co === 'GOOGL' ? 'geo_apac' : 'rev_ap'), group: 'APAC comparison', srcKind: (co) => (co === 'GOOGL' ? 'ageo' : 'mgeo'), region: 'ap', def: `Alphabet: revenue billed to customers in APAC. ${AGEO_DEF} Meta: total revenue from users in Asia-Pacific. ${MGEO_DEF}`, formula: 'Alphabet: reported (10-Q/10-K Note 2), Q4 = FY minus nine months. Meta: reported (earnings presentation)', warn: APAC_REV_WARN });
+def('apac_rev_share', { label: 'APAC share of revenue (both companies)', unit: 'pct', agg: 'ratio', num: 'apac_rev', den: 'revenue', group: 'APAC comparison', region: 'ap', def: 'APAC revenue / total revenue. Alphabet by customer billing address; Meta by user geography.', formula: 'APAC revenue / Revenue', warn: APAC_REV_WARN });
 ['ww', ...REGIONS.map((r) => r.mk)].forEach((k) => {
   const nm = k === 'ww' ? 'Worldwide' : REGIONS.find((r) => r.mk === k).meta;
   def(`imp_${k}`, { label: `Ad impressions, YoY: ${nm}`, unit: 'rate', agg: 'qonly', key: `imp_${k}`, cos: ME, group: 'Meta regional ads', isRate: true, srcKind: 'mimp', region: k === 'ww' ? 'ww' : REGIONS.find((r) => r.mk === k).id, def: `YoY change in ad impressions delivered to users in ${nm} (earnings presentation slide 12).`, formula: 'Reported % change' });

@@ -4,7 +4,7 @@ import { ResponsiveContainer, ComposedChart, Bar, XAxis, YAxis, CartesianGrid, T
 import {
   DATA, M, CO, SRC, REGIONS, regionLabel, qLabel, qShort, qIdx, Q_ALL, periodText, value, shown, sourcesFor, fmt, fmtAxis,
 } from '../lib/engine.js';
-import { QChart, Readout, Legend, useColors, DataEndBar, niceScale, SourceLine } from './charts.jsx';
+import { QChart, Readout, Legend, useColors, DataEndBar, niceScale, SourceLine, withPct } from './charts.jsx';
 import { Card, pctCls } from './ui.jsx';
 
 export const regionColor = (c, id) => ({ ap: c.seg1, na: c.seg2, eu: c.seg3, row: c.seg4, ww: c['seg-other'] }[id]);
@@ -173,7 +173,7 @@ export function ApacTrends({ f, fq, ctx, cos, quarters, explicit, onFocus, c, co
   const apacRev = [
     ...(g ? [mkSeries('GOOGL', share ? 'geo_apac_share' : 'geo_apac', share ? 'Alphabet APAC share' : 'Alphabet APAC (billing address)', coColor('GOOGL'), f.mode, ctx, { co: 'GOOGL' })] : []),
     ...(me ? [mkSeries('META', share ? 'rev_ap_share' : 'rev_ap', share ? 'Meta APAC share' : 'Meta APAC (user location)', coColor('META'), f.mode, ctx, { co: 'META' })] : []),
-  ];
+  ].map((sr) => (f.mode === 'value' && !share ? withPct(sr, (q) => value(sr.co, sr.co === 'GOOGL' ? 'geo_apac_share' : 'rev_ap_share', q, ctx)) : sr));
   const vsCo = (co) => [
     mkSeries(co, co === 'GOOGL' ? 'geo_apac' : 'rev_ap', 'APAC', regionColor(c, 'ap'), 'yoy', ctx),
     mkSeries(co, 'revenue', co === 'GOOGL' ? 'Total revenue' : 'Total revenue', regionColor(c, 'ww'), 'yoy', ctx),
@@ -249,7 +249,7 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
   const qctx = { ...ctx, period: 'Q' };
   const selRegions = REGIONS.filter((r) => regions.includes(r.id));
   // Meta regional ad revenue
-  const metaReg = selRegions.map((r) => mkSeries('META', share ? `ad_${r.mk}_share` : `ad_${r.mk}`, r.meta, regionColor(c, r.id), f.mode, ctx, { region: r.id }));
+  const metaReg = selRegions.map((r) => { const sr = mkSeries('META', share ? `ad_${r.mk}_share` : `ad_${r.mk}`, r.meta, regionColor(c, r.id), f.mode, ctx, { region: r.id }); return f.mode === 'value' && !share ? withPct(sr, (q) => value('META', `ad_${r.mk}_share`, q, ctx)) : sr; });
   if (!share && f.mode !== 'value') metaReg.push(mkSeries('META', 'ad_revenue', 'Worldwide', regionColor(c, 'ww'), f.mode, ctx, { region: 'ww' }));
   const regLegend = (list) => <Legend series={list} kind="line" hidden={[]} onToggle={(s) => s.region && s.region !== 'ww' && toggleRegion(s.region)} />;
   // volume vs price by region, focus quarter
@@ -270,10 +270,10 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
   ];
   // Alphabet ad lines
   const lineColor = { search: c.seg1, youtube: c.seg2, network: c.seg3 };
-  const adLines = ['search', 'youtube', 'network'].filter((k) => segOn(k)).map((k) => mkSeries('GOOGL', share ? `${k}_ad_share` : k, M[k].label, lineColor[k], f.mode, ctx, { seg: k }));
+  const adLines = ['search', 'youtube', 'network'].filter((k) => segOn(k)).map((k) => { const sr = mkSeries('GOOGL', share ? `${k}_ad_share` : k, M[k].label, lineColor[k], f.mode, ctx, { seg: k }); return f.mode === 'value' && !share ? withPct(sr, (q) => value('GOOGL', `${k}_ad_share`, q, ctx)) : sr; });
   const network = [mkSeries('GOOGL', 'network_imp_yoy', 'Network impressions', c.vol, 'value', qctx), mkSeries('GOOGL', 'network_cpi_yoy', 'Cost per impression', c.price, 'value', qctx)];
   const clicks = [mkSeries('GOOGL', 'paid_clicks_yoy', 'Paid clicks', c.vol, 'value', qctx), mkSeries('GOOGL', 'cpc_yoy', 'Cost per click', c.price, 'value', qctx)];
-  const googReg = selRegions.map((x) => mkSeries('GOOGL', share ? `geo_${x.gk}_share` : `geo_${x.gk}`, x.googl, regionColor(c, x.id), f.mode, ctx, { region: x.id }));
+  const googReg = selRegions.map((x) => { const sr = mkSeries('GOOGL', share ? `geo_${x.gk}_share` : `geo_${x.gk}`, x.googl, regionColor(c, x.id), f.mode, ctx, { region: x.id }); return f.mode === 'value' && !share ? withPct(sr, (q) => value('GOOGL', `geo_${x.gk}_share`, q, ctx)) : sr; });
   const adsShare = companySeries ? companySeries('ads_share', { display: 'abs' }) : [];
   // monetization table rows
   const monRows = g ? [

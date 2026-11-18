@@ -71,7 +71,7 @@ function TipContent({ active, payload, label, series, period, def, unitOverride 
           <div className="t-row" key={s.id}>
             <span className="key-line" style={{ background: s.color }} />
             <div>
-              <div className="t-val">{fmt(cell.v, unitOverride || cell.unit)}</div>
+              <div className="t-val">{fmt(cell.v, unitOverride || cell.unit)}{cell.pct != null && <span className="t-pct"> · {fmt(cell.pct, 'pct')}</span>}</div>
               <div className="t-name">{s.name}</div>
               {cell.note && <div className="t-note">{cell.note}</div>}
               {cell.src && cell.src.length > 0 && <div className="t-src">Source: {cell.src.map((id) => `${SRC[id]?.doc} (${SRC[id]?.date})`).join('; ')}</div>}
@@ -169,6 +169,9 @@ export function QChart({ series, quarters, kind = 'bar', unit, focusQ, explicitF
   );
 }
 
+/** Adds each value's share of a total (cell.pct) so mix charts show proportions in the tooltip and readout. */
+export const withPct = (s, pctFn) => ({ ...s, get: (q) => { const cell = s.get(q); if (cell.v == null) return cell; const p = pctFn(q); return Number.isFinite(p) ? { ...cell, pct: p } : cell; } });
+
 /** Always-visible readout of the focused quarter (keyboard/hover-free access to values). */
 export function Readout({ q, series, period, unit }) {
   if (!q) return null;
@@ -176,7 +179,7 @@ export function Readout({ q, series, period, unit }) {
     <div className="readout" aria-live="polite">
       <span className="q">{period === 'Q' ? qLabel(q) : periodText(q, period)}</span>
       {series.map((s) => { const cell = s.get(q); return (
-        <span key={s.id}><span className="key-line" style={{ background: s.color, marginRight: 6, verticalAlign: 3 }} />{s.name} <b>{fmt(cell.v, unit || cell.unit)}</b>{cell.v == null && cell.note ? ` (${cell.note})` : ''}</span>
+        <span key={s.id}><span className="key-line" style={{ background: s.color, marginRight: 6, verticalAlign: 3 }} />{s.name} <b>{fmt(cell.v, unit || cell.unit)}</b>{cell.pct != null ? <span className="pct"> ({fmt(cell.pct, 'pct')})</span> : null}{cell.v == null && cell.note ? ` (${cell.note})` : ''}</span>
       ); })}
     </div>
   );

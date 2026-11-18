@@ -3,17 +3,17 @@ import {
   DATA, Q_DISPLAY, Q_ALL, LATEST, SRC, CO, M, SEGMENTS, qLabel, qShort, qIdx, periodText,
   value, shown, sourcesFor, fmt, fmtExact, buildCsv, metricsFor,
 } from './lib/engine.js';
-import { QChart, Readout, TableView, SourceLine, Legend, useColors, RangeChart } from './components/charts.jsx';
+import { QChart, Readout, TableView, SourceLine, Legend, useColors, RangeChart, withPct } from './components/charts.jsx';
 import { Boundary, Seg, Card, pctCls } from './components/ui.jsx';
 import { ApacOverview, ApacTrends, AdsDeepDive, ApacOutlook } from './components/regional.jsx';
 import { REGIONS } from './lib/engine.js';
 
-const APAC_GROUPS = ['Meta regional ads', 'Alphabet geography', 'Advertising', 'Alphabet drivers', 'Meta drivers'];
+const APAC_GROUPS = ['APAC comparison', 'Meta regional ads', 'Alphabet geography', 'Advertising', 'Alphabet drivers', 'Meta drivers'];
 const apacMetric = (m) => !!m.region || APAC_GROUPS.includes(m.group) || ['revenue', 'op_margin'].includes(m.id);
 
 // ------------------------------------------------------------------ defaults & persistence (per edition)
-const defaultsFor = (ed) => ({ from: Q_DISPLAY[0], to: LATEST, company: 'both', metric: ed === 'apac' ? 'geo_apac' : 'revenue', mode: 'value', display: 'abs', period: 'Q', basis: 'reported', segments: SEGMENTS.map((s) => s.id), regions: REGIONS.map((r) => r.id) });
-const storeKey = (ed) => `goog-meta-monitor-filters-v2-${ed}`;
+const defaultsFor = (ed) => ({ from: Q_DISPLAY[0], to: LATEST, company: 'both', metric: ed === 'apac' ? 'apac_rev' : 'revenue', mode: 'value', display: 'abs', period: 'Q', basis: 'reported', segments: SEGMENTS.map((s) => s.id), regions: REGIONS.map((r) => r.id) });
+const storeKey = (ed) => `goog-meta-monitor-filters-v3-${ed}`;
 function loadFilters(ed) {
   const D = defaultsFor(ed);
   try { const s = JSON.parse(localStorage.getItem(storeKey(ed)) || 'null'); if (s && Q_DISPLAY.includes(s.from) && Q_DISPLAY.includes(s.to) && M[s.metric]) return { ...D, ...s }; } catch (e) { /* storage unavailable */ }
@@ -115,7 +115,7 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
     Object.values(M).forEach((m) => { if (!m.cos.some((co) => cos.includes(co))) return; if (APAC && !apacMetric(m)) return; (groups[m.group] ||= []).push(m); });
     return groups;
   }, [cos.join()]);
-  useEffect(() => { if (!M[f.metric].cos.some((co) => cos.includes(co))) set('metric', APAC ? (cos.includes('GOOGL') ? 'geo_apac' : 'ad_ap') : 'revenue'); }, [f.company]);
+  useEffect(() => { if (!M[f.metric].cos.some((co) => cos.includes(co))) set('metric', APAC ? 'apac_rev' : 'revenue'); }, [f.company]);
 
   const xfChips = [];
   if (explicit) xfChips.push({ k: 'q', label: `Focused quarter: ${qLabel(fq)}`, clear: () => setFocus(null) });
@@ -427,7 +427,11 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
     const id = segMetric[s.id];
     const base = { id: s.id, co, seg: s.id, name: s.label, color: segColor[s.id], metric: id };
     if (f.mode === 'value' && useMargin) return { ...base, get: (q) => { const a = value(co, id, q, ctx), r = value(co, 'revenue', q, ctx); return { v: a == null || !r ? null : a / r, unit: 'pct', note: null, src: sourcesFor(co, id, q, ctx) }; } };
-    return { ...base, get: (q) => ({ ...shown(co, id, q, ctx, f.mode), src: sourcesFor(co, id, q, ctx) }) };
+    const sr = { ...base, get: (q) => ({ ...shown(co, id, q, ctx, f.mode), src: sourcesFor(co, id, q, ctx) }) };
+    if (f.mode !== 'value') return sr;
+    // share of the company's segment total (all segments, even ones filtered out; Alphabet excludes hedging)
+    const total = (q) => SEGMENTS.filter((x) => x.co === co).reduce((a, x) => a + (value(co, segMetric[x.id], q, ctx) || 0), 0);
+    return withPct(sr, (q) => value(co, id, q, ctx) / total(q));
   });
   const mixKind = f.mode === 'value' ? 'stack' : 'line';
   const mixCard = (co) => {
