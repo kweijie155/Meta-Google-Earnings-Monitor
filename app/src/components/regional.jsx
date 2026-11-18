@@ -163,17 +163,17 @@ function ApacInsights({ fq, ctx, cos, f }) {
 }
 
 // ================================================================== APAC revenue trends
-export function ApacTrends({ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, toggleCompany, explorer }) {
+export function ApacTrends({ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, toggleCompany, explorer, vf, vc }) {
   const g = cos.includes('GOOGL'), me = cos.includes('META');
-  const share = f.display === 'margin';
+  const fRev = vf('apac-rev'), fRevShare = fRev.display === 'margin';
   const chart = (series, opts = {}) => (<>
-    <QChart series={series} quarters={quarters} kind={opts.kind || kindFor(series[0].metric, opts.mode || f.mode)} focusQ={fq} explicitFocus={explicit} onFocus={onFocus} period={f.period} height={opts.height || 230} def={opts.def || M[series[0].metric].def} ariaLabel={opts.aria} colorBySign={opts.colorBySign} endLabels={opts.endLabels !== false} />
+    <QChart series={series} quarters={quarters} kind={opts.kind || kindFor(series[0].metric, opts.mode || 'value')} focusQ={fq} explicitFocus={explicit} onFocus={onFocus} period={f.period} height={opts.height || 230} def={opts.def || M[series[0].metric].def} ariaLabel={opts.aria} colorBySign={opts.colorBySign} endLabels={opts.endLabels !== false} />
     <Readout q={fq} series={series} period={f.period} />
   </>);
   const apacRev = [
-    ...(g ? [mkSeries('GOOGL', share ? 'geo_apac_share' : 'geo_apac', share ? 'Alphabet APAC share' : 'Alphabet APAC (billing address)', coColor('GOOGL'), f.mode, ctx, { co: 'GOOGL' })] : []),
-    ...(me ? [mkSeries('META', share ? 'rev_ap_share' : 'rev_ap', share ? 'Meta APAC share' : 'Meta APAC (user location)', coColor('META'), f.mode, ctx, { co: 'META' })] : []),
-  ].map((sr) => (f.mode === 'value' && !share ? withPct(sr, (q) => value(sr.co, sr.co === 'GOOGL' ? 'geo_apac_share' : 'rev_ap_share', q, ctx)) : sr));
+    ...(g ? [mkSeries('GOOGL', fRevShare ? 'geo_apac_share' : 'geo_apac', fRevShare ? 'Alphabet APAC share' : 'Alphabet APAC (billing address)', coColor('GOOGL'), fRev.mode, ctx, { co: 'GOOGL' })] : []),
+    ...(me ? [mkSeries('META', fRevShare ? 'rev_ap_share' : 'rev_ap', fRevShare ? 'Meta APAC share' : 'Meta APAC (user location)', coColor('META'), fRev.mode, ctx, { co: 'META' })] : []),
+  ].map((sr) => (fRev.mode === 'value' && !fRevShare ? withPct(sr, (q) => value(sr.co, sr.co === 'GOOGL' ? 'geo_apac_share' : 'rev_ap_share', q, ctx)) : sr));
   const vsCo = (co) => [
     mkSeries(co, co === 'GOOGL' ? 'geo_apac' : 'rev_ap', 'APAC', regionColor(c, 'ap'), 'yoy', ctx),
     mkSeries(co, 'revenue', co === 'GOOGL' ? 'Total revenue' : 'Total revenue', regionColor(c, 'ww'), 'yoy', ctx),
@@ -194,12 +194,12 @@ export function ApacTrends({ f, fq, ctx, cos, quarters, explicit, onFocus, c, co
   ];
   return (
     <section className="sec" id="trends" aria-labelledby="h-trends">
-      <div className="sec-head"><span className="num">02</span><h2 id="h-trends">APAC revenue trends</h2><p>All cards follow the Values, Display (absolute or share of total) and Period controls.</p></div>
+      <div className="sec-head"><span className="num">02</span><h2 id="h-trends">APAC revenue trends</h2><p>Each chart has its own Values and Display switches; Period comes from the filter bar.</p></div>
       <div className="grid">
         {explorer}
-        <Card span={6} title="APAC revenue" sub={`${viewText(apacRev[0]?.metric || 'geo_apac')}${share ? ' · Share of company revenue' : ''}`} warn="Different bases: Alphabet by customer billing address (all revenue types); Meta by user location. Use the annual billing-address chart for a like-for-like view."
-          series={apacRev} quarters={quarters} focusQ={fq} sources={allSrc(apacRev, quarters)} legend={<Legend series={apacRev} kind={kindFor(apacRev[0]?.metric || 'geo_apac', f.mode)} onToggle={toggleCompany} />}>
-          {apacRev.length ? chart(apacRev, { aria: 'APAC revenue' }) : null}
+        <Card span={6} title="APAC revenue" views={vc('apac-rev', { display: 'Share of revenue' })} sub={`${viewText(apacRev[0]?.metric || 'geo_apac', fRev.mode)}${fRevShare ? ' · Share of company revenue' : ''}`} warn="Different bases: Alphabet by customer billing address (all revenue types); Meta by user location. Use the annual billing-address chart for a like-for-like view."
+          series={apacRev} quarters={quarters} focusQ={fq} sources={allSrc(apacRev, quarters)} legend={<Legend series={apacRev} kind={kindFor(apacRev[0]?.metric || 'geo_apac', fRev.mode)} onToggle={toggleCompany} />}>
+          {apacRev.length ? chart(apacRev, { mode: fRev.mode, aria: 'APAC revenue' }) : null}
         </Card>
         <Card span={6} title="APAC share of revenue added" sub="APAC YoY dollar increase / company YoY dollar increase" series={contribSeries} quarters={quarters} focusQ={fq} sources={allSrc(contribSeries, quarters)} legend={<Legend series={contribSeries} kind="line" onToggle={toggleCompany} />}>
           {chart(contribSeries, { kind: 'line', def: 'APAC share of the year-over-year revenue increase. A share below APAC\'s share of revenue means APAC is diluting growth.', aria: 'APAC contribution to growth' })}
@@ -237,20 +237,23 @@ export function ApacTrends({ f, fq, ctx, cos, quarters, explicit, onFocus, c, co
 }
 
 // ================================================================== Ads deep dive (both editions)
-export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, regions, toggleRegion, segOn, toggleSeg, companySeries, toggleCompany }) {
+export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, regions, toggleRegion, segOn, toggleSeg, companySeries, toggleCompany, vf, vc }) {
   const g = cos.includes('GOOGL'), me = cos.includes('META'), both = g && me;
-  const share = f.display === 'margin';
+  const fMR = vf('ads-metareg'), fMRShare = fMR.display === 'margin';
+  const fAL = vf('ads-adlines'), fALShare = fAL.display === 'margin';
+  const fGR = vf('ads-googreg'), fGRShare = fGR.display === 'margin';
+  const fAS = vf('ads-share');
   const num = edition === 'apac' ? '03' : '04';
   const focusRegion = edition === 'apac' || regions.includes('ap') ? 'ap' : regions[0] || 'ap';
   const chart = (series, opts = {}) => (<>
-    <QChart series={series} quarters={quarters} kind={opts.kind || kindFor(series[0].metric, opts.mode || f.mode)} focusQ={fq} explicitFocus={explicit} onFocus={onFocus} period={f.period} height={opts.height || 230} def={opts.def || M[series[0].metric].def} ariaLabel={opts.aria} endLabels={opts.endLabels !== false} />
+    <QChart series={series} quarters={quarters} kind={opts.kind || kindFor(series[0].metric, opts.mode || 'value')} focusQ={fq} explicitFocus={explicit} onFocus={onFocus} period={f.period} height={opts.height || 230} def={opts.def || M[series[0].metric].def} ariaLabel={opts.aria} endLabels={opts.endLabels !== false} />
     <Readout q={fq} series={series} period={f.period} />
   </>);
   const qctx = { ...ctx, period: 'Q' };
   const selRegions = REGIONS.filter((r) => regions.includes(r.id));
   // Meta regional ad revenue
-  const metaReg = selRegions.map((r) => { const sr = mkSeries('META', share ? `ad_${r.mk}_share` : `ad_${r.mk}`, r.meta, regionColor(c, r.id), f.mode, ctx, { region: r.id }); return f.mode === 'value' && !share ? withPct(sr, (q) => value('META', `ad_${r.mk}_share`, q, ctx)) : sr; });
-  if (!share && f.mode !== 'value') metaReg.push(mkSeries('META', 'ad_revenue', 'Worldwide', regionColor(c, 'ww'), f.mode, ctx, { region: 'ww' }));
+  const metaReg = selRegions.map((r) => { const sr = mkSeries('META', fMRShare ? `ad_${r.mk}_share` : `ad_${r.mk}`, r.meta, regionColor(c, r.id), fMR.mode, ctx, { region: r.id }); return fMR.mode === 'value' && !fMRShare ? withPct(sr, (q) => value('META', `ad_${r.mk}_share`, q, ctx)) : sr; });
+  if (!fMRShare && fMR.mode !== 'value') metaReg.push(mkSeries('META', 'ad_revenue', 'Worldwide', regionColor(c, 'ww'), fMR.mode, ctx, { region: 'ww' }));
   const regLegend = (list) => <Legend series={list} kind="line" hidden={[]} onToggle={(s) => s.region && s.region !== 'ww' && toggleRegion(s.region)} />;
   // volume vs price by region, focus quarter
   const r = DATA.rows.META[fq];
@@ -270,11 +273,11 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
   ];
   // Alphabet ad lines
   const lineColor = { search: c.seg1, youtube: c.seg2, network: c.seg3 };
-  const adLines = ['search', 'youtube', 'network'].filter((k) => segOn(k)).map((k) => { const sr = mkSeries('GOOGL', share ? `${k}_ad_share` : k, M[k].label, lineColor[k], f.mode, ctx, { seg: k }); return f.mode === 'value' && !share ? withPct(sr, (q) => value('GOOGL', `${k}_ad_share`, q, ctx)) : sr; });
+  const adLines = ['search', 'youtube', 'network'].filter((k) => segOn(k)).map((k) => { const sr = mkSeries('GOOGL', fALShare ? `${k}_ad_share` : k, M[k].label, lineColor[k], fAL.mode, ctx, { seg: k }); return fAL.mode === 'value' && !fALShare ? withPct(sr, (q) => value('GOOGL', `${k}_ad_share`, q, ctx)) : sr; });
   const network = [mkSeries('GOOGL', 'network_imp_yoy', 'Network impressions', c.vol, 'value', qctx), mkSeries('GOOGL', 'network_cpi_yoy', 'Cost per impression', c.price, 'value', qctx)];
   const clicks = [mkSeries('GOOGL', 'paid_clicks_yoy', 'Paid clicks', c.vol, 'value', qctx), mkSeries('GOOGL', 'cpc_yoy', 'Cost per click', c.price, 'value', qctx)];
-  const googReg = selRegions.map((x) => { const sr = mkSeries('GOOGL', share ? `geo_${x.gk}_share` : `geo_${x.gk}`, x.googl, regionColor(c, x.id), f.mode, ctx, { region: x.id }); return f.mode === 'value' && !share ? withPct(sr, (q) => value('GOOGL', `geo_${x.gk}_share`, q, ctx)) : sr; });
-  const adsShare = companySeries ? companySeries('ads_share', { display: 'abs' }) : [];
+  const googReg = selRegions.map((x) => { const sr = mkSeries('GOOGL', fGRShare ? `geo_${x.gk}_share` : `geo_${x.gk}`, x.googl, regionColor(c, x.id), fGR.mode, ctx, { region: x.id }); return fGR.mode === 'value' && !fGRShare ? withPct(sr, (q) => value('GOOGL', `geo_${x.gk}_share`, q, ctx)) : sr; });
+  const adsShare = companySeries ? companySeries('ads_share', { mode: fAS.mode, display: 'abs' }) : [];
   // monetization table rows
   const monRows = g ? [
     { label: 'Google Search & other', id: 'search', mode: 'yoy' }, { label: 'Paid clicks', id: 'paid_clicks_yoy' }, { label: 'Cost per click', id: 'cpc_yoy' },
@@ -286,8 +289,8 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
     <section className="sec" id="ads" aria-labelledby="h-ads">
       <div className="sec-head"><span className="num">{num}</span><h2 id="h-ads">Ads deep dive</h2><p>Regional ad revenue, volume and price for Meta; ad lines, clicks, Network and TAC for Alphabet{edition === 'apac' ? '; Asia-Pacific is highlighted throughout' : ''}. The Regions and Segments filters scope these cards.</p></div>
       <div className="grid">
-        {me && <Card span={6} title="Meta ad revenue by user region" sub={`${viewText(metaReg[0]?.metric || 'ad_ap')}${share ? ' · Share of ad revenue' : ''}`} series={metaReg.length ? metaReg : null} quarters={quarters} focusQ={fq} sources={allSrc(metaReg, quarters)} legend={regLegend(metaReg)}>
-          {metaReg.length ? chart(metaReg, { kind: 'line', aria: 'Meta ad revenue by region' }) : <div className="empty"><strong>No regions selected</strong><span>Pick regions in the Regions filter.</span></div>}
+        {me && <Card span={6} title="Meta ad revenue by user region" views={vc('ads-metareg', { display: 'Share of ad revenue' })} sub={`${viewText(metaReg[0]?.metric || 'ad_ap', fMR.mode)}${fMRShare ? ' · Share of ad revenue' : ''}`} series={metaReg.length ? metaReg : null} quarters={quarters} focusQ={fq} sources={allSrc(metaReg, quarters)} legend={regLegend(metaReg)}>
+          {metaReg.length ? chart(metaReg, { kind: 'line', mode: fMR.mode, aria: 'Meta ad revenue by region' }) : <div className="empty"><strong>No regions selected</strong><span>Pick regions in the Regions filter.</span></div>}
         </Card>}
         {me && <Card span={6} title={`Meta volume vs price by region, ${qLabel(fq)}`} sub="YoY: ad impressions, average price per ad and ad revenue (user geography). Single-quarter measure." sources={[DATA.m_imp_src[fq], 'S-ADSUP', 'S-ADWIZE']}
           legend={<Legend series={vpSeries} kind="bar" />}
@@ -298,8 +301,8 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
           warn={f.period !== 'Q' ? 'Volume and price are single-quarter measures; this card always shows quarterly values.' : null}>
           {chart(decomp, { kind: 'bar', def: '(1 + impressions growth) x (1 + price growth) - 1 reproduces regional ad revenue growth within 1.5pt in every quarter (validation tests).', aria: 'Regional ad growth decomposition' })}
         </Card>}
-        {me && adsShare.length > 0 && <Card span={6} title="Advertising share of revenue" sub="Ad revenue / total revenue; Alphabet's falls as Cloud grows" series={adsShare} quarters={quarters} focusQ={fq} sources={allSrc(adsShare, quarters)} legend={<Legend series={adsShare} kind="line" onToggle={toggleCompany} />}>
-          {chart(adsShare, { kind: 'line', aria: 'Advertising share of revenue' })}
+        {me && adsShare.length > 0 && <Card span={6} title="Advertising share of revenue" views={vc('ads-share')} sub="Ad revenue / total revenue; Alphabet's falls as Cloud grows" series={adsShare} quarters={quarters} focusQ={fq} sources={allSrc(adsShare, quarters)} legend={<Legend series={adsShare} kind="line" onToggle={toggleCompany} />}>
+          {chart(adsShare, { kind: 'line', mode: fAS.mode, aria: 'Advertising share of revenue' })}
         </Card>}
         {me && <div className="card span-12">
           <div className="card-head"><div><h3>Meta regional ad matrix</h3><p className="sub">YoY %, user geography: ad revenue (computed), impressions and price per ad (reported). Column = quarter.</p></div></div>
@@ -316,9 +319,9 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
           <SourceLine ids={['M-PRES-25Q3', 'M-PRES-26Q3', 'S-ADSUP', 'S-ADWIZE', 'S-2SLIDES', 'S-RA-26Q3']} />
         </div>}
 
-        {g && <Card span={6} title="Google advertising by line" sub={`${viewText(adLines[0]?.metric || 'search')}${share ? ' · Share of Google advertising' : ''}`} series={adLines.length ? adLines : null} quarters={quarters} focusQ={fq} sources={allSrc(adLines, quarters)}
+        {g && <Card span={6} title="Google advertising by line" views={vc('ads-adlines', { display: 'Share of advertising' })} sub={`${viewText(adLines[0]?.metric || 'search', fAL.mode)}${fALShare ? ' · Share of Google advertising' : ''}`} series={adLines.length ? adLines : null} quarters={quarters} focusQ={fq} sources={allSrc(adLines, quarters)}
           legend={<Legend series={adLines} kind="line" onToggle={(s) => toggleSeg(s.seg)} />}>
-          {adLines.length ? chart(adLines, { kind: f.mode === 'value' && !share ? 'bar' : 'line', aria: 'Google advertising by line' }) : <div className="empty"><strong>Search, YouTube and Network are filtered out</strong><span>Re-enable them in Segments.</span></div>}
+          {adLines.length ? chart(adLines, { kind: fAL.mode === 'value' && !fALShare ? 'bar' : 'line', mode: fAL.mode, aria: 'Google advertising by line' }) : <div className="empty"><strong>Search, YouTube and Network are filtered out</strong><span>Re-enable them in Segments.</span></div>}
         </Card>}
         {g && <Card span={6} title="Google Network: impressions vs cost per impression" sub="Reported YoY change (10-Q). Not disclosed for Q4; Q2 2026 MD&A not retrievable." series={network} quarters={quarters} focusQ={fq} sources={quarters.map((q) => DATA.a_network_src[q]).filter(Boolean)} legend={<Legend series={network} kind="bar" />}>
           {chart(network, { kind: 'bar', aria: 'Google Network impressions and cost per impression' })}
@@ -330,11 +333,11 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
             <tbody>{monRows.map((m) => <tr key={m.id}><td>{m.label}</td>{quarters.map((q) => { const v = m.level ? value('GOOGL', m.id, q, qctx) : m.mode ? yoy('GOOGL', m.id, q, qctx) : DATA.rows.GOOGL[q][m.id]; const s = m.level ? fmt(v, 'pct') : m.mode ? fmt(v, 'growth') : fmt(v, 'rate'); return <td key={q} className={v == null ? 'na' : ''} style={q === fq ? { fontWeight: 600 } : undefined} title={v == null ? shown('GOOGL', m.id, q, qctx, 'value').note || '' : ''}>{s}</td>; })}</tr>)}</tbody></table></div>
           <SourceLine ids={[...quarters.map((q) => DATA.a_clicks_src[q]), ...quarters.map((q) => DATA.a_network_src[q]), ...quarters.map((q) => DATA.a_src[q])].filter(Boolean)} />
         </div>}
-        {g && <Card span={6} title="Alphabet revenue by billing region" sub={`${viewText(googReg[0]?.metric || 'geo_apac')}${share ? ' · Share of revenue' : ''} · All revenue types`} warn={DATA.a_geo_note[fq] && f.period === 'Q' ? DATA.a_geo_note[fq] : null} series={googReg.length ? googReg : null} quarters={quarters} focusQ={fq} sources={allSrc(googReg, quarters)} legend={regLegend(googReg)}>
-          {googReg.length ? chart(googReg, { kind: 'line', aria: 'Alphabet revenue by region' }) : <div className="empty"><strong>No regions selected</strong><span>Pick regions in the Regions filter.</span></div>}
+        {g && <Card span={6} title="Alphabet revenue by billing region" views={vc('ads-googreg', { display: 'Share of revenue' })} sub={`${viewText(googReg[0]?.metric || 'geo_apac', fGR.mode)}${fGRShare ? ' · Share of revenue' : ''} · All revenue types`} warn={DATA.a_geo_note[fq] && f.period === 'Q' ? DATA.a_geo_note[fq] : null} series={googReg.length ? googReg : null} quarters={quarters} focusQ={fq} sources={allSrc(googReg, quarters)} legend={regLegend(googReg)}>
+          {googReg.length ? chart(googReg, { kind: 'line', mode: fGR.mode, aria: 'Alphabet revenue by region' }) : <div className="empty"><strong>No regions selected</strong><span>Pick regions in the Regions filter.</span></div>}
         </Card>}
-        {!me && adsShare.length > 0 && <Card span={6} title="Advertising share of revenue" sub="Ad revenue / total revenue; Alphabet's falls as Cloud grows" series={adsShare} quarters={quarters} focusQ={fq} sources={allSrc(adsShare, quarters)} legend={<Legend series={adsShare} kind="line" onToggle={toggleCompany} />}>
-          {chart(adsShare, { kind: 'line', aria: 'Advertising share of revenue' })}
+        {!me && adsShare.length > 0 && <Card span={6} title="Advertising share of revenue" views={vc('ads-share')} sub="Ad revenue / total revenue; Alphabet's falls as Cloud grows" series={adsShare} quarters={quarters} focusQ={fq} sources={allSrc(adsShare, quarters)} legend={<Legend series={adsShare} kind="line" onToggle={toggleCompany} />}>
+          {chart(adsShare, { kind: 'line', mode: fAS.mode, aria: 'Advertising share of revenue' })}
         </Card>}
         {both && edition === 'apac' && (() => {
           const s = [mkSeries('META', 'ad_ap', 'Meta APAC ad revenue (user location)', coColor('META'), 'yoy', ctx), mkSeries('GOOGL', 'geo_apac', 'Alphabet APAC revenue (billing, all types)', coColor('GOOGL'), 'yoy', ctx)];

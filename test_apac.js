@@ -17,13 +17,11 @@ const { chromium } = require('playwright');
     R.vpReadout = await page.locator('#ads .card').filter({ hasText: 'Meta volume vs price by region' }).locator('.readout').innerText().catch(() => 'none');
     // share mode
     await page.locator('details.segpick').filter({ hasText: 'selected' }).locator('summary').click();
-    const shareLabel = ed === 'apac' ? 'Share of total' : 'Margin / % of revenue';
-    await page.getByRole('radio', { name: shareLabel }).click();
+    await page.locator('#ads .card').filter({ hasText: 'Meta ad revenue by user region' }).getByRole('radio', { name: 'Share of ad revenue' }).click();
     await page.waitForTimeout(200);
     R.metaRegShareReadout = await page.locator('#ads .card').filter({ hasText: 'Meta ad revenue by user region' }).locator('.readout').innerText().catch(() => 'none');
     // YoY mode
-    await page.getByRole('radio', { name: 'Absolute' }).click();
-    await page.getByRole('radio', { name: 'YoY' }).click(); await page.waitForTimeout(200);
+    await page.locator('#ads .card').filter({ hasText: 'Alphabet revenue by billing region' }).getByRole('radio', { name: 'YoY' }).click(); await page.waitForTimeout(200);
     R.googRegYoY = await page.locator('#ads .card').filter({ hasText: 'Alphabet revenue by billing region' }).locator('.readout').innerText().catch(() => 'none');
     // YTD warn on decomposition
     await page.getByRole('radio', { name: 'YTD' }).click(); await page.waitForTimeout(200);

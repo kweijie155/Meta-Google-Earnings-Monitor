@@ -37,6 +37,7 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
   const [csvText, setCsvText] = useState('');
   const [dl, setDl] = useState(undefined);         // undefined = resolving, null = unavailable
   const [resetKey, setResetKey] = useState(0);
+  const [views, setViews] = useState({});         // per-card Values / Display choices, keyed by card
   const c = useColors();
   useEffect(() => saveFilters(edition, f), [f]);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 3200); return () => clearTimeout(t); }, [toast]);
@@ -49,7 +50,7 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
   }, []);
 
   const set = (k, v) => setF((p) => ({ ...p, [k]: v }));
-  const reset = useCallback(() => { setF(DEFAULTS); setFocus(null); setCsvText(''); setResetKey((k) => k + 1); setToast('Filters reset to defaults'); }, []);
+  const reset = useCallback(() => { setF(DEFAULTS); setViews({}); setFocus(null); setCsvText(''); setResetKey((k) => k + 1); setToast('Filters reset to defaults'); }, []);
 
   const cos = f.company === 'both' ? ['GOOGL', 'META'] : [f.company];
   const fromI = Q_DISPLAY.indexOf(f.from), toI = Q_DISPLAY.indexOf(f.to);
@@ -68,21 +69,36 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
   const segOn = (id) => f.segments.includes(id);
   const toggleSeg = (id) => set('segments', segOn(id) ? f.segments.filter((x) => x !== id) : [...f.segments, id]);
 
-  // series factory: one series per company for a metric under the global view
+  // per-card view: vf(key) = filters with that card's own Values/Display; vc(key, opts) = the card's controls
+  const vf = (key) => {
+    const v = views[key] || {};
+    let mode = v.mode || 'value'; if (f.period === 'YTD' && mode === 'qoq') mode = 'yoy';
+    return { ...f, mode, display: v.display || 'abs' };
+  };
+  const vc = (key, { modes = true, display = null } = {}) => {
+    const fl = vf(key);
+    const setV = (k, val) => setViews((p) => ({ ...p, [key]: { ...(p[key] || {}), [k]: val } }));
+    return <>
+      {modes && <Seg compact name={`mode-${key}`} label="Values" value={fl.mode} onChange={(v) => setV('mode', v)} options={[{ v: 'value', label: 'Value' }, { v: 'yoy', label: 'YoY' }, { v: 'qoq', label: 'QoQ', disabled: f.period === 'YTD', title: f.period === 'YTD' ? 'QoQ is not meaningful for YTD windows' : '' }]} />}
+      {display && <Seg compact name={`disp-${key}`} label="Display" value={fl.display} onChange={(v) => setV('display', v)} options={[{ v: 'abs', label: 'Absolute' }, { v: 'margin', label: display }]} />}
+    </>;
+  };
+
+  // series factory: one series per company for a metric
   const companySeries = useCallback((id, opts = {}) => {
-    const mode = opts.mode ?? f.mode;
-    const useMargin = opts.display ?? f.display;
+    const mode = opts.mode ?? 'value';
+    const useMargin = opts.display ?? 'abs';
     const mid = useMargin === 'margin' && M[id].margin ? M[id].margin : id;
     return cos.filter((co) => M[mid].cos.includes(co)).map((co) => ({
       id: co, co, name: CO[co].name, color: coColor(co), metric: mid,
       get: (q) => ({ ...shown(co, mid, q, ctx, mode), src: sourcesFor(co, mid, q, ctx) }),
     }));
-  }, [cos.join(), f.mode, f.display, ctx, c]);
+  }, [cos.join(), ctx, c]);
 
   const kindFor = (mid, mode) => (mode === 'value' && ['usd', 'count', 'usdk', 'eps', 'usdb', 'arpp'].includes(M[mid].unit) ? 'bar' : 'line');
   const viewText = (mid, mode) => {
     const p = { Q: 'Quarterly', YTD: 'Year-to-date', TTM: 'Trailing twelve months' }[f.period];
-    const m = mode || f.mode; const mm = M[mid];
+    const m = mode || 'value'; const mm = M[mid];
     const t = mm.isRate ? 'Reported YoY change' : m === 'value' ? (mm.unit === 'pct' ? 'Ratio' : 'Value') : m === 'yoy' ? (mm.unit === 'pct' ? 'YoY change (pp)' : 'YoY growth') : (mm.unit === 'pct' ? 'QoQ change (pp)' : 'QoQ growth');
     return `${p} · ${t}${mm.basisDependent ? (f.basis === 'lfl' ? ' · Like-for-like basis' : ' · Company-reported basis') : ''}`;
   };
@@ -156,15 +172,7 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
             </div>
           </div>
           <Seg name="co" label="Company" value={f.company} onChange={(v) => set('company', v)} options={[{ v: 'both', label: 'Both' }, { v: 'GOOGL', label: 'Alphabet', dot: c.goog }, { v: 'META', label: 'Meta', dot: c.meta }]} />
-          <div className="ctl">
-            <label className="lbl" htmlFor="metric">Metric (explorer)</label>
-            <select id="metric" value={f.metric} onChange={(e) => set('metric', e.target.value)}>
-              {Object.entries(metricOptions).map(([g, ms]) => <optgroup key={g} label={g}>{ms.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}</optgroup>)}
-            </select>
-          </div>
-          <Seg name="mode" label="Values" value={f.mode} onChange={(v) => set('mode', v)} options={[{ v: 'value', label: 'Value' }, { v: 'yoy', label: 'YoY' }, { v: 'qoq', label: 'QoQ', disabled: f.period === 'YTD', title: f.period === 'YTD' ? 'QoQ is not meaningful for YTD windows' : '' }]} />
-          <Seg name="disp" label="Display" value={f.display} onChange={(v) => set('display', v)} options={[{ v: 'abs', label: 'Absolute' }, { v: 'margin', label: APAC ? 'Share of total' : 'Margin / % of revenue' }]} />
-          <Seg name="period" label="Period" value={f.period} onChange={(v) => { set('period', v); if (v === 'YTD' && f.mode === 'qoq') set('mode', 'yoy'); }} options={[{ v: 'Q', label: 'Quarterly' }, { v: 'YTD', label: 'YTD' }, { v: 'TTM', label: 'TTM' }]} />
+          <Seg name="period" label="Period" value={f.period} onChange={(v) => set('period', v)} options={[{ v: 'Q', label: 'Quarterly' }, { v: 'YTD', label: 'YTD' }, { v: 'TTM', label: 'TTM' }]} />
           {!APAC && <Seg name="basis" label="Capex & FCF basis" value={f.basis} onChange={(v) => set('basis', v)} options={[{ v: 'reported', label: 'Reported', title: 'Each company\'s own definition' }, { v: 'lfl', label: 'Like-for-like', title: 'Purchases of P&E for both' }]} />}
           <div className="ctl">
             <span className="lbl">Regions</span>
@@ -212,14 +220,14 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
             <>
               {APAC ? <>
                 <Boundary resetKey={resetKey} onReset={reset}><ApacOverview {...{ fq, ctx, cos, f, c, coColor }} /></Boundary>
-                <Boundary resetKey={resetKey} onReset={reset}><ApacTrends {...{ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, toggleCompany }} explorer={<Explorer {...{ f, fq, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany }} />} /></Boundary>
-                <Boundary resetKey={resetKey} onReset={reset}><AdsDeepDive edition="apac" {...{ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, regions, toggleRegion, segOn, toggleSeg, companySeries, toggleCompany }} /></Boundary>
+                <Boundary resetKey={resetKey} onReset={reset}><ApacTrends {...{ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, toggleCompany, vf, vc }} explorer={<Explorer {...{ f, fq, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, vf, vc, set, metricOptions }} />} /></Boundary>
+                <Boundary resetKey={resetKey} onReset={reset}><AdsDeepDive edition="apac" {...{ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, regions, toggleRegion, segOn, toggleSeg, companySeries, toggleCompany, vf, vc }} /></Boundary>
                 <Boundary resetKey={resetKey} onReset={reset}><ApacOutlook {...{ cos, quarters, coColor, c }} /></Boundary>
               </> : <>
                 <Boundary resetKey={resetKey} onReset={reset}><Overview {...{ fq, ctx, cos, f, coColor, quarters, explicit }} /></Boundary>
-                <Boundary resetKey={resetKey} onReset={reset}><Trends {...{ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany }} /></Boundary>
-                <Boundary resetKey={resetKey} onReset={reset}><Segments {...{ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, segOn, toggleSeg, c, coColor }} /></Boundary>
-                <Boundary resetKey={resetKey} onReset={reset}><AdsDeepDive edition="global" {...{ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, regions, toggleRegion, segOn, toggleSeg, companySeries, toggleCompany }} /></Boundary>
+                <Boundary resetKey={resetKey} onReset={reset}><Trends {...{ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, vf, vc, set, metricOptions }} /></Boundary>
+                <Boundary resetKey={resetKey} onReset={reset}><Segments {...{ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, segOn, toggleSeg, c, coColor, vf, vc }} /></Boundary>
+                <Boundary resetKey={resetKey} onReset={reset}><AdsDeepDive edition="global" {...{ f, fq, ctx, cos, quarters, explicit, onFocus, c, coColor, viewText, kindFor, regions, toggleRegion, segOn, toggleSeg, companySeries, toggleCompany, vf, vc }} /></Boundary>
                 <Boundary resetKey={resetKey} onReset={reset}><Outlook {...{ f, cos, quarters, fq, c, coColor, onFocus }} /></Boundary>
               </>}
               <Boundary resetKey={resetKey} onReset={reset}><Method {...{ APAC, f, fq, ctx, cos, quarters, csvText, setCsvText, downloadCsv, copyCsv, csvArgs, dl }} /></Boundary>
@@ -325,12 +333,19 @@ function Insights({ fq, ctx, cos, f }) {
 }
 
 // ================================================================== 2. Financial trends
-function Explorer({ f, fq, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany }) {
-  const exSeries = companySeries(f.metric);
+function Explorer({ f: fG, fq, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, vf, vc, set, metricOptions }) {
+  const f = vf('explorer');
+  const exSeries = companySeries(f.metric, { mode: f.mode, display: f.display });
   const exMid = exSeries[0]?.metric || f.metric;
   const exKind = M[exMid].isRate ? 'bar' : kindFor(exMid, f.mode);
+  const picker = (
+    <select id="metric" aria-label="Metric" value={f.metric} onChange={(e) => set('metric', e.target.value)}>
+      {Object.entries(metricOptions).map(([g, ms]) => <optgroup key={g} label={g}>{ms.map((m) => <option key={m.id} value={m.id}>{m.label}</option>)}</optgroup>)}
+    </select>
+  );
   return (
-    <Card span={12} title={`Metric explorer: ${M[exMid].label}`} sub={`${viewText(exMid)} · Choose the metric in the filter bar`} warn={M[exMid].warn || M[f.metric].warn}
+    <Card span={12} title={`Metric explorer: ${M[exMid].label}`} sub={viewText(exMid, f.mode)} warn={M[exMid].warn || M[f.metric].warn}
+      views={<>{picker}{vc('explorer', { display: M[f.metric].margin ? 'Margin' : null })}</>}
       series={exSeries} quarters={quarters} unit={exSeries[0]?.get(fq).unit} focusQ={fq} sources={srcIds(exSeries)}
       legend={<Legend series={exSeries} kind={exKind} onToggle={toggleCompany} />}>
       {exSeries.length ? <>
@@ -341,28 +356,29 @@ function Explorer({ f, fq, quarters, explicit, onFocus, companySeries, kindFor, 
   );
 }
 
-function Trends({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany }) {
+function Trends({ f: fG, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, vf, vc, set, metricOptions }) {
+  const f = fG;
   const card = (id, title, span, extraSub) => {
-    const series = companySeries(id);
+    const f = vf(id);
+    const series = companySeries(id, { mode: f.mode, display: f.display });
     if (!series.length) return null;
     const mid = series[0].metric; const m = M[mid];
     const kind = kindFor(mid, f.mode);
     const unitShown = series[0].get(fq).unit;
-    const noMarginNote = f.display === 'margin' && !M[id].margin ? ' · Margin view not applicable' : '';
     return (
-      <Card key={id} span={span} title={mid === id ? title : m.label} sub={`${viewText(mid)}${noMarginNote}${extraSub ? ' · ' + extraSub : ''}`} warn={m.warn || M[id].warn}
+      <Card key={id} span={span} title={mid === id ? title : m.label} sub={`${viewText(mid, f.mode)}${extraSub ? ' · ' + extraSub : ''}`} warn={m.warn || M[id].warn} views={vc(id, { display: M[id].margin ? 'Margin' : null })}
         series={series} quarters={quarters} unit={unitShown} focusQ={fq} sources={srcIds(series)}
         legend={<Legend series={series} kind={kind} onToggle={toggleCompany} />}>
-        <QChart series={series} quarters={quarters} kind={kind} focusQ={fq} explicitFocus={explicit} onFocus={onFocus} period={f.period} def={`${m.def} Formula: ${m.formula}.`} ariaLabel={`${m.label}, ${viewText(mid)}`} />
+        <QChart series={series} quarters={quarters} kind={kind} focusQ={fq} explicitFocus={explicit} onFocus={onFocus} period={f.period} def={`${m.def} Formula: ${m.formula}.`} ariaLabel={`${m.label}, ${viewText(mid, f.mode)}`} />
         <Readout q={fq} series={series} period={f.period} />
       </Card>
     );
   };
   return (
     <section className="sec" id="trends" aria-labelledby="h-trends">
-      <div className="sec-head"><span className="num">02</span><h2 id="h-trends">Financial trends</h2><p>All cards follow the Values, Display, Period and Basis controls. Bars are dollar amounts; lines are rates.</p></div>
+      <div className="sec-head"><span className="num">02</span><h2 id="h-trends">Financial trends</h2><p>Each chart has its own Values and Display switches; Period and Basis come from the filter bar. Bars are dollar amounts; lines are rates.</p></div>
       <div className="grid">
-        <Explorer {...{ f, fq, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany }} />
+        <Explorer {...{ f, fq, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, vf, vc, set, metricOptions }} />
         {card('revenue', 'Revenue', 6)}
         {card('op_income', 'Operating income', 6)}
         {card('net_income', 'Net income', 4)}
@@ -395,35 +411,38 @@ function OneOffLog({ cos, quarters }) {
 }
 
 // ================================================================== 3. Segments
-function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, segOn, toggleSeg, c, coColor }) {
+function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries, kindFor, viewText, srcIds, toggleCompany, segOn, toggleSeg, c, coColor, vf, vc }) {
   const both = cos.length === 2;
-  const mk = (co, id, name, color, mode = f.mode, ctxx = ctx) => ({ id: `${co}-${id}`, co, name, color, metric: id, get: (q) => ({ ...shown(co, id, q, ctxx, mode), src: sourcesFor(co, id, q, ctxx) }) });
+  const mk = (co, id, name, color, mode = 'value', ctxx = ctx) => ({ id: `${co}-${id}`, co, name, color, metric: id, get: (q) => ({ ...shown(co, id, q, ctxx, mode), src: sourcesFor(co, id, q, ctxx) }) });
   const chart = (series, opts = {}) => {
-    const kind = opts.kind || kindFor(series[0].metric, opts.mode || f.mode);
+    const kind = opts.kind || kindFor(series[0].metric, opts.mode || 'value');
     return <>
       <QChart series={series} quarters={quarters} kind={kind} focusQ={fq} explicitFocus={explicit} onFocus={onFocus} period={f.period} height={opts.height || 230} def={opts.def || `${M[series[0].metric].def}`} ariaLabel={opts.aria} colorBySign={opts.colorBySign} endLabels={opts.endLabels !== false} />
       <Readout q={fq} series={series} period={f.period} />
     </>;
   };
   // advertising
-  const ads = companySeries('ad_revenue', { display: 'abs' });
+  const fAds = vf('seg-ads');
+  const ads = companySeries('ad_revenue', { mode: fAds.mode, display: 'abs' });
   const gap = both ? [{
     id: 'gap', name: 'Meta minus Alphabet ad growth', color: c.meta, metric: 'ad_revenue',
     get: (q) => { const a = shown('GOOGL', 'ad_revenue', q, ctx, 'yoy'), b = shown('META', 'ad_revenue', q, ctx, 'yoy'); const v = a.v == null || b.v == null ? null : (b.v - a.v) * 100; return { v, unit: 'pp', note: v == null ? (a.note || b.note) : (v >= 0 ? 'Meta growing faster' : 'Alphabet growing faster'), src: [...sourcesFor('GOOGL', 'ad_revenue', q, ctx), ...sourcesFor('META', 'ad_revenue', q, ctx)] }; },
   }] : [];
   // cloud vs RL
-  const useMargin = f.display === 'margin';
+  const fOi = vf('seg-oi'), fCloud = vf('seg-cloudrev'), fRl = vf('seg-rlrev');
+  const useMargin = fOi.display === 'margin';
   const cloudOn = segOn('cloud') && cos.includes('GOOGL'), rlOn = segOn('rl') && cos.includes('META');
   const oiSeries = [
-    ...(cloudOn ? [mk('GOOGL', useMargin ? 'cloud_margin' : 'cloud_oi', useMargin ? 'Google Cloud operating margin' : 'Google Cloud operating income', c.goog)] : []),
-    ...(rlOn && !useMargin ? [mk('META', 'rl_oi', 'Reality Labs operating loss', c.meta)] : []),
+    ...(cloudOn ? [mk('GOOGL', useMargin ? 'cloud_margin' : 'cloud_oi', useMargin ? 'Google Cloud operating margin' : 'Google Cloud operating income', c.goog, fOi.mode)] : []),
+    ...(rlOn && !useMargin ? [mk('META', 'rl_oi', 'Reality Labs operating loss', c.meta, fOi.mode)] : []),
   ];
-  const cloudRev = cloudOn ? [mk('GOOGL', 'cloud_rev', 'Google Cloud revenue', c.goog)] : [];
-  const rlRev = rlOn ? [mk('META', 'rl_rev', 'Reality Labs revenue', c.meta)] : [];
+  const cloudRev = cloudOn ? [mk('GOOGL', 'cloud_rev', 'Google Cloud revenue', c.goog, fCloud.mode)] : [];
+  const rlRev = rlOn ? [mk('META', 'rl_rev', 'Reality Labs revenue', c.meta, fRl.mode)] : [];
   // revenue mix
   const segColor = { search: c.seg1, youtube: c.seg2, network: c.seg3, subs: c.seg4, cloud: c.seg5, otherbets: c['seg-other'], ads: c.seg1, metaother: c.seg2, rl: c.seg3 };
   const segMetric = { search: 'search', youtube: 'youtube', network: 'network', subs: 'subs', cloud: 'cloud_rev', otherbets: 'other_bets_rev', ads: 'ad_revenue', metaother: 'other_rev', rl: 'rl_rev' };
-  const mixSeries = (co) => SEGMENTS.filter((s) => s.co === co).map((s) => {
+  const mixSeries = (co, f) => SEGMENTS.filter((s) => s.co === co).map((s) => {
+    const useMargin = f.display === 'margin';
     const id = segMetric[s.id];
     const base = { id: s.id, co, seg: s.id, name: s.label, color: segColor[s.id], metric: id };
     if (f.mode === 'value' && useMargin) return { ...base, get: (q) => { const a = value(co, id, q, ctx), r = value(co, 'revenue', q, ctx); return { v: a == null || !r ? null : a / r, unit: 'pct', note: null, src: sourcesFor(co, id, q, ctx) }; } };
@@ -433,14 +452,15 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
     const total = (q) => SEGMENTS.filter((x) => x.co === co).reduce((a, x) => a + (value(co, segMetric[x.id], q, ctx) || 0), 0);
     return withPct(sr, (q) => value(co, id, q, ctx) / total(q));
   });
-  const mixKind = f.mode === 'value' ? 'stack' : 'line';
   const mixCard = (co) => {
-    const all = mixSeries(co); const on = all.filter((s) => segOn(s.seg));
+    const key = `seg-mix-${co}`; const f = vf(key); const useMargin = f.display === 'margin';
+    const mixKind = f.mode === 'value' ? 'stack' : 'line';
+    const all = mixSeries(co, f); const on = all.filter((s) => segOn(s.seg));
     return (
-      <Card span={6} title={`${CO[co].name} revenue mix`} sub={`${viewText('revenue')}${useMargin && f.mode === 'value' ? ' · Share of total revenue' : ''}${co === 'GOOGL' ? ' · Excludes hedging gains/losses' : ''}`}
+      <Card span={6} title={`${CO[co].name} revenue mix`} sub={`${viewText('revenue', f.mode)}${useMargin && f.mode === 'value' ? ' · Share of total revenue' : ''}${co === 'GOOGL' ? ' · Excludes hedging gains/losses' : ''}`} views={vc(key, { display: '% of revenue' })}
         series={on} quarters={quarters} focusQ={fq} sources={srcIds(on)}
         legend={<Legend series={all} kind={mixKind === 'stack' ? 'bar' : 'line'} hidden={all.filter((s) => !segOn(s.seg)).map((s) => s.id)} onToggle={(s) => toggleSeg(s.seg)} />}>
-        {on.length ? chart(on, { kind: mixKind, endLabels: false, def: 'Click a legend item to filter segments across the dashboard.', aria: `${CO[co].name} revenue by segment` }) : <div className="empty"><strong>All {CO[co].name} segments are filtered out</strong><span>Turn segments back on from the legend or the Segments filter.</span></div>}
+        {on.length ? chart(on, { kind: mixKind, mode: f.mode, endLabels: false, def: 'Click a legend item to filter segments across the dashboard.', aria: `${CO[co].name} revenue by segment` }) : <div className="empty"><strong>All {CO[co].name} segments are filtered out</strong><span>Turn segments back on from the legend or the Segments filter.</span></div>}
       </Card>
     );
   };
@@ -450,8 +470,8 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
       <div className="sec-head"><span className="num">03</span><h2 id="h-segments">Segment performance</h2><p>Advertising, Google Cloud against Reality Labs, revenue mix, and the engagement and pricing drivers each company discloses.</p></div>
       <div className="grid">
         {segOn('ads') || segOn('search') ? (
-          <Card span={6} title="Advertising revenue" sub={`${viewText('ad_revenue')} · Google advertising vs Meta advertising`} warn={M.ad_revenue.warn} series={ads} quarters={quarters} focusQ={fq} sources={srcIds(ads)} legend={<Legend series={ads} kind={kindFor('ad_revenue', f.mode)} onToggle={toggleCompany} />}>
-            {chart(ads, { aria: 'Advertising revenue' })}
+          <Card span={6} title="Advertising revenue" sub={`${viewText('ad_revenue', fAds.mode)} · Google advertising vs Meta advertising`} warn={M.ad_revenue.warn} views={vc('seg-ads')} series={ads} quarters={quarters} focusQ={fq} sources={srcIds(ads)} legend={<Legend series={ads} kind={kindFor('ad_revenue', fAds.mode)} onToggle={toggleCompany} />}>
+            {chart(ads, { mode: fAds.mode, aria: 'Advertising revenue' })}
           </Card>
         ) : null}
         <Card span={6} title="Advertising growth gap" sub={`Meta ad revenue YoY minus Google advertising YoY, percentage points · ${{ Q: 'Quarterly', YTD: 'YTD', TTM: 'TTM' }[f.period]}`} series={gap.length ? gap : null} quarters={quarters} focusQ={fq} sources={gap.length ? srcIds(gap) : null}
@@ -460,26 +480,26 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
             : <div className="empty"><strong>Needs both companies</strong><span>Set Company to Both to compare advertising growth.</span></div>}
         </Card>
 
-        <Card span={6} title="Google Cloud vs Reality Labs: profitability" sub={`${useMargin ? 'Operating margin (Reality Labs margin is n/m: losses run about 10x revenue)' : 'Segment operating income (loss)'} · ${viewText(useMargin ? 'cloud_margin' : 'cloud_oi')}`}
-          series={oiSeries.length ? oiSeries : null} quarters={quarters} focusQ={fq} sources={srcIds(oiSeries)} legend={<Legend series={oiSeries} kind={kindFor(oiSeries[0]?.metric || 'cloud_oi', f.mode)} />}>
-          {oiSeries.length ? chart(oiSeries, { aria: 'Cloud versus Reality Labs operating income' }) : <div className="empty"><strong>Cloud and Reality Labs are filtered out</strong><span>Re-enable them in Segments or set Company to Both.</span></div>}
+        <Card span={6} title="Google Cloud vs Reality Labs: profitability" sub={`${useMargin ? 'Operating margin (Reality Labs margin is n/m: losses run about 10x revenue)' : 'Segment operating income (loss)'} · ${viewText(useMargin ? 'cloud_margin' : 'cloud_oi', fOi.mode)}`} views={vc('seg-oi', { display: 'Margin' })}
+          series={oiSeries.length ? oiSeries : null} quarters={quarters} focusQ={fq} sources={srcIds(oiSeries)} legend={<Legend series={oiSeries} kind={kindFor(oiSeries[0]?.metric || 'cloud_oi', fOi.mode)} />}>
+          {oiSeries.length ? chart(oiSeries, { mode: fOi.mode, aria: 'Cloud versus Reality Labs operating income' }) : <div className="empty"><strong>Cloud and Reality Labs are filtered out</strong><span>Re-enable them in Segments or set Company to Both.</span></div>}
         </Card>
-        <Card span={3} title="Google Cloud revenue" sub={viewText('cloud_rev')} series={cloudRev.length ? cloudRev : null} quarters={quarters} focusQ={fq} sources={srcIds(cloudRev)}>
-          {cloudRev.length ? chart(cloudRev, { height: 200, aria: 'Google Cloud revenue' }) : <div className="empty"><span>Google Cloud filtered out</span></div>}
+        <Card span={3} title="Google Cloud revenue" sub={viewText('cloud_rev', fCloud.mode)} views={vc('seg-cloudrev')} series={cloudRev.length ? cloudRev : null} quarters={quarters} focusQ={fq} sources={srcIds(cloudRev)}>
+          {cloudRev.length ? chart(cloudRev, { mode: fCloud.mode, height: 200, aria: 'Google Cloud revenue' }) : <div className="empty"><span>Google Cloud filtered out</span></div>}
         </Card>
-        <Card span={3} title="Reality Labs revenue" sub={viewText('rl_rev')} series={rlRev.length ? rlRev : null} quarters={quarters} focusQ={fq} sources={srcIds(rlRev)}>
-          {rlRev.length ? chart(rlRev, { height: 200, aria: 'Reality Labs revenue' }) : <div className="empty"><span>Reality Labs filtered out</span></div>}
+        <Card span={3} title="Reality Labs revenue" sub={viewText('rl_rev', fRl.mode)} views={vc('seg-rlrev')} series={rlRev.length ? rlRev : null} quarters={quarters} focusQ={fq} sources={srcIds(rlRev)}>
+          {rlRev.length ? chart(rlRev, { mode: fRl.mode, height: 200, aria: 'Reality Labs revenue' }) : <div className="empty"><span>Reality Labs filtered out</span></div>}
         </Card>
 
         {g && mixCard('GOOGL')}
         {me && mixCard('META')}
 
         {me && <>
-          <Card span={4} title="Meta daily active people" sub="Billions, last-month average · YoY uses company-reported rate" series={[mk('META', 'dap', 'Family DAP', c.meta)]} quarters={quarters} focusQ={fq} sources={['M-PRES-26Q3']}>
-            {chart([mk('META', 'dap', 'Family DAP', c.meta)], { kind: 'line', aria: 'Meta DAP' })}
+          <Card span={4} title="Meta daily active people" sub="Billions, last-month average · YoY uses company-reported rate" views={vc('seg-dap')} series={[mk('META', 'dap', 'Family DAP', c.meta, vf('seg-dap').mode)]} quarters={quarters} focusQ={fq} sources={['M-PRES-26Q3']}>
+            {chart([mk('META', 'dap', 'Family DAP', c.meta, vf('seg-dap').mode)], { kind: 'line', aria: 'Meta DAP' })}
           </Card>
-          <Card span={4} title="Meta average revenue per person" sub="ARPP, quarterly only" series={[mk('META', 'arpp', 'Family ARPP', c.meta, f.mode, { ...ctx, period: 'Q' })]} quarters={quarters} focusQ={fq} sources={['M-PRES-26Q3']}>
-            {chart([mk('META', 'arpp', 'Family ARPP', c.meta, f.mode, { ...ctx, period: 'Q' })], { aria: 'Meta ARPP' })}
+          <Card span={4} title="Meta average revenue per person" sub="ARPP, quarterly only" views={vc('seg-arpp')} series={[mk('META', 'arpp', 'Family ARPP', c.meta, vf('seg-arpp').mode, { ...ctx, period: 'Q' })]} quarters={quarters} focusQ={fq} sources={['M-PRES-26Q3']}>
+            {chart([mk('META', 'arpp', 'Family ARPP', c.meta, vf('seg-arpp').mode, { ...ctx, period: 'Q' })], { mode: vf('seg-arpp').mode, aria: 'Meta ARPP' })}
           </Card>
           <Card span={4} title="Meta volume vs price" sub="Reported YoY change, Family of Apps" series={[mk('META', 'impressions_yoy', 'Ad impressions', c.vol, 'value', { ...ctx, period: 'Q' }), mk('META', 'price_per_ad_yoy', 'Average price per ad', c.price, 'value', { ...ctx, period: 'Q' })]} quarters={quarters} focusQ={fq} sources={DATA.display.map((q) => DATA.m_src[q])}
             legend={<Legend series={[{ id: 'i', name: 'Ad impressions', color: c.vol }, { id: 'p', name: 'Average price per ad', color: c.price }]} kind="bar" />}>
@@ -494,8 +514,8 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
           <Card span={4} title="Traffic acquisition cost rate" sub="TAC as % of Google advertising revenue" series={[mk('GOOGL', 'tac_rate', 'TAC rate', c.goog, 'value')]} quarters={quarters} focusQ={fq} sources={srcIds([mk('GOOGL', 'tac_rate', '', c.goog, 'value')])}>
             {chart([mk('GOOGL', 'tac_rate', 'TAC rate', c.goog, 'value')], { kind: 'line', aria: 'TAC rate' })}
           </Card>
-          <Card span={4} title="Google revenue backlog" sub="Remaining performance obligations, primarily Cloud, $B at period end" series={[mk('GOOGL', 'rpo', 'Revenue backlog', c.goog)]} quarters={quarters} focusQ={fq} sources={quarters.map((q) => DATA.a_rpo_src[q])}>
-            {chart([mk('GOOGL', 'rpo', 'Revenue backlog', c.goog)], { aria: 'Google revenue backlog' })}
+          <Card span={4} title="Google revenue backlog" sub="Remaining performance obligations, primarily Cloud, $B at period end" views={vc('seg-rpo')} series={[mk('GOOGL', 'rpo', 'Revenue backlog', c.goog, vf('seg-rpo').mode)]} quarters={quarters} focusQ={fq} sources={quarters.map((q) => DATA.a_rpo_src[q])}>
+            {chart([mk('GOOGL', 'rpo', 'Revenue backlog', c.goog, vf('seg-rpo').mode)], { mode: vf('seg-rpo').mode, aria: 'Google revenue backlog' })}
           </Card>
         </>}
       </div>

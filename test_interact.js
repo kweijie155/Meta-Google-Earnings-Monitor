@@ -28,18 +28,17 @@ const { chromium } = require('playwright');
   await page.waitForTimeout(200);
   R.afterKey = await page.locator('#trends .card').first().locator('.readout').innerText();
   // 3. YoY mode
-  await page.getByRole('radio', { name: 'YoY' }).click();
+  await page.locator('#trends .card').first().getByRole('radio', { name: 'YoY' }).click();
   await page.waitForTimeout(300);
   R.explorerSubYoY = await page.locator('#trends .card').first().locator('.sub').innerText();
   R.readoutYoY = await page.locator('#trends .card').first().locator('.readout').innerText();
   // 4. YTD disables QoQ
   await page.getByRole('radio', { name: 'YTD' }).click();
-  R.qoqDisabled = await page.getByRole('radio', { name: 'QoQ' }).isDisabled();
+  R.qoqDisabled = await page.locator('#trends .card').first().getByRole('radio', { name: 'QoQ' }).isDisabled();
   R.ytdHead = await page.locator('#overview .sec-head p').innerText();
   // 5. TTM + margin
   await page.getByRole('radio', { name: 'TTM' }).click();
-  await page.getByRole('radio', { name: 'Value' }).click();
-  await page.getByRole('radio', { name: 'Margin / % of revenue' }).click();
+  await page.locator('#trends .card').nth(2).getByRole('radio', { name: 'Margin' }).click();
   await page.waitForTimeout(300);
   R.opCardTitleMargin = await page.locator('#trends .card').nth(2).locator('h3').innerText();
   R.opCardReadout = await page.locator('#trends .card').nth(2).locator('.readout').innerText();

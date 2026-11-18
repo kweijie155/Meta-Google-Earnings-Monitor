@@ -283,3 +283,9 @@ textarea.csv { width: 100%; min-height: 120px; font-family: var(--font-data); fo
 .fr-grid dd span { color: var(--ink-2); font-size: 11.5px; }
 .fr-item { align-content: start; }
 .fr-grid dd span { display: block; }
+
+/* per-card view controls (Values / Display) */
+.views { display: flex; flex-wrap: wrap; gap: 6px 8px; align-items: center; margin: 6px 0 2px; }
+.views select { font: inherit; font-size: 12.5px; min-height: 28px; max-width: 100%; }
+.seg.sm button { font-size: 11.5px; padding: 3px 8px; min-height: 26px; }
+@media (max-width: 760px) { .views .seg.sm { width: auto; } .views .seg.sm button { flex: 0 0 auto; padding-inline: 8px; } }

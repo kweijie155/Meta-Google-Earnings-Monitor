@@ -13,11 +13,9 @@ export class Boundary extends React.Component {
 }
 
 // ------------------------------------------------------------------ small UI pieces
-export function Seg({ label, value: v, options, onChange, name }) {
-  return (
-    <div className="ctl">
-      <span className="lbl" id={`lbl-${name}`}>{label}</span>
-      <div className="seg" role="radiogroup" aria-labelledby={`lbl-${name}`}>
+export function Seg({ label, value: v, options, onChange, name, compact = false }) {
+  const group = (
+      <div className={compact ? 'seg sm' : 'seg'} role="radiogroup" {...(compact ? { 'aria-label': label } : { 'aria-labelledby': `lbl-${name}` })}>
         {options.map((o) => (
           <button key={o.v} type="button" role="radio" aria-checked={v === o.v} disabled={o.disabled} title={o.title || ''}
             onClick={() => onChange(o.v)}
@@ -33,11 +31,17 @@ export function Seg({ label, value: v, options, onChange, name }) {
           </button>
         ))}
       </div>
+  );
+  if (compact) return group;
+  return (
+    <div className="ctl">
+      <span className="lbl" id={`lbl-${name}`}>{label}</span>
+      {group}
     </div>
   );
 }
 
-export function Card({ title, sub, warn, span = 6, children, series, quarters, unit, focusQ, sources, id, legend, extra }) {
+export function Card({ title, sub, warn, span = 6, children, series, quarters, unit, focusQ, sources, id, legend, extra, views }) {
   const [table, setTable] = useState(false);
   return (
     <div className={`card span-${span}`} id={id}>
@@ -45,6 +49,7 @@ export function Card({ title, sub, warn, span = 6, children, series, quarters, u
         <div><h3>{title}</h3>{sub && <p className="sub">{sub}</p>}</div>
         {series && <div className="card-tools"><button type="button" className="btn small ghost" aria-pressed={table} onClick={() => setTable(!table)}>{table ? 'Chart' : 'Table'}</button></div>}
       </div>
+      {views && <div className="views">{views}</div>}
       {legend}
       {warn && <div className="warn">{warn}</div>}
       {table && series ? <TableView series={series} quarters={quarters} unit={unit} focusQ={focusQ} /> : children}
