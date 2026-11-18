@@ -55,6 +55,12 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
     document.addEventListener('toggle', fit, true);
     return () => { document.removeEventListener('pointerdown', close); document.removeEventListener('toggle', fit, true); };
   }, []);
+  // keep section anchors clear of the sticky nav + filter bar
+  useEffect(() => {
+    const rail = document.querySelector('.rail'); if (!rail || typeof ResizeObserver === 'undefined') return undefined;
+    const ro = new ResizeObserver(() => document.documentElement.style.setProperty('--rail-h', `${rail.offsetHeight}px`));
+    ro.observe(rail); return () => ro.disconnect();
+  }, []);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 3200); return () => clearTimeout(t); }, [toast]);
   useEffect(() => {
     let alive = true;
@@ -168,16 +174,16 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
             <span>{qLabel(nextQ(LATEST))} is unreported: guidance and estimates are labelled, never shown as actuals</span>
             {APAC && <span>Neither company reports below the Asia-Pacific level: no country or Southeast Asia split is disclosed</span>}
           </div>
-          <nav className="toc" aria-label="Sections">
-            {(APAC ? [['overview', 'APAC overview'], ['trends', 'APAC revenue trends'], ['ads', 'Ads deep dive'], ['outlook', 'APAC outlook & risks'], ['method', 'Sources & methodology']]
-              : [['overview', 'Executive overview'], ['trends', 'Financial trends'], ['segments', 'Segment performance'], ['ads', 'Ads deep dive'], ['outlook', 'Outlook'], ['method', 'Sources & methodology']]).map(([h, t], i) => <a key={h} href={`#${h}`}><span>{i + 1}</span>{t}</a>)}
-          </nav>
           {statusBar}
         </div>
       </header>
 
       <div className="rail" data-open={railOpen ? 'true' : 'false'}>
         <div className="wrap" role="region" aria-label="Dashboard filters">
+            <nav className="toc" aria-label="Sections">
+            {(APAC ? [['overview', 'APAC overview'], ['trends', 'APAC revenue trends'], ['ads', 'Ads deep dive'], ['outlook', 'APAC outlook & risks'], ['method', 'Sources & methodology']]
+              : [['overview', 'Executive overview'], ['trends', 'Financial trends'], ['segments', 'Segment performance'], ['ads', 'Ads deep dive'], ['outlook', 'Outlook'], ['method', 'Sources & methodology']]).map(([h, t], i) => <a key={h} href={`#${h}`}><span>{i + 1}</span>{t}</a>)}
+            </nav>
           <button type="button" className="btn rail-toggle" aria-expanded={railOpen} onClick={() => setRailOpen(!railOpen)}>{railOpen ? 'Hide filters' : `Filters · ${f.company === 'both' ? 'Both' : CO[f.company].name} · ${qShort(f.from)}-${qShort(f.to)}`}</button>
           <div className="ctl">
             <span className="lbl">Quarters</span>
