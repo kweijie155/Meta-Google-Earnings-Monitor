@@ -40,6 +40,21 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
   const [views, setViews] = useState({});         // per-card Values / Display choices, keyed by card
   const c = useColors();
   useEffect(() => saveFilters(edition, f), [f]);
+  // close the Regions / Segments dropdowns when clicking or tapping anywhere outside them
+  useEffect(() => {
+    const close = (e) => document.querySelectorAll('details.segpick[open]').forEach((d) => { if (!d.contains(e.target)) d.open = false; });
+    // keep an opened menu inside the screen (flip it to align right when it would run off the edge)
+    const fit = (e) => {
+      const d = e.target; if (!(d instanceof HTMLElement) || !d.matches('details.segpick') || !d.open) return;
+      const m = d.querySelector('.menu'); if (!m) return;
+      m.style.left = ''; m.style.right = '';
+      if (m.getBoundingClientRect().right > document.documentElement.clientWidth - 8) { m.style.left = 'auto'; m.style.right = '0'; }
+      if (m.getBoundingClientRect().left < 8) { m.style.left = `${8 - d.getBoundingClientRect().left}px`; m.style.right = 'auto'; }
+    };
+    document.addEventListener('pointerdown', close);
+    document.addEventListener('toggle', fit, true);
+    return () => { document.removeEventListener('pointerdown', close); document.removeEventListener('toggle', fit, true); };
+  }, []);
   useEffect(() => { if (!toast) return; const t = setTimeout(() => setToast(''), 3200); return () => clearTimeout(t); }, [toast]);
   useEffect(() => {
     let alive = true;
@@ -423,7 +438,8 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
   };
   // advertising
   const fAds = vf('seg-ads');
-  const ads = companySeries('ad_revenue', { mode: fAds.mode, display: 'abs' });
+  const ads = companySeries('ad_revenue', { mode: fAds.mode, display: 'abs' })
+    .filter((s) => (s.co === 'GOOGL' ? ['search', 'youtube', 'network'].some(segOn) : segOn('ads')));
   const gap = both ? [{
     id: 'gap', name: 'Meta minus Alphabet ad growth', color: c.meta, metric: 'ad_revenue',
     get: (q) => { const a = shown('GOOGL', 'ad_revenue', q, ctx, 'yoy'), b = shown('META', 'ad_revenue', q, ctx, 'yoy'); const v = a.v == null || b.v == null ? null : (b.v - a.v) * 100; return { v, unit: 'pp', note: v == null ? (a.note || b.note) : (v >= 0 ? 'Meta growing faster' : 'Alphabet growing faster'), src: [...sourcesFor('GOOGL', 'ad_revenue', q, ctx), ...sourcesFor('META', 'ad_revenue', q, ctx)] }; },
@@ -448,8 +464,8 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
     if (f.mode === 'value' && useMargin) return { ...base, get: (q) => { const a = value(co, id, q, ctx), r = value(co, 'revenue', q, ctx); return { v: a == null || !r ? null : a / r, unit: 'pct', note: null, src: sourcesFor(co, id, q, ctx) }; } };
     const sr = { ...base, get: (q) => ({ ...shown(co, id, q, ctx, f.mode), src: sourcesFor(co, id, q, ctx) }) };
     if (f.mode !== 'value') return sr;
-    // share of the company's segment total (all segments, even ones filtered out; Alphabet excludes hedging)
-    const total = (q) => SEGMENTS.filter((x) => x.co === co).reduce((a, x) => a + (value(co, segMetric[x.id], q, ctx) || 0), 0);
+    // share of the selected segments' total (Alphabet excludes hedging), so the shown shares add up to 100%
+    const total = (q) => SEGMENTS.filter((x) => x.co === co && segOn(x.id)).reduce((a, x) => a + (value(co, segMetric[x.id], q, ctx) || 0), 0);
     return withPct(sr, (q) => value(co, id, q, ctx) / total(q));
   });
   const mixCard = (co) => {
@@ -457,7 +473,7 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
     const mixKind = f.mode === 'value' ? 'stack' : 'line';
     const all = mixSeries(co, f); const on = all.filter((s) => segOn(s.seg));
     return (
-      <Card span={6} title={`${CO[co].name} revenue mix`} sub={`${viewText('revenue', f.mode)}${useMargin && f.mode === 'value' ? ' · Share of total revenue' : ''}${co === 'GOOGL' ? ' · Excludes hedging gains/losses' : ''}`} views={vc(key, { display: '% of revenue' })}
+      <Card span={6} title={`${CO[co].name} revenue mix`} sub={`${viewText('revenue', f.mode)}${useMargin && f.mode === 'value' ? ' · Share of total revenue' : ''}${co === 'GOOGL' ? ' · Excludes hedging gains/losses' : ''}${f.mode === 'value' && !useMargin && on.length < all.length ? ' · % = share of selected segments' : ''}`} views={vc(key, { display: '% of revenue' })}
         series={on} quarters={quarters} focusQ={fq} sources={srcIds(on)}
         legend={<Legend series={all} kind={mixKind === 'stack' ? 'bar' : 'line'} hidden={all.filter((s) => !segOn(s.seg)).map((s) => s.id)} onToggle={(s) => toggleSeg(s.seg)} />}>
         {on.length ? chart(on, { kind: mixKind, mode: f.mode, endLabels: false, def: 'Click a legend item to filter segments across the dashboard.', aria: `${CO[co].name} revenue by segment` }) : <div className="empty"><strong>All {CO[co].name} segments are filtered out</strong><span>Turn segments back on from the legend or the Segments filter.</span></div>}
@@ -469,7 +485,7 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
     <section className="sec" id="segments" aria-labelledby="h-segments">
       <div className="sec-head"><span className="num">03</span><h2 id="h-segments">Segment performance</h2><p>Advertising, Google Cloud against Reality Labs, revenue mix, and the engagement and pricing drivers each company discloses.</p></div>
       <div className="grid">
-        {segOn('ads') || segOn('search') ? (
+        {ads.length ? (
           <Card span={6} title="Advertising revenue" sub={`${viewText('ad_revenue', fAds.mode)} · Google advertising vs Meta advertising`} warn={M.ad_revenue.warn} views={vc('seg-ads')} series={ads} quarters={quarters} focusQ={fq} sources={srcIds(ads)} legend={<Legend series={ads} kind={kindFor('ad_revenue', fAds.mode)} onToggle={toggleCompany} />}>
             {chart(ads, { mode: fAds.mode, aria: 'Advertising revenue' })}
           </Card>

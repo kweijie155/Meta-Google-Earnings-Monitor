@@ -97,10 +97,11 @@ a { color: var(--accent); text-underline-offset: 2px; }
 .segpick summary { list-style: none; cursor: pointer; font-size: 13px; border: 1px solid var(--line-2); border-radius: 5px; padding: 5px 10px; min-height: 32px; display: flex; align-items: center; gap: 6px; background: var(--panel); }
 .segpick summary::-webkit-details-marker { display: none; }
 .segpick summary::after { content: "▾"; color: var(--muted); font-size: 11px; }
-.segpick .menu { position: absolute; top: calc(100% + 4px); left: 0; z-index: 25; background: var(--panel); border: 1px solid var(--line-2); border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.14); padding: 10px 12px; display: grid; gap: 10px; width: min(300px, calc(100vw - 32px)); }
+.segpick .menu { position: absolute; top: calc(100% + 4px); left: 0; z-index: 25; background: var(--panel); border: 1px solid var(--line-2); border-radius: 6px; box-shadow: 0 8px 24px rgba(0,0,0,0.14); padding: 10px 12px; display: grid; gap: 10px; width: min(320px, calc(100vw - 32px)); box-sizing: border-box; max-height: min(70vh, 520px); overflow-y: auto; }
 .segpick fieldset { border: 0; margin: 0; padding: 0; display: grid; gap: 4px; }
 .segpick legend { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
-.segpick label { display: flex; align-items: center; gap: 8px; font-size: 13px; cursor: pointer; padding: 2px 0; }
+.segpick label { display: flex; align-items: flex-start; gap: 8px; font-size: 13px; cursor: pointer; padding: 2px 0; min-width: 0; overflow-wrap: anywhere; }
+.segpick label input { margin-top: 2px; flex-shrink: 0; }
 .segpick .menu-actions { display: flex; gap: 8px; }
 .xf { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; width: 100%; font-size: 12.5px; color: var(--ink-2); }
 .xf:empty { display: none; }

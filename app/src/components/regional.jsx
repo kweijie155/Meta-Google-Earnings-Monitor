@@ -273,7 +273,7 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
   ];
   // Alphabet ad lines
   const lineColor = { search: c.seg1, youtube: c.seg2, network: c.seg3 };
-  const adLines = ['search', 'youtube', 'network'].filter((k) => segOn(k)).map((k) => { const sr = mkSeries('GOOGL', fALShare ? `${k}_ad_share` : k, M[k].label, lineColor[k], fAL.mode, ctx, { seg: k }); return fAL.mode === 'value' && !fALShare ? withPct(sr, (q) => value('GOOGL', `${k}_ad_share`, q, ctx)) : sr; });
+  const adLines = ['search', 'youtube', 'network'].filter((k) => segOn(k)).map((k) => { const sr = mkSeries('GOOGL', fALShare ? `${k}_ad_share` : k, M[k].label, lineColor[k], fAL.mode, ctx, { seg: k }); return fAL.mode === 'value' && !fALShare ? withPct(sr, (q) => value('GOOGL', k, q, ctx) / ['search', 'youtube', 'network'].filter((x) => segOn(x)).reduce((a, x) => a + (value('GOOGL', x, q, ctx) || 0), 0)) : sr; });
   const network = [mkSeries('GOOGL', 'network_imp_yoy', 'Network impressions', c.vol, 'value', qctx), mkSeries('GOOGL', 'network_cpi_yoy', 'Cost per impression', c.price, 'value', qctx)];
   const clicks = [mkSeries('GOOGL', 'paid_clicks_yoy', 'Paid clicks', c.vol, 'value', qctx), mkSeries('GOOGL', 'cpc_yoy', 'Cost per click', c.price, 'value', qctx)];
   const googReg = selRegions.map((x) => { const sr = mkSeries('GOOGL', fGRShare ? `geo_${x.gk}_share` : `geo_${x.gk}`, x.googl, regionColor(c, x.id), fGR.mode, ctx, { region: x.id }); return fGR.mode === 'value' && !fGRShare ? withPct(sr, (q) => value('GOOGL', `geo_${x.gk}_share`, q, ctx)) : sr; });
