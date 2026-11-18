@@ -26,6 +26,10 @@ jobs:
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
       - name: Check SEC for new filings and headline figures
+        # SEC sometimes refuses requests (403); don't let that block the site deploy
+        continue-on-error: true
+        env:
+          SEC_USER_AGENT: ${{ vars.SEC_USER_AGENT }}
         run: python3 scripts/sec_check.py
       - name: Commit result if it changed
         id: commit

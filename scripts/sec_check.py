@@ -11,7 +11,7 @@ Values are USD millions (EPS in USD).
 """
 import json, sys, datetime as dt, urllib.request, os, time
 
-UA = os.environ.get("SEC_USER_AGENT", "meta-google-earnings-monitor kweijie155@users.noreply.github.com")
+UA = os.environ.get("SEC_USER_AGENT") or "meta-google-earnings-monitor kweijie155@users.noreply.github.com"
 CIK = {"GOOGL": 1652044, "META": 1326801}
 NAME = {"GOOGL": "Alphabet", "META": "Meta"}
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
