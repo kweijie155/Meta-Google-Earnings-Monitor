@@ -51,9 +51,9 @@ export function Card({ title, sub, warn, span = 6, children, series, quarters, u
       </div>
       {views && <div className="views">{views}</div>}
       {legend}
-      {warn && <div className="warn">{warn}</div>}
       {table && series ? <TableView series={series} quarters={quarters} unit={unit} focusQ={focusQ} /> : children}
       {extra}
+      {warn && <div className="warn srcline"><span>Note:</span><span>{warn}</span></div>}
       {sources && <SourceLine ids={sources} focusIds={series && focusQ ? series.flatMap((x) => x.get(focusQ).src || []) : null} focusLabel={focusQ ? qLabel(focusQ) : ''} />}
     </div>
   );

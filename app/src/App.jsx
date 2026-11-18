@@ -143,7 +143,7 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
     <>
       <header className="mast">
         <div className="wrap">
-          <div className="mast-top">{switcher}<div className="eyebrow">{APAC ? 'Equity research monitor · Asia-Pacific edition · USD, calendar quarters' : 'Equity research monitor · U.S. internet platforms · USD, calendar quarters'}</div></div>
+          <div className="mast-top">{switcher}<div className="eyebrow">{APAC ? 'MSO Meta & Google Monitor · Asia-Pacific edition' : 'MSO Meta & Google Monitor'}</div></div>
           <h1>Alphabet <span className="vs">vs</span> Meta Platforms{APAC ? <span className="ed"> · Asia-Pacific</span> : null}</h1>
           <div className="mast-meta">
             <span className="cutoff">Data cutoff: {CUTOFF_LABEL}</span>
