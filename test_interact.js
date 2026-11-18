@@ -52,12 +52,8 @@ const { chromium } = require('playwright');
   R.metaOnlyScore = await scoreText();
   R.gapCard = await page.locator('#segments .card').filter({ hasText: 'Advertising growth gap' }).locator('.empty').innerText().catch(() => 'no empty');
   R.alphabetMix = await page.locator('#segments h3', { hasText: 'Alphabet revenue mix' }).count();
-  // 8. segments: uncheck RL
-  await page.locator('details.segpick summary').last().click();
-  await page.locator('#seg-rl').uncheck();
-  await page.locator('details.segpick summary').last().click();
-  await page.waitForTimeout(200);
-  R.segSummary = await page.locator('details.segpick summary').last().innerText();
+  // 8. segments filter removed: Reality Labs card always shows
+  R.segPicker = await page.locator('#seg-rl').count();
   R.rlCard = await page.locator('#segments .card').filter({ hasText: 'Reality Labs revenue' }).first().innerText().then((t) => t.slice(0, 80)).catch(() => 'none');
   // 9. table toggle
   await page.locator('#trends .card').first().getByRole('button', { name: 'Table' }).click();

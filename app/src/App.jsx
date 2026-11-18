@@ -81,8 +81,10 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
   };
   const regions = f.regions || DEFAULTS.regions;
   const toggleRegion = (id) => set('regions', regions.includes(id) ? regions.filter((x) => x !== id) : REGIONS.map((r) => r.id).filter((x) => x === id || regions.includes(x)));
-  const segOn = (id) => f.segments.includes(id);
-  const toggleSeg = (id) => set('segments', segOn(id) ? f.segments.filter((x) => x !== id) : [...f.segments, id]);
+  // segment filtering was removed: every segment always shows
+  const ALL_SEGS = SEGMENTS.map((s) => s.id);
+  const segOn = () => true;
+  const toggleSeg = undefined;
 
   // per-card view: vf(key) = filters with that card's own Values/Display; vc(key, opts) = the card's controls
   const vf = (key) => {
@@ -120,7 +122,7 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
   const srcIds = (series) => { const s = new Set(); series.forEach((x) => quarters.forEach((q) => (x.get(q).src || []).forEach((i) => s.add(i)))); return [...s]; };
 
   // ---------------------------------------------------------------- CSV
-  const csvArgs = { cos, quarters, period: f.period, basis: f.basis, segments: f.segments, metricFilter: APAC ? apacMetric : undefined };
+  const csvArgs = { cos, quarters, period: f.period, basis: f.basis, segments: ALL_SEGS, metricFilter: APAC ? apacMetric : undefined };
   const fileName = `alphabet-meta${APAC ? '-apac' : ''}_${f.period.toLowerCase()}_${f.from}-${f.to}${f.basis === 'lfl' ? '_lfl' : ''}.csv`;
   const copyCsv = async (text) => {
     try { await navigator.clipboard.writeText(text); setToast('CSV copied to clipboard'); }
@@ -152,7 +154,6 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
   if (explicit) xfChips.push({ k: 'q', label: `Focused quarter: ${qLabel(fq)}`, clear: () => setFocus(null) });
   if (f.company !== 'both') xfChips.push({ k: 'co', label: `Company: ${CO[f.company].name} only`, clear: () => set('company', 'both') });
   if (regions.length < REGIONS.length) xfChips.push({ k: 'reg', label: `Regions: ${regions.length} of ${REGIONS.length}`, clear: () => set('regions', DEFAULTS.regions) });
-  if (f.segments.length < SEGMENTS.length) xfChips.push({ k: 'seg', label: `Segments: ${f.segments.length} of ${SEGMENTS.length}`, clear: () => set('segments', DEFAULTS.segments) });
 
   return (
     <>
@@ -198,20 +199,6 @@ export default function App({ edition = 'global', switcher = null, statusBar = n
                   {REGIONS.map((r) => <label key={r.id}><input id={`reg-${r.id}`} type="checkbox" checked={regions.includes(r.id)} onChange={() => toggleRegion(r.id)} />{r.meta} / {r.googl}</label>)}
                 </fieldset>
                 <div className="menu-actions"><button className="btn small" type="button" onClick={() => set('regions', DEFAULTS.regions)}>Select all</button><button className="btn small" type="button" onClick={() => set('regions', ['ap'])}>APAC only</button></div>
-              </div>
-            </details>
-          </div>
-          <div className="ctl">
-            <span className="lbl">Segments</span>
-            <details className="segpick">
-              <summary>{f.segments.length === SEGMENTS.length ? 'All segments' : `${f.segments.length} of ${SEGMENTS.length} selected`}</summary>
-              <div className="menu">
-                {['GOOGL', 'META'].map((co) => (
-                  <fieldset key={co}><legend>{CO[co].name}</legend>
-                    {SEGMENTS.filter((s) => s.co === co).map((s) => <label key={s.id}><input id={`seg-${s.id}`} type="checkbox" checked={segOn(s.id)} onChange={() => toggleSeg(s.id)} />{s.label}</label>)}
-                  </fieldset>
-                ))}
-                <div className="menu-actions"><button className="btn small" type="button" onClick={() => set('segments', DEFAULTS.segments)}>Select all</button><button className="btn small" type="button" onClick={() => set('segments', [])}>Clear</button></div>
               </div>
             </details>
           </div>
@@ -464,8 +451,8 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
     if (f.mode === 'value' && useMargin) return { ...base, get: (q) => { const a = value(co, id, q, ctx), r = value(co, 'revenue', q, ctx); return { v: a == null || !r ? null : a / r, unit: 'pct', note: null, src: sourcesFor(co, id, q, ctx) }; } };
     const sr = { ...base, get: (q) => ({ ...shown(co, id, q, ctx, f.mode), src: sourcesFor(co, id, q, ctx) }) };
     if (f.mode !== 'value') return sr;
-    // share of the selected segments' total (Alphabet excludes hedging), so the shown shares add up to 100%
-    const total = (q) => SEGMENTS.filter((x) => x.co === co && segOn(x.id)).reduce((a, x) => a + (value(co, segMetric[x.id], q, ctx) || 0), 0);
+    // share of the company's segment total (Alphabet excludes hedging), so shares add up to 100%
+    const total = (q) => SEGMENTS.filter((x) => x.co === co).reduce((a, x) => a + (value(co, segMetric[x.id], q, ctx) || 0), 0);
     return withPct(sr, (q) => value(co, id, q, ctx) / total(q));
   });
   const mixCard = (co) => {
@@ -473,10 +460,10 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
     const mixKind = f.mode === 'value' ? 'stack' : 'line';
     const all = mixSeries(co, f); const on = all.filter((s) => segOn(s.seg));
     return (
-      <Card span={6} title={`${CO[co].name} revenue mix`} sub={`${viewText('revenue', f.mode)}${useMargin && f.mode === 'value' ? ' · Share of total revenue' : ''}${co === 'GOOGL' ? ' · Excludes hedging gains/losses' : ''}${f.mode === 'value' && !useMargin && on.length < all.length ? ' · % = share of selected segments' : ''}`} views={vc(key, { display: '% of revenue' })}
+      <Card span={6} title={`${CO[co].name} revenue mix`} sub={`${viewText('revenue', f.mode)}${useMargin && f.mode === 'value' ? ' · Share of total revenue' : ''}${co === 'GOOGL' ? ' · Excludes hedging gains/losses' : ''}`} views={vc(key, { display: '% of revenue' })}
         series={on} quarters={quarters} focusQ={fq} sources={srcIds(on)}
-        legend={<Legend series={all} kind={mixKind === 'stack' ? 'bar' : 'line'} hidden={all.filter((s) => !segOn(s.seg)).map((s) => s.id)} onToggle={(s) => toggleSeg(s.seg)} />}>
-        {on.length ? chart(on, { kind: mixKind, mode: f.mode, endLabels: false, def: 'Click a legend item to filter segments across the dashboard.', aria: `${CO[co].name} revenue by segment` }) : <div className="empty"><strong>All {CO[co].name} segments are filtered out</strong><span>Turn segments back on from the legend or the Segments filter.</span></div>}
+        legend={<Legend series={all} kind={mixKind === 'stack' ? 'bar' : 'line'} />}>
+        {on.length ? chart(on, { kind: mixKind, mode: f.mode, endLabels: false,  def: co === 'GOOGL' ? 'Share = segment / sum of all segments (excludes hedging).' : 'Share = segment / total revenue.', aria: `${CO[co].name} revenue by segment` }) : <div className="empty"><strong>All {CO[co].name} segments are filtered out</strong><span>Turn segments back on from the legend or the Segments filter.</span></div>}
       </Card>
     );
   };
@@ -498,7 +485,7 @@ function Segments({ f, fq, ctx, cos, quarters, explicit, onFocus, companySeries,
 
         <Card span={6} title="Google Cloud vs Reality Labs: profitability" sub={`${useMargin ? 'Operating margin (Reality Labs margin is n/m: losses run about 10x revenue)' : 'Segment operating income (loss)'} · ${viewText(useMargin ? 'cloud_margin' : 'cloud_oi', fOi.mode)}`} views={vc('seg-oi', { display: 'Margin' })}
           series={oiSeries.length ? oiSeries : null} quarters={quarters} focusQ={fq} sources={srcIds(oiSeries)} legend={<Legend series={oiSeries} kind={kindFor(oiSeries[0]?.metric || 'cloud_oi', fOi.mode)} />}>
-          {oiSeries.length ? chart(oiSeries, { mode: fOi.mode, aria: 'Cloud versus Reality Labs operating income' }) : <div className="empty"><strong>Cloud and Reality Labs are filtered out</strong><span>Re-enable them in Segments or set Company to Both.</span></div>}
+          {oiSeries.length ? chart(oiSeries, { mode: fOi.mode, aria: 'Cloud versus Reality Labs operating income' }) : <div className="empty"><strong>Cloud and Reality Labs are filtered out</strong><span>Set Company to Both.</span></div>}
         </Card>
         <Card span={3} title="Google Cloud revenue" sub={viewText('cloud_rev', fCloud.mode)} views={vc('seg-cloudrev')} series={cloudRev.length ? cloudRev : null} quarters={quarters} focusQ={fq} sources={srcIds(cloudRev)}>
           {cloudRev.length ? chart(cloudRev, { mode: fCloud.mode, height: 200, aria: 'Google Cloud revenue' }) : <div className="empty"><span>Google Cloud filtered out</span></div>}
@@ -686,7 +673,7 @@ function Method({ APAC, f, fq, ctx, cos, quarters, csvText, setCsvText, download
   const metrics = metricsFor(cos).filter((m) => !APAC || apacMetric(m));
   const [tab, setTab] = useState(co0);
   useEffect(() => { if (!cos.includes(tab)) setTab(co0); }, [cos.join()]);
-  const tableMetrics = metricsFor([tab]).filter((m) => m.cos.includes(tab) && (!APAC || apacMetric(m)) && (!m.segment || m.segment === 'ads' || f.segments.includes(m.segment)));
+  const tableMetrics = metricsFor([tab]).filter((m) => m.cos.includes(tab) && (!APAC || apacMetric(m)) && (!m.segment || m.segment === 'ads' || true));
   let lastGroup = '';
   return (
     <section className="sec" id="method" aria-labelledby="h-method">

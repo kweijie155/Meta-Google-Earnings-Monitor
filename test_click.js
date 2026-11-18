@@ -18,12 +18,8 @@ const { chromium } = require('playwright');
   const score = (await page.locator('.score').first().innerText()).replace(/\s+/g, ' ');
   const head = await page.locator('#overview .sec-head p').innerText();
   await page.screenshot({ path: 'shots/focus.png', clip: { x: box.x - 20, y: box.y - 60, width: box.width + 40, height: box.height + 140 } });
-  // click mix legend to filter a segment
-  const mix = page.locator('#segments .card').filter({ hasText: 'Alphabet revenue mix' });
-  await mix.scrollIntoViewIfNeeded();
-  await mix.locator('.legend').getByRole('button', { name: 'Google Cloud', exact: true }).click();
-  await page.waitForTimeout(200);
-  const seg = await page.locator('details.segpick summary').last().innerText();
+  // segment filtering removed: legend has no toggle
+  const seg = String(await page.locator('details.segpick').count()) + ' segpick menus (Regions only)';
   const cloudCard = await page.locator('#segments .card').filter({ hasText: 'Google Cloud revenue' }).first().innerText();
   console.log(JSON.stringify({ tip: tip.replace(/\s+/g, ' '), chips, score, head, seg, cloudCard: cloudCard.slice(0, 90) }, null, 1));
   await browser.close();

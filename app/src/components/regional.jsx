@@ -287,7 +287,7 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
   const matrixRegions = [{ id: 'ww', k: 'ww', label: 'Worldwide' }, ...REGIONS.map((x) => ({ id: x.id, k: x.mk, label: x.meta }))];
   return (
     <section className="sec" id="ads" aria-labelledby="h-ads">
-      <div className="sec-head"><span className="num">{num}</span><h2 id="h-ads">Ads deep dive</h2><p>Regional ad revenue, volume and price for Meta; ad lines, clicks, Network and TAC for Alphabet{edition === 'apac' ? '; Asia-Pacific is highlighted throughout' : ''}. The Regions and Segments filters scope these cards.</p></div>
+      <div className="sec-head"><span className="num">{num}</span><h2 id="h-ads">Ads deep dive</h2><p>Regional ad revenue, volume and price for Meta; ad lines, clicks, Network and TAC for Alphabet{edition === 'apac' ? '; Asia-Pacific is highlighted throughout' : ''}. The Regions filter scopes these cards.</p></div>
       <div className="grid">
         {me && <Card span={6} title="Meta ad revenue by user region" views={vc('ads-metareg', { display: 'Share of ad revenue' })} sub={`${viewText(metaReg[0]?.metric || 'ad_ap', fMR.mode)}${fMRShare ? ' · Share of ad revenue' : ''}`} series={metaReg.length ? metaReg : null} quarters={quarters} focusQ={fq} sources={allSrc(metaReg, quarters)} legend={regLegend(metaReg)}>
           {metaReg.length ? chart(metaReg, { kind: 'line', mode: fMR.mode, aria: 'Meta ad revenue by region' }) : <div className="empty"><strong>No regions selected</strong><span>Pick regions in the Regions filter.</span></div>}
@@ -320,7 +320,7 @@ export function AdsDeepDive({ edition, f, fq, ctx, cos, quarters, explicit, onFo
         </div>}
 
         {g && <Card span={6} title="Google advertising by line" views={vc('ads-adlines', { display: 'Share of advertising' })} sub={`${viewText(adLines[0]?.metric || 'search', fAL.mode)}${fALShare ? ' · Share of Google advertising' : ''}`} series={adLines.length ? adLines : null} quarters={quarters} focusQ={fq} sources={allSrc(adLines, quarters)}
-          legend={<Legend series={adLines} kind="line" onToggle={(s) => toggleSeg(s.seg)} />}>
+          legend={<Legend series={adLines} kind="line" />}>
           {adLines.length ? chart(adLines, { kind: fAL.mode === 'value' && !fALShare ? 'bar' : 'line', mode: fAL.mode, aria: 'Google advertising by line' }) : <div className="empty"><strong>Search, YouTube and Network are filtered out</strong><span>Re-enable them in Segments.</span></div>}
         </Card>}
         {g && <Card span={6} title="Google Network: impressions vs cost per impression" sub="Reported YoY change (10-Q). Not disclosed for Q4; Q2 2026 MD&A not retrievable." series={network} quarters={quarters} focusQ={fq} sources={quarters.map((q) => DATA.a_network_src[q]).filter(Boolean)} legend={<Legend series={network} kind="bar" />}>
