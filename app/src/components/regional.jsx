@@ -82,8 +82,9 @@ export function ApacOverview({ fq, ctx, cos, f, c, coColor }) {
     g && { label: 'Alphabet', color: coColor('GOOGL'), v: val('GOOGL', 'geo_apac_share', fq, ctx), unit: 'pct', d: shown('GOOGL', 'geo_apac_share', fq, ctx, 'yoy').v, dUnit: 'pp' },
     me && { label: 'Meta', color: coColor('META'), v: val('META', 'rev_ap_share', fq, ctx), unit: 'pct', d: shown('META', 'rev_ap_share', fq, ctx, 'yoy').v, dUnit: 'pp' },
   ].filter(Boolean) });
-  const gapA = g ? (yoy('GOOGL', 'geo_apac', fq, ctx) - yoy('GOOGL', 'revenue', fq, ctx)) * 100 : null;
-  const gapM = me ? (yoy('META', 'rev_ap', fq, ctx) - yoy('META', 'revenue', fq, ctx)) * 100 : null;
+  const gap = (a, b) => (a == null || b == null ? null : (a - b) * 100);
+  const gapA = g ? gap(yoy('GOOGL', 'geo_apac', fq, ctx), yoy('GOOGL', 'revenue', fq, ctx)) : null;
+  const gapM = me ? gap(yoy('META', 'rev_ap', fq, ctx), yoy('META', 'revenue', fq, ctx)) : null;
   tiles.push({ label: 'APAC growth vs company growth', caption: 'gap', rows: [
     g && { label: 'Alphabet', color: coColor('GOOGL'), v: yoy('GOOGL', 'geo_apac', fq, ctx), unit: 'growth', d: Number.isFinite(gapA) ? gapA : null, dUnit: 'pp' },
     me && { label: 'Meta', color: coColor('META'), v: yoy('META', 'rev_ap', fq, ctx), unit: 'growth', d: Number.isFinite(gapM) ? gapM : null, dUnit: 'pp' },

@@ -21,6 +21,8 @@ PERIOD = {  # calendar = fiscal for both companies
 # ---------------------------------------------------------------- sources
 SOURCES = [
  # Alphabet earnings releases (Exhibit 99.1)
+ dict(id="A-ER-24Q4", co="GOOGL", doc="Q4 & FY2024 earnings release", type="Earnings release (8-K Ex. 99.1)", date="2025-02-04",
+      url="https://s206.q4cdn.com/479360582/files/doc_financials/2024/q4/2024q4-alphabet-earnings-release.pdf", sec=""),
  dict(id="A-ER-25Q1", co="GOOGL", doc="Q1 2025 earnings release", type="Earnings release (8-K Ex. 99.1)", date="2025-04-24",
       url="https://s206.q4cdn.com/479360582/files/doc_financials/2025/q1/2025q1-alphabet-earnings-release.pdf",
       sec="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000040/googexhibit991q12025.htm"),
@@ -35,12 +37,12 @@ SOURCES = [
       sec="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000043/googexhibit991q12026.htm"),
  dict(id="A-ER-26Q2", co="GOOGL", doc="Q2 2026 earnings release", type="Earnings release (8-K Ex. 99.1)", date="2026-07-22",
       url="https://s206.q4cdn.com/479360582/files/doc_news/2026/Jul/22/attachments/2026q2-alphabet-earnings-release.pdf",
-      sec="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/goog-20260722.htm"),
+      sec="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/googexhibit991q22026.htm"),
  dict(id="A-ER-26Q3", co="GOOGL", doc="Q3 2026 earnings release", type="Earnings release (8-K Ex. 99.1)", date="2026-10-28",
       url="https://s206.q4cdn.com/479360582/files/doc_news/2026/Oct/28/attachments/2026q3-alphabet-earnings-release.pdf",
       sec="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000080/googexhibit991q32026.htm"),
  # Alphabet periodic filings
- dict(id="A-10Q-25Q1", co="GOOGL", doc="Form 10-Q, quarter ended Mar 31, 2025", type="SEC filing (10-Q)", date="2025-04",
+ dict(id="A-10Q-25Q1", co="GOOGL", doc="Form 10-Q, quarter ended Mar 31, 2025", type="SEC filing (10-Q)", date="2025-04-25",
       url="https://s206.q4cdn.com/479360582/files/doc_financials/2025/q1/goog-10-q-q1-2025.pdf",
       sec="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm"),
  dict(id="A-10Q-25Q2", co="GOOGL", doc="Form 10-Q, quarter ended Jun 30, 2025", type="SEC filing (10-Q)", date="2025-07-24",
@@ -48,20 +50,21 @@ SOURCES = [
       sec="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000062/goog-20250630.htm"),
  dict(id="A-10Q-25Q2-MDA", co="GOOGL", doc="Form 10-Q Q2 2025, MD&A text (mirror)", type="SEC filing text mirror", date="2025-07-24",
       url="https://pubt.io/view/AE5B1756D491A8043B835DA9B75D0CB24F4E0CC8", sec=""),
- dict(id="A-10Q-25Q3", co="GOOGL", doc="Form 10-Q, quarter ended Sep 30, 2025 (PDF mirror)", type="SEC filing (10-Q)", date="2025-10",
+ dict(id="A-10Q-25Q3", co="GOOGL", doc="Form 10-Q, quarter ended Sep 30, 2025 (PDF mirror)", type="SEC filing (10-Q)", date="2025-10-30",
       url="https://d18rn0p25nwr6d.cloudfront.net/CIK-0001652044/d6a68c11-89c6-4604-8fe8-103892a5de7e.pdf",
       sec="https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm"),
- dict(id="A-10K-25", co="GOOGL", doc="Form 10-K, FY2025 (revenue backlog note, via EDGAR tools)", type="SEC filing (10-K)", date="2026-02",
+ dict(id="A-10K-25", co="GOOGL", doc="Form 10-K, FY2025 (revenue backlog note, via EDGAR tools)", type="SEC filing (10-K)", date="2026-02-05",
       url="https://app.edgar.tools/companies/GOOG/disclosures/revenue",
       sec="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"),
- dict(id="A-10Q-26Q1", co="GOOGL", doc="Form 10-Q, quarter ended Mar 31, 2026", type="SEC filing (10-Q)", date="2026-04",
+ dict(id="A-10Q-26Q1", co="GOOGL", doc="Form 10-Q, quarter ended Mar 31, 2026", type="SEC filing (10-Q)", date="2026-04-30",
       url="https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/GOOG-10-Q-Q1-2026.pdf",
       sec="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000048/goog-20260331.htm"),
- dict(id="A-10Q-26Q2", co="GOOGL", doc="Form 10-Q, quarter ended Jun 30, 2026", type="SEC filing (10-Q)", date="2026-07",
+ dict(id="A-10Q-26Q2", co="GOOGL", doc="Form 10-Q, quarter ended Jun 30, 2026", type="SEC filing (10-Q)", date="2026-07-23",
       url="https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/GOOG-10-Q-Q2-2026.pdf",
       sec="https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm"),
- dict(id="A-10Q-26Q3", co="GOOGL", doc="Form 10-Q, quarter ended Sep 30, 2026", type="SEC filing (10-Q)", date="2026-10-28",
-      url="https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf", sec=""),
+ dict(id="A-10Q-26Q3", co="GOOGL", doc="Form 10-Q, quarter ended Sep 30, 2026", type="SEC filing (10-Q)", date="2026-10-29",
+      url="https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
+      sec="https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm"),
  dict(id="A-CALL-26Q1", co="GOOGL", doc="Q1 2026 earnings call transcript", type="Earnings call (company transcript)", date="2026-04-29",
       url="https://s206.q4cdn.com/479360582/files/doc_events/2026/Apr/29/Alphabet-2026_Q1_Earnings_Transcript.pdf", sec=""),
  # Meta
@@ -82,6 +85,8 @@ SOURCES = [
  dict(id="M-ER-26Q3", co="META", doc="Q3 2026 results press release", type="Earnings release (8-K Ex. 99.1)", date="2026-10-21",
       url="https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
       sec="https://www.sec.gov/Archives/edgar/data/0001326801/000162828026066700/meta-09302026xexhibit991.htm"),
+ dict(id="M-CALL-25Q1", co="META", doc="Q1 2025 earnings call transcript", type="Earnings call (company transcript)", date="2025-04-30",
+      url="https://s21.q4cdn.com/399680738/files/doc_financials/2025/q1/Transcripts/META-Q1-2025-Earnings-Call-Transcript-1.pdf", sec=""),
  dict(id="M-PRES-26Q3", co="META", doc="Q3 2026 earnings presentation (DAP, ARPP, segment history)", type="Earnings presentation", date="2026-10-21",
       url="https://s21.q4cdn.com/399680738/files/content_files/Earnings-Presentation-Q3-2026.pdf", sec=""),
  dict(id="M-CALL-26Q3", co="META", doc="Q3 2026 earnings call transcript", type="Earnings call (company transcript)", date="2026-10-21",
@@ -181,8 +186,8 @@ M_ROWS = {
  #          rev    ads    oth   foa    rl    foa_oi rl_oi  oi     costs  tax    ni     eps    ocf    ppe    fl    fcf    bb     div   cash   hc     dap   arpp   imp  ppa
  "2024Q1": [36455, 35635, 380, 36015, 440, 17664, -3846, 13818, 22637, 1814, 12369, 4.71, 19246, 6400, 315, 12531, 15008, 1273, None, None, None, None, None, None],
  "2024Q2": [39071, 38329, 389, 38718, 353, 19335, -4488, 14847, 24224, 1641, 13465, 5.16, 19370, 8173, 299, 10898, 6299, 1266, None, None, None, None, None, None],
- "2024Q3": [40589, 39885, 434, 40319, 270, 21778, -4428, 17350, 23239, 2134, 15688, 6.03, 24724, 8258, 944, 15522, 8818, 1263, None, None, 3.29, 12.29, None, None],
- "2024Q4": [48385, 46783, 519, 47302, 1083, 28332, -4967, 23365, 25020, 2715, 20838, 8.02, 27988, 14425, 411, 13152, 0, 1270, 77810, 74067, 3.35, 14.25, None, None],
+ "2024Q3": [40589, 39885, 434, 40319, 270, 21778, -4428, 17350, 23239, 2134, 15688, 6.03, 24724, 8258, 944, 15522, 8818, 1263, None, None, 3.29, 12.29, 7, 11],
+ "2024Q4": [48385, 46783, 519, 47302, 1083, 28332, -4967, 23365, 25020, 2715, 20838, 8.02, 27988, 14425, 411, 13152, 0, 1269, 77810, 74067, 3.35, 14.25, 6, 14],
  "2025Q1": [42314, 41392, 510, 41902, 412, 21765, -4210, 17555, 24759, 1738, 16644, 6.43, 24026, 12941, 751, 10334, 12754, 1329, 70230, 76834, 3.43, 12.36, 5, 10],
  "2025Q2": [47516, 46563, 583, 47146, 370, 24971, -4530, 20441, 27075, 2197, 18337, 7.14, 25561, 16538, 474, 8549, 10167, 1327, 47070, 75945, 3.48, 13.65, 11, 9],
  "2025Q3": [51242, 50082, 690, 50772, 470, 24967, -4432, 20535, 30707, 18954, 2709, 1.05, 29999, 18829, 545, 10625, 3327, 1330, 44450, 78450, 3.54, 14.46, 14, 10],
@@ -215,7 +220,7 @@ ONE_OFFS = [
 # ------------------------------------------------- guidance history
 GUIDANCE = [
  # Alphabet capex (no revenue guidance is given)
- dict(co="GOOGL", issued="2025-02-04", at="Q4 2024 call", target="FY2025", metric="Capex", lo=75000, hi=75000, approx=True, change="Initial", src="S-NBC-24Q4"),
+ dict(co="GOOGL", issued="2025-02-04", at="Q4 2024 release", target="FY2025", metric="Capex", lo=75000, hi=75000, approx=True, change="Initial", src="A-ER-24Q4"),
  dict(co="GOOGL", issued="2025-04-24", at="Q1 2025 call", target="FY2025", metric="Capex", lo=75000, hi=75000, approx=True, change="Reaffirmed", src="S-DIGI-25Q1"),
  dict(co="GOOGL", issued="2025-07-23", at="Q2 2025 release", target="FY2025", metric="Capex", lo=85000, hi=85000, approx=True, change="Raised", src="A-ER-25Q2"),
  dict(co="GOOGL", issued="2025-10-29", at="Q3 2025 release", target="FY2025", metric="Capex", lo=91000, hi=93000, approx=False, change="Raised", src="A-ER-25Q3"),
@@ -260,7 +265,7 @@ COMMENTARY = [
  dict(co="GOOGL", q="2025Q4", theme="Infrastructure", text="Pichai: 2026 capex \"anticipated to be in the range of $175 to $185 billion\" - roughly double 2025's $91.4B.", src="A-ER-25Q4"),
  dict(co="GOOGL", q="2026Q1", theme="AI", text="First-party models process more than 16B tokens per minute; \"we are compute constrained in the near term\"; TPUs to be delivered into select customers' own data centers.", src="A-CALL-26Q1"),
  dict(co="GOOGL", q="2026Q1", theme="Infrastructure", text="Ashkenazi: 2026 capex range updated to $180-190B; \"we expect our 2027 CapEx to significantly increase compared to 2026.\"", src="A-CALL-26Q1"),
- dict(co="GOOGL", q="2026Q2", theme="Infrastructure", text="2026 capex raised to $195-205B \"to meet demand\"; Cloud backlog +$50B QoQ to ~$514B; more third-party capacity in Q3 to pressure Cloud margins modestly.", src="S-WMEDIA-26Q2"),
+ dict(co="GOOGL", q="2026Q2", theme="Infrastructure", text="2026 capex raised to $195-205B to meet demand; Cloud backlog +$50B QoQ to ~$514B; more third-party capacity in Q3 to pressure Cloud margins modestly.", src="S-WMEDIA-26Q2"),
  dict(co="GOOGL", q="2026Q2", theme="Capital", text="No buybacks in 1H26; raised ~$49.5B of common and mandatory convertible preferred equity plus multi-currency senior notes to fund AI infrastructure (10-Q Notes 6 and 11).", src="A-10Q-26Q2"),
  dict(co="GOOGL", q="2026Q3", theme="AI", text="Gemini app reached 1B users; first-party APIs ~32B tokens/min (+40% QoQ); TPU system sales a \"meaningful contributor\" to $30.7B Cloud revenue.", src="S-INV-26Q3"),
  dict(co="GOOGL", q="2026Q3", theme="Infrastructure", text="2026 capex held at $195-205B; 2027 capex expected to \"increase significantly\". Backlog $567.7B, just over 55% recognizable within 24 months (10-Q).", src="S-INV-26Q3"),
@@ -346,7 +351,7 @@ A_NETWORK = {"2025Q1": (-5, 4, "A-10Q-25Q1"), "2025Q2": (-6, 6, "A-10Q-25Q2-MDA"
              "2026Q1": (-9, 6, "A-10Q-26Q1"), "2026Q2": (None, None, None), "2026Q3": (-14, 14, "S-PPC-26Q3")}
 
 APAC_COMMENTARY = [
- dict(co="META", q="2025Q1", theme="APAC advertisers", text="Susan Li: \"Asia-based e-commerce exporters\" cut spend on Meta ahead of the end of the U.S. de minimis exemption; overall spend for those advertisers was \"below the levels prior to April.\" Asia-Pacific ad revenue (user geography) grew 12%, the slowest region.", src="S-CNBC-25Q1"),
+ dict(co="META", q="2025Q1", theme="APAC advertisers", text="Susan Li: \"we have seen some reduced spend in the U.S. from Asia-based ecommerce exporters\" ahead of the end of the U.S. de minimis exemption; some spend was redirected to other markets, but \"overall spend for those advertisers is below the levels prior to April.\" Asia-Pacific ad revenue (user geography) grew 12%, the slowest region.", src="M-CALL-25Q1"),
  dict(co="GOOGL", q="2025Q1", theme="APAC FX", text="APAC revenue grew 12% reported and 15% in constant currency; 10-Q: \"APAC revenue growth was unfavorably affected by changes in foreign currency exchange rates.\"", src="A-10Q-25Q1"),
  dict(co="GOOGL", q="2025Q2", theme="APAC FX", text="APAC revenue grew 19% reported and 18% in constant currency; APAC share of revenue rose to 17% from 16%.", src="A-10Q-25Q2-MDA"),
  dict(co="META", q="2025Q3", theme="APAC pricing", text="Asia-Pacific impressions +23% with price per ad +1%: the region added volume at low prices while US & Canada (+13%) and Europe (+19%) drove price.", src="M-PRES-26Q3"),
@@ -360,7 +365,7 @@ APAC_RISKS = [
  dict(co="BOTH", cat="Regulatory", title="Australia: under-16 social media minimum age", text="From Dec 10, 2025, age-restricted platforms include Facebook, Instagram, Threads and YouTube; corporate penalties up to 150,000 penalty units (about A$49.5M).", status="In force", src="S-AU-U16"),
  dict(co="META", cat="Regulatory", title="India: WhatsApp data-sharing case", text="Nov 2025: NCLAT set aside CCI's five-year ban on WhatsApp sharing user data with Meta for advertising but upheld the Rs 213.14 crore penalty.", status="Penalty upheld", src="S-NCLAT"),
  dict(co="META", cat="Execution", title="APAC price per ad near flat", text="Asia-Pacific price per ad has grown 5% or less in every quarter since Q1 2025 (Q4 2025: -2%), versus +23% in US & Canada in Q3 2026; APAC growth depends on impression volume.", status="Watch", src="M-PRES-26Q3"),
- dict(co="META", cat="Competitive", title="APAC-based exporters as advertisers", text="On a customer-address basis Asia-Pacific was $53.8B (27%) of Meta's 2025 revenue versus $39.3B (20%) by user location: about $14.6B came from APAC-billed advertisers reaching users elsewhere, exposed to trade policy (de minimis, tariffs).", status="Watch", src="M-FY-GEO"),
+ dict(co="META", cat="Competitive", title="APAC-based exporters as advertisers", text="On a customer-address basis Asia-Pacific was $53.8B (27%) of Meta's 2025 revenue versus $39.3B (20%) by user location: a net $14.6B more is billed to APAC-based advertisers than is earned from APAC users, reflecting APAC advertisers reaching users elsewhere, exposed to trade policy (de minimis, tariffs).", status="Watch", src="M-FY-GEO"),
  dict(co="GOOGL", cat="Execution", title="APAC slowing inside Alphabet's mix", text="APAC growth slowed to 11.7% in Q3 2026 from 23.1% in Q1 2026 while U.S. revenue (including TPU-driven Cloud) accelerated; APAC's 15.6% share of revenue is the lowest since at least Q1 2024.", status="Watch", src="A-10Q-26Q3"),
 ]
 
