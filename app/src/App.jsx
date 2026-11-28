@@ -331,7 +331,8 @@ function Insights({ fq, ctx, cos, f }) {
   }
   const streak = (co) => { let n = 0; for (let i = qIdx(fq); i >= 0; i--) { if (DATA.rows[co][Q_ALL[i]].buybacks === 0) n++; else break; } return n; };
   const parts = cos.map((co) => ({ co, n: streak(co) })).filter((x) => x.n > 0);
-  if (parts.length) items.push(<>Capital returns: {parts.map((p, i) => <React.Fragment key={p.co}>{i > 0 && ' and '}<b>{CO[p.co].name} made no buybacks for {p.n} straight quarter{p.n > 1 ? 's' : ''}</b></React.Fragment>)} through {qLabel(fq)} while capex outran operating cash flow{cos.includes('GOOGL') && qIdx(fq) >= qIdx('2026Q2') ? '; Alphabet also raised about $49.5B of common and preferred equity in June 2026' : ''}.</>);
+  const capexOverOcf = parts.length > 0 && parts.every((p) => { const r = DATA.rows[p.co][fq]; return r && r.capex_ppe > r.ocf; });
+  if (parts.length) items.push(<>Capital returns: {parts.map((p, i) => <React.Fragment key={p.co}>{i > 0 && ' and '}<b>{CO[p.co].name} made no buybacks for {p.n} straight quarter{p.n > 1 ? 's' : ''}</b></React.Fragment>)} through {qLabel(fq)}{capexOverOcf ? ' while capex outran operating cash flow' : ''}{cos.includes('GOOGL') && qIdx(fq) >= qIdx('2026Q2') ? '; Alphabet also raised about $49.5B of common and preferred equity in June 2026' : ''}.</>);
   if (!items.length) return null;
   return (
     <div className="insights" aria-label="Key insights">
@@ -744,7 +745,7 @@ function Method({ APAC, f, fq, ctx, cos, quarters, csvText, setCsvText, download
         </div>
 
         <div className="card span-12">
-          <div className="card-head"><div><h3>Sources</h3><p className="sub">Primary documents first. Secondary sources are used only where noted (call coverage for two Alphabet guidance points, Q3 2026 paid clicks, consensus, one news item) and as cross-checks.</p></div></div>
+          <div className="card-head"><div><h3>Sources</h3><p className="sub">Primary documents first. Secondary sources are used only where noted (call coverage for some Alphabet guidance points, commentary and risks; Q3 2026 paid clicks and Network metrics; transcriptions of Meta's regional slides; consensus; news and legal items) and as cross-checks.</p></div></div>
           <div className="tbl-wrap"><table className="tbl left"><thead><tr><th>ID</th><th>Company</th><th>Document</th><th>Type</th><th>Published</th><th>Links</th></tr></thead>
             <tbody>{DATA.sources.filter((s) => s.co === 'BOTH' || cos.includes(s.co)).map((s) => <tr key={s.id}><td className="tnum">{s.id}</td><td>{s.co === 'BOTH' ? 'Both' : CO[s.co].name}</td><td>{s.doc}</td><td>{s.type}</td><td className="tnum">{s.date}</td><td><a href={s.url} target="_blank" rel="noreferrer">Document</a>{s.sec ? <> · <a href={s.sec} target="_blank" rel="noreferrer">SEC EDGAR</a></> : null}</td></tr>)}</tbody></table></div>
         </div>

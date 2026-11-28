@@ -29,6 +29,15 @@
  ],
  "sources": [
   {
+   "id": "A-ER-24Q4",
+   "co": "GOOGL",
+   "doc": "Q4 & FY2024 earnings release",
+   "type": "Earnings release (8-K Ex. 99.1)",
+   "date": "2025-02-04",
+   "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2024/q4/2024q4-alphabet-earnings-release.pdf",
+   "sec": ""
+  },
+  {
    "id": "A-ER-25Q1",
    "co": "GOOGL",
    "doc": "Q1 2025 earnings release",
@@ -80,7 +89,7 @@
    "type": "Earnings release (8-K Ex. 99.1)",
    "date": "2026-07-22",
    "url": "https://s206.q4cdn.com/479360582/files/doc_news/2026/Jul/22/attachments/2026q2-alphabet-earnings-release.pdf",
-   "sec": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/goog-20260722.htm"
+   "sec": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000066/googexhibit991q22026.htm"
   },
   {
    "id": "A-ER-26Q3",
@@ -96,7 +105,7 @@
    "co": "GOOGL",
    "doc": "Form 10-Q, quarter ended Mar 31, 2025",
    "type": "SEC filing (10-Q)",
-   "date": "2025-04",
+   "date": "2025-04-25",
    "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2025/q1/goog-10-q-q1-2025.pdf",
    "sec": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000043/goog-20250331.htm"
   },
@@ -123,7 +132,7 @@
    "co": "GOOGL",
    "doc": "Form 10-Q, quarter ended Sep 30, 2025 (PDF mirror)",
    "type": "SEC filing (10-Q)",
-   "date": "2025-10",
+   "date": "2025-10-30",
    "url": "https://d18rn0p25nwr6d.cloudfront.net/CIK-0001652044/d6a68c11-89c6-4604-8fe8-103892a5de7e.pdf",
    "sec": "https://www.sec.gov/Archives/edgar/data/1652044/000165204425000091/goog-20250930.htm"
   },
@@ -132,7 +141,7 @@
    "co": "GOOGL",
    "doc": "Form 10-K, FY2025 (revenue backlog note, via EDGAR tools)",
    "type": "SEC filing (10-K)",
-   "date": "2026-02",
+   "date": "2026-02-05",
    "url": "https://app.edgar.tools/companies/GOOG/disclosures/revenue",
    "sec": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000018/goog-20251231.htm"
   },
@@ -141,7 +150,7 @@
    "co": "GOOGL",
    "doc": "Form 10-Q, quarter ended Mar 31, 2026",
    "type": "SEC filing (10-Q)",
-   "date": "2026-04",
+   "date": "2026-04-30",
    "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q1/GOOG-10-Q-Q1-2026.pdf",
    "sec": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000048/goog-20260331.htm"
   },
@@ -150,7 +159,7 @@
    "co": "GOOGL",
    "doc": "Form 10-Q, quarter ended Jun 30, 2026",
    "type": "SEC filing (10-Q)",
-   "date": "2026-07",
+   "date": "2026-07-23",
    "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q2/GOOG-10-Q-Q2-2026.pdf",
    "sec": "https://www.sec.gov/Archives/edgar/data/0001652044/000165204426000071/goog-20260630.htm"
   },
@@ -159,9 +168,9 @@
    "co": "GOOGL",
    "doc": "Form 10-Q, quarter ended Sep 30, 2026",
    "type": "SEC filing (10-Q)",
-   "date": "2026-10-28",
+   "date": "2026-10-29",
    "url": "https://s206.q4cdn.com/479360582/files/doc_financials/2026/q3/GOOG-10-Q-Q3-2026.pdf",
-   "sec": ""
+   "sec": "https://www.sec.gov/Archives/edgar/data/1652044/000165204426000084/goog-20260930.htm"
   },
   {
    "id": "A-CALL-26Q1",
@@ -243,6 +252,15 @@
    "date": "2026-10-21",
    "url": "https://investor.atmeta.com/investor-news/press-release-details/2026/Meta-Reports-Third-Quarter-2026-Results/default.aspx",
    "sec": "https://www.sec.gov/Archives/edgar/data/0001326801/000162828026066700/meta-09302026xexhibit991.htm"
+  },
+  {
+   "id": "M-CALL-25Q1",
+   "co": "META",
+   "doc": "Q1 2025 earnings call transcript",
+   "type": "Earnings call (company transcript)",
+   "date": "2025-04-30",
+   "url": "https://s21.q4cdn.com/399680738/files/doc_financials/2025/q1/Transcripts/META-Q1-2025-Earnings-Call-Transcript-1.pdf",
+   "sec": ""
   },
   {
    "id": "M-PRES-26Q3",
@@ -1140,8 +1158,8 @@
     "headcount": null,
     "dap": 3.29,
     "arpp": 12.29,
-    "impressions_yoy": null,
-    "price_per_ad_yoy": null,
+    "impressions_yoy": 7,
+    "price_per_ad_yoy": 11,
     "capex_reported": 9202,
     "fcf_lfl": 16466,
     "rl_margin": -16.4,
@@ -1183,13 +1201,13 @@
     "fin_lease": 411,
     "fcf_reported": 13152,
     "buybacks": 0,
-    "dividends": 1270,
+    "dividends": 1269,
     "cash_ms": 77810,
     "headcount": 74067,
     "dap": 3.35,
     "arpp": 14.25,
-    "impressions_yoy": null,
-    "price_per_ad_yoy": null,
+    "impressions_yoy": 6,
+    "price_per_ad_yoy": 14,
     "capex_reported": 14836,
     "fcf_lfl": 13563,
     "rl_margin": -4.586334256694368,
@@ -1211,7 +1229,7 @@
     "ppa_ap": 12,
     "imp_rw": 3,
     "ppa_rw": 23,
-    "shareholder_returns": 1270
+    "shareholder_returns": 1269
    },
    "2025Q1": {
     "revenue": 42314,
@@ -1722,14 +1740,14 @@
   {
    "co": "GOOGL",
    "issued": "2025-02-04",
-   "at": "Q4 2024 call",
+   "at": "Q4 2024 release",
    "target": "FY2025",
    "metric": "Capex",
    "lo": 75000,
    "hi": 75000,
    "approx": true,
    "change": "Initial",
-   "src": "S-NBC-24Q4"
+   "src": "A-ER-24Q4"
   },
   {
    "co": "GOOGL",
@@ -2127,7 +2145,7 @@
    "co": "GOOGL",
    "q": "2026Q2",
    "theme": "Infrastructure",
-   "text": "2026 capex raised to $195-205B \"to meet demand\"; Cloud backlog +$50B QoQ to ~$514B; more third-party capacity in Q3 to pressure Cloud margins modestly.",
+   "text": "2026 capex raised to $195-205B to meet demand; Cloud backlog +$50B QoQ to ~$514B; more third-party capacity in Q3 to pressure Cloud margins modestly.",
    "src": "S-WMEDIA-26Q2"
   },
   {
@@ -5245,8 +5263,8 @@
    "co": "META",
    "q": "2025Q1",
    "theme": "APAC advertisers",
-   "text": "Susan Li: \"Asia-based e-commerce exporters\" cut spend on Meta ahead of the end of the U.S. de minimis exemption; overall spend for those advertisers was \"below the levels prior to April.\" Asia-Pacific ad revenue (user geography) grew 12%, the slowest region.",
-   "src": "S-CNBC-25Q1"
+   "text": "Susan Li: \"we have seen some reduced spend in the U.S. from Asia-based ecommerce exporters\" ahead of the end of the U.S. de minimis exemption; some spend was redirected to other markets, but \"overall spend for those advertisers is below the levels prior to April.\" Asia-Pacific ad revenue (user geography) grew 12%, the slowest region.",
+   "src": "M-CALL-25Q1"
   },
   {
    "co": "GOOGL",
@@ -5336,7 +5354,7 @@
    "co": "META",
    "cat": "Competitive",
    "title": "APAC-based exporters as advertisers",
-   "text": "On a customer-address basis Asia-Pacific was $53.8B (27%) of Meta's 2025 revenue versus $39.3B (20%) by user location: about $14.6B came from APAC-billed advertisers reaching users elsewhere, exposed to trade policy (de minimis, tariffs).",
+   "text": "On a customer-address basis Asia-Pacific was $53.8B (27%) of Meta's 2025 revenue versus $39.3B (20%) by user location: a net $14.6B more is billed to APAC-based advertisers than is earned from APAC users, reflecting APAC advertisers reaching users elsewhere, exposed to trade policy (de minimis, tariffs).",
    "status": "Watch",
    "src": "M-FY-GEO"
   },

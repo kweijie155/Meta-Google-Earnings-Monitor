@@ -195,7 +195,7 @@ export function shown(co, id, q, ctx, mode) {
   const p = value(co, id, pq, ctx);
   if (m.unit === 'pct') return { v: v == null || p == null ? null : (v - p) * 100, unit: 'pp', note: v == null || p == null ? 'Prior period unavailable' : null };
   if (v == null || p == null) return { v: null, unit: 'growth', note: p == null ? 'Prior period not collected (pre-2024 or not disclosed)' : unavailableNote(co, id, q, ctx) };
-  if (p <= 0 || v < 0) return { v: null, unit: 'growth', note: 'n/m: negative or zero base' };
+  if (p <= 0 || v < 0) return { v: null, unit: 'growth', note: 'n/m: negative value or base' };
   return { v: v / p - 1, unit: 'growth', note: null };
 }
 
